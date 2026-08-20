@@ -7,7 +7,7 @@ import {
   coinbaseWallet
 } from "@rainbow-me/rainbowkit/wallets";
 import { createConfig, http } from "@wagmi/core";
-import { arbitrum, Chain, base } from "wagmi/chains";
+import { arbitrum, Chain, base, mainnet } from "wagmi/chains";
 import { magicWallet } from "./magicConnector";
 
 const createConnectors = (chain: Chain) => {
@@ -32,11 +32,12 @@ const createConnectors = (chain: Chain) => {
 };
 
 export const wagmiConfig = createConfig({
-  chains: [arbitrum, base],
-  connectors: createConnectors(arbitrum),
+  chains: [arbitrum, base, mainnet],
+  connectors: createConnectors(mainnet),
   ssr: true,
   syncConnectedChain: true,
   transports: {
+    [mainnet.id]: http(),
     [arbitrum.id]: http(),
     [base.id]: http()
   }

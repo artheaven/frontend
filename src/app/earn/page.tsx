@@ -41,7 +41,6 @@ const LendingPage = observer(({ params }: { params: { [key: string]: string } })
     };
   }, [fetchPools, startPolling, stopPolling, activeChain]);
 
-
   useEffect(() => {
     if (!isDesktop) {
       setIsTableView(false);

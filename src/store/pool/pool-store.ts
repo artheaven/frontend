@@ -78,6 +78,7 @@ class PoolStore {
     try {
       const chartData = await getAreaChartAllIntervals(token, network);
       runInAction(() => {
+
         this.chartData = chartData;
       });
     } catch (error) {

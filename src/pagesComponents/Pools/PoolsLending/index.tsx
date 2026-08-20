@@ -56,9 +56,10 @@ export const PoolsLending = observer(
     const { activeChain } = useStore("poolsStore");
 
     const getChainRouteName = () => {
+       if (activeChain === "Ethereum") return "eth";
       if (activeChain === "BSC") return "bsc";
       if (activeChain === "Base") return "base";
-      return "arb";
+      return "eth";
     };
 
     const handleCardClick = (event: any, pool: IPoolData) => {

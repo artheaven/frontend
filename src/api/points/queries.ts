@@ -10,7 +10,7 @@ export const getPredictedPoints = async (
 ) => {
   try {
     const response = await fetch(
-      `${endpoint}lending/calculate-points/${token}/${tokenAmount}/${daysOfLock}?network=${network}`
+      `${endpoint}/lending/calculate-points/${token}/${tokenAmount}/${daysOfLock}?network=${network}`
     );
 
     if (!response.ok) {
@@ -27,7 +27,7 @@ export const getPredictedPoints = async (
 
 export const getEarnedPoints = async (address: string) => {
   try {
-    const response = await fetch(`${endpoint}lending/user-points/${address}`);
+    const response = await fetch(`${endpoint}/lending/user-points/${address}`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -43,7 +43,7 @@ export const getEarnedPoints = async (address: string) => {
 
 export const getTasks = async (address: string) => {
   try {
-    const response = await fetch(`${endpoint}lending/user-tasks/${address}`);
+    const response = await fetch(`${endpoint}/lending/user-tasks/${address}`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -63,7 +63,7 @@ export const getTasks = async (address: string) => {
 
 export const completeTask = async (address: string, taskName: string) => {
   try {
-    const response = await fetch(`${endpoint}lending/complete-task/${address}/${taskName}`, {
+    const response = await fetch(`${endpoint}/lending/complete-task/${address}/${taskName}`, {
       method: "POST"
     });
 
@@ -81,7 +81,7 @@ export const completeTask = async (address: string, taskName: string) => {
 
 export const getRewards = async (address: string) => {
   try {
-    const response = await fetch(`${endpoint}lending/rewards-claim-details/${address}`);
+    const response = await fetch(`${endpoint}/lending/rewards-claim-details/${address}`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -100,7 +100,7 @@ export const getRewards = async (address: string) => {
 
 export const getLocks = async (address: string, tokenName?: string) => {
   try {
-    const response = await fetch(`${endpoint}lending/user-locks/${address}`);
+    const response = await fetch(`${endpoint}/lending/user-locks/${address}`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

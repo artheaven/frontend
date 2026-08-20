@@ -54,4 +54,4 @@ export type LockApi = {
   unlockedTime: number;
 };
 
-export type ICHAIN = "BSC" | "Arbitrum" | "Base";
+export type ICHAIN = "Ethereum" | "BSC" | "Arbitrum" | "Base";

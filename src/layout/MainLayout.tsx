@@ -1,6 +1,6 @@
 "use client";
 import { Flex } from "@chakra-ui/react";
-import { arbitrum, base, bsc } from "wagmi/chains";
+import { arbitrum, base, bsc, mainnet } from "wagmi/chains";
 import { AppFooter } from "../widgets/AppFooter";
 import { AppHeader } from "../widgets/AppHeader";
 import { useEffect } from "react";
@@ -17,20 +17,32 @@ export const MainLayout = observer(({ children }: { children: React.ReactNode })
   // Get chain ID from active chain name
   const getChainId = (chainName: string): number => {
     switch (chainName) {
-      case "BSC": return bsc.id;
-      case "Base": return base.id;
-      case "Arbitrum": return arbitrum.id;
-      default: return arbitrum.id;
+      case "BSC":
+        return bsc.id;
+      case "Base":
+        return base.id;
+      case "Arbitrum":
+        return arbitrum.id;
+      case "Ethereum":
+        return mainnet.id;
+      default:
+        return mainnet.id;
     }
   };
 
   // Get chain name from chain ID
   const getChainName = (id: number): ICHAIN => {
     switch (id) {
-      case bsc.id: return "BSC";
-      case base.id: return "Base";
-      case arbitrum.id: return "Arbitrum";
-      default: return "Arbitrum";
+      case mainnet.id:
+        return "Ethereum";
+      case bsc.id:
+        return "BSC";
+      case base.id:
+        return "Base";
+      case arbitrum.id:
+        return "Arbitrum";
+      default:
+        return "Ethereum";
     }
   };
 

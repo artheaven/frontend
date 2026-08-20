@@ -22,6 +22,7 @@ export const ICON_NAMES: { [key: string]: string } = {
   descord: "descord",
   DAI: "DAI",
   errorWarning: "error-warning",
+  ethereum: "ethereum",
   function: "function",
   FRAX: "FRAX",
   info: "info",

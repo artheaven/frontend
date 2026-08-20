@@ -5,7 +5,7 @@ import { useAccount, useSwitchChain } from "wagmi";
 import Icon from "../../../../../components/icon";
 import { CHAIN_ICONS, ICON_NAMES } from "../../../../../consts";
 import { useStore } from "@/hooks/useStoreContext";
-import { arbitrum, base, bsc } from "viem/chains"; // Added base import
+import { arbitrum, base, bsc, mainnet } from "viem/chains"; // Added base import
 import { observer } from "mobx-react-lite";
 import { isMobile } from "react-device-detect";
 import { ICHAIN } from "@/types";
@@ -22,13 +22,15 @@ export const Strategies = observer(({ onResetCountDown }: StrategiesProps) => {
   // Helper function to get chain ID from active chain name
   const getChainIdFromName = (chainName: string): number => {
     switch (chainName) {
+      case "Ethereum":
+        return mainnet.id;
       case "BSC":
         return bsc.id;
       case "Base":
         return base.id;
       case "Arbitrum":
       default:
-        return arbitrum.id;
+        return mainnet.id;
     }
   };
 
@@ -36,7 +38,9 @@ export const Strategies = observer(({ onResetCountDown }: StrategiesProps) => {
   const getChainNameFromId = (id: number): ICHAIN => {
     if (id === bsc.id) return "BSC";
     if (id === base.id) return "Base";
-    return "Arbitrum";
+    if (id === arbitrum.id) return "Arbitrum";
+    if (id === mainnet.id) return "Ethereum";
+    return "Ethereum"; // Default to Ethereum if not BSC or Base
   };
 
   const [activeChainId, setActiveChainId] = useState(chainId || getChainIdFromName(activeChain));

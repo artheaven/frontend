@@ -30,7 +30,7 @@ import useDebounce from "@/hooks/useDebounce";
 import { parseUnits } from "ethers";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { arbitrum } from "viem/chains";
+import { mainnet } from "viem/chains";
 
 const Swap = () => {
   const searchParams = useSearchParams();
@@ -107,9 +107,9 @@ const Swap = () => {
   });
 
   useEffect(() => {
-    if (chainId !== arbitrum.id) {
+    if (chainId !== mainnet.id) {
       switchChain({
-        chainId: arbitrum.id
+        chainId: mainnet.id
       });
     }
   }, [chainId]);
@@ -361,7 +361,7 @@ const Swap = () => {
         )}
         {!error && <Fee exchangeRate={exchangeRate} gasFee={gasFee} isLoading={isLoadingFee} />}
         {!address && <ConnectWallet variant="primaryFilled" />}
-        {address && chainId !== arbitrum.id && (
+        {address && chainId !== mainnet.id && (
           <Button
             variant="primaryFilled"
             h="52px"
@@ -373,12 +373,12 @@ const Swap = () => {
               background: "transparent",
               color: "white"
             }}
-            onClick={() => switchChain({ chainId: arbitrum.id })}
+            onClick={() => switchChain({ chainId: mainnet.id })}
           >
-            Switch ARB
+            Switch ETH
           </Button>
         )}
-        {address && chainId === arbitrum.id && (
+        {address && chainId === mainnet.id && (
           <ApproveButton
             amount={Number(payAmount)}
             ownerAddress={address}
@@ -389,7 +389,7 @@ const Swap = () => {
             error={error}
           />
         )}
-        {chainId === arbitrum.id &&
+        {chainId === mainnet.id &&
           !isNeedApprove &&
           !isLoadingPayTokenPrice &&
           !isLoadingReceiveTokenPrice && (

@@ -7,7 +7,7 @@ import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import "@rainbow-me/rainbowkit/styles.css";
 import { themes } from "../themes";
 import { wagmiConfig } from "../utils/w3";
-import { arbitrum, bsc } from "viem/chains";
+import { mainnet } from "viem/chains";
 import { RAINBOW_THEME } from "@/consts";
 import MagicProvider from "@/contexts/useMagic";
 import { observer } from "mobx-react-lite";
@@ -26,7 +26,7 @@ export const Providers = observer(({ children }: { children: React.ReactNode }) 
           <QueryClientProvider client={queryClient}>
             <RainbowKitProvider
               modalSize="compact"
-              initialChain={activeChain === "BSC" ? bsc : arbitrum}
+              initialChain={mainnet}
               theme={RAINBOW_THEME}
               locale="en-US"
               appInfo={{

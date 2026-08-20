@@ -146,7 +146,6 @@ const EarningsChart = observer(
     token: string;
     pool: IPoolData;
   }) => {
-    const { chain } = useAccount();
     const { selectedDate, setSelectDate } = useDateSwitcher(DATESEarned[0]);
     const [userEarningsData, setUserEarningsData] = useState<IBarChartData[] | undefined>(
       undefined

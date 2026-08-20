@@ -4,7 +4,7 @@ import { LendingAsset } from "@/pagesComponents/AssetsPages/LendingAsset";
 import { useEffect, useState } from "react";
 import { useStore } from "@/hooks/useStoreContext";
 import { useAccount, useSwitchChain } from "wagmi";
-import { arbitrum, bsc, base } from "viem/chains";
+import { arbitrum, bsc, base, mainnet } from "viem/chains";
 
 const LendingAssetPage = observer(({ params }: { params: { [key: string]: string } }) => {
   const { chainId, isConnected } = useAccount();
@@ -17,18 +17,23 @@ const LendingAssetPage = observer(({ params }: { params: { [key: string]: string
     chartData,
     isChartLoading
   } = useStore("poolStore");
+
   const { setActiveChain } = useStore("poolsStore");
   const { pools, isLoading } = useStore("poolsStore");
   const [error, setError] = useState<string | null>(null);
 
   const getChainName = () => {
     switch (params.chain) {
+      case "eth":
+        return "Ethereum";
       case "bsc":
         return "BSC";
       case "base":
         return "Base";
-      default:
+      case "arbitrum":
         return "Arbitrum";
+      default:
+        return "Ethereum";
     }
   };
 
@@ -43,14 +48,20 @@ const LendingAssetPage = observer(({ params }: { params: { [key: string]: string
       let targetChainId;
 
       switch (params.chain) {
+        case "eth":
+          targetChainId = mainnet.id;
+          break;
         case "bsc":
           targetChainId = bsc.id;
           break;
         case "base":
           targetChainId = base.id;
           break;
-        default:
+        case "arbitrum":
           targetChainId = arbitrum.id;
+          break;
+        default:
+          targetChainId = mainnet.id;
           break;
       }
 
@@ -89,12 +100,16 @@ const LendingAssetPage = observer(({ params }: { params: { [key: string]: string
 
   const getChainId = () => {
     switch (params.chain) {
+      case "eth":
+        return mainnet.id;
       case "bsc":
         return bsc.id;
       case "base":
         return base.id;
-      default:
+      case "arbitrum":
         return arbitrum.id;
+      default:
+        return mainnet.id;
     }
   };
 

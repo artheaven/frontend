@@ -9,7 +9,7 @@ class PoolsStore {
   isFetched = false;
   error: Error | null = null;
   interval: ReturnType<typeof setInterval> | null = null;
-  activeChain: ICHAIN = "Arbitrum";
+  activeChain: ICHAIN = "Ethereum";
 
   constructor() {
     makeObservable(this, {

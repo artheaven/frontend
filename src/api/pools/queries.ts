@@ -1,14 +1,14 @@
 import { ICHAIN } from "@/types";
 import { IIntervalResponse, ILendChartData, IPoolData, IPoolsData, ITotalProfit } from "./types";
 
-export const endpoint = "https://rebalancerfinanceapi.net/";
+export const endpoint = "http://localhost:2002";
 
 export const getPools = async (
   type: "lending" | "borrowing",
   network: ICHAIN
 ): Promise<IPoolData[]> => {
   try {
-    const response = await fetch(`https://api.1559.space/${type}?network=${network}`, {
+    const response = await fetch(`${endpoint}/${type}?network=${network}`, {
       cache: "no-store"
     });
     if (!response.ok) {
@@ -49,7 +49,7 @@ export const getTotalProfit = async (
 ) => {
   try {
     const response = await fetch(
-      `${endpoint}${type}/user-earned-overall/${address}?network=${network}`,
+      `${endpoint}/${type}/user-earned-overall/${address}?network=${network}`,
       {
         cache: "no-store"
       }
@@ -73,7 +73,7 @@ export const getProfitPool = async (
 ) => {
   try {
     const response = await fetch(
-      `${endpoint}${type}/${token}/user-earned/${address}?network=${network}`,
+      `${endpoint}/${type}/${token}/user-earned/${address}?network=${network}`,
       {
         cache: "no-store"
       }
@@ -97,11 +97,11 @@ export const getChartData = async (
 ): Promise<any> => {
   try {
     const highestMarketResponse = await fetch(
-      `${endpoint}lending/${token}/highest-market-apr-ticks/${interval}/${intervalsCount}?network=${network}`,
+      `${endpoint}/lending/${token}/highest-market-apr-ticks/${interval}/${intervalsCount}?network=${network}`,
       { cache: "no-store" }
     );
     const rebalanceAprResponse = await fetch(
-      `${endpoint}lending/${token}/apr-ticks/${interval}/${intervalsCount}?network=${network}`,
+      `${endpoint}/lending/${token}/apr-ticks/${interval}/${intervalsCount}?network=${network}`,
       { cache: "no-store" }
     );
 
@@ -160,7 +160,7 @@ export const getUserEarnings = async (
 ) => {
   try {
     const response = await fetch(
-      `${endpoint}lending/user-earned-overall-ticks/${address}/${interval}/${intervalsCount}?network=${network}`,
+      `${endpoint}/lending/user-earned-overall-ticks/${address}/${interval}/${intervalsCount}?network=${network}`,
       { cache: "no-store" }
     );
     if (!response.ok) {
@@ -177,7 +177,7 @@ export const getUserEarnings = async (
 const fetchHighestAprToken = async (dayInterval: number, network: ICHAIN): Promise<string> => {
   try {
     const response = await fetch(
-      `${endpoint}lending/highest-apr-token/${dayInterval}?network=${network}`
+      `${endpoint}/lending/highest-apr-token/${dayInterval}?network=${network}`
     );
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -329,11 +329,11 @@ export const getPersonalEarnings = async (
 ) => {
   try {
     const userEarningsResponse = await fetch(
-      `${endpoint}lending/${token}/user-earned-ticks/${address}/${interval}/${intervalsCount}`,
+      `${endpoint}/lending/${token}/user-earned-ticks/${address}/${interval}/${intervalsCount}`,
       { cache: "no-store" }
     );
     const avgAPRTiksResponse = await fetch(
-      `${endpoint}lending/${token}/apr-ticks/${interval}/${intervalsCount}?network=${network}`,
+      `${endpoint}/lending/${token}/apr-ticks/${interval}/${intervalsCount}?network=${network}`,
       { cache: "no-store" }
     );
 

@@ -50,6 +50,10 @@ export const convertNumberToBigInt = (value: number = 0, decimals: number): bigi
 };
 
 export const getExplorerTxLink = (txHash: string, chainName: ICHAIN) => {
+  if (chainName === "Ethereum") {
+    return `https://etherscan.io/tx/${txHash}`;
+  }
+
   if (chainName === "BSC") {
     return `https://bscscan.com/tx/${txHash}`;
   }

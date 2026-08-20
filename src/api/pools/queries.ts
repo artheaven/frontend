@@ -1,7 +1,7 @@
 import { ICHAIN } from "@/types";
 import { IIntervalResponse, ILendChartData, IPoolData, IPoolsData, ITotalProfit } from "./types";
 
-export const endpoint = "http://localhost:2002";
+export const endpoint = process.env.NEXT_PUBLIC_API_URL || "http://localhost:2002";
 
 export const getPools = async (
   type: "lending" | "borrowing",

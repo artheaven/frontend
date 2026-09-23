@@ -84,3 +84,21 @@ export interface IAreaChartData {
 export interface ITotalProfit {
   totalProfit: number
 }
+export type RebalanceReason = "rate" | "new_liquidity" | "utilization" | "risk_gate" | "manual";
+
+export interface IRebalanceEvent {
+  id: number;
+  /** ISO timestamp, UTC */
+  ts: string;
+  from: string;
+  to: string;
+  /** Amount moved, in asset units */
+  amount: number;
+  reason: RebalanceReason;
+  txHash?: `0x${string}`;
+}
+
+export interface IRebalancePage {
+  items: IRebalanceEvent[];
+  total: number;
+}

@@ -21,10 +21,10 @@ export const WalletProfileBtn: FC<IWalletProfileBtnProps> = ({ onOpen, address, 
     <Flex as={Button} gap="6px" align="center" onClick={onOpen}>
       {/* <Flex gap="6px" align="center" className={className}> */}
       <JazzIcon address={address} />
-      <Text fontFamily="mono" fontSize="sm" mr={connector?.id === "demo" ? 2 : 4}>
+      <Text fontFamily="mono" fontSize="sm" mr={{ base: 2, md: connector?.id === "demo" ? 2 : 4 }}>
         {ellipsis(String(address))}
       </Text>
-      {connector?.id === "demo" ? <StatusPill kind="DEMO" mr={2} /> : null}
+      {connector?.id === "demo" ? <StatusPill kind="DEMO" mr={2} display={{ base: "none", md: "inline-flex" }} /> : null}
       <Center height="20px">
         <Divider orientation="vertical" />
       </Center>

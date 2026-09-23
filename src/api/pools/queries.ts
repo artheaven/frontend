@@ -1,6 +1,6 @@
 import { apiFetch } from "@/demo/api";
 import { ICHAIN } from "@/types";
-import { IIntervalResponse, ILendChartData, IPoolData, IPoolsData, ITotalProfit } from "./types";
+import { IIntervalResponse, ILendChartData, IPoolData, IPoolsData, IRebalancePage, ITotalProfit } from "./types";
 
 export const endpoint = process.env.NEXT_PUBLIC_API_URL || "http://localhost:2002";
 
@@ -366,4 +366,20 @@ export const getPersonalEarnings = async (
     console.error(`Failed to fetch personal earnings: ${error.message}`);
     throw error;
   }
+};
+
+export const getRebalances = async (
+  token: string,
+  network: ICHAIN,
+  page: number,
+  limit: number
+): Promise<IRebalancePage> => {
+  const response = await apiFetch(
+    `${endpoint}/lending/${token}/rebalances?network=${network}&page=${page}&limit=${limit}`,
+    { cache: "no-store" }
+  );
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  return response.json();
 };

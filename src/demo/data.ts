@@ -150,3 +150,43 @@ export function demoEarnedTicks(pools: DemoPool[], intervalDays: number, count: 
     )
   }));
 }
+
+// ---- rebalance history ----
+
+const REASONS = ["rate", "rate", "rate", "new_liquidity", "utilization", "risk_gate"] as const;
+
+export interface DemoRebalance {
+  id: number;
+  ts: string;
+  from: string;
+  to: string;
+  amount: number;
+  reason: (typeof REASONS)[number];
+  txHash: `0x${string}`;
+}
+
+/** Newest-first rebalance log for a pool; destinations come from its allocations. */
+export function demoRebalances(pool: DemoPool, count = 214): DemoRebalance[] {
+  const rnd = prng(seedOf(`${pool.token}:rebalances`));
+  const dests = pool.allocations.map(a => a.destination);
+  const now = Date.parse(DEMO_AS_OF);
+  let t = now - 40 * 60_000;
+  const out: DemoRebalance[] = [];
+  for (let i = 0; i < count; i++) {
+    const from = dests[Math.floor(rnd() * dests.length)]!;
+    let to = dests[Math.floor(rnd() * dests.length)]!;
+    if (to === from) to = dests[(dests.indexOf(from) + 1) % dests.length]!;
+    const hex = Array.from({ length: 64 }, () => Math.floor(rnd() * 16).toString(16)).join("");
+    out.push({
+      id: count - i,
+      ts: new Date(t).toISOString(),
+      from,
+      to,
+      amount: Math.round(pool.funds * (0.002 + rnd() * 0.02)),
+      reason: REASONS[Math.floor(rnd() * REASONS.length)]!,
+      txHash: `0x${hex}`
+    });
+    t -= Math.round((4 + rnd() * 14) * 3_600_000);
+  }
+  return out;
+}

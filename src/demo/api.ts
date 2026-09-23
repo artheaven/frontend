@@ -3,7 +3,7 @@
  * Outside demo mode `apiFetch` is plain `fetch`.
  */
 import { DEMO_MODE } from "./config";
-import { DEMO_POOLS, DemoPool, demoEarnedTicks, demoTicks, findDemoPool } from "./data";
+import { DEMO_POOLS, DemoPool, demoEarnedTicks, demoRebalances, demoTicks, findDemoPool } from "./data";
 
 const json = (data: unknown) =>
   new Response(JSON.stringify(data), { status: 200, headers: { "content-type": "application/json" } });
@@ -27,6 +27,13 @@ export function demoRoute(url: URL): Response {
   if (b === "user-earned") return json(earnedOver(pool, 120));
   // /lending/highest-apr-token/{days}
   if (a === "highest-apr-token") return new Response(DEMO_POOLS[0]!.token.toLowerCase());
+  // /lending/{token}/rebalances?page=&limit=
+  if (b === "rebalances") {
+    const page = Math.max(1, Number(url.searchParams.get("page") ?? 1));
+    const limit = Math.min(50, Math.max(1, Number(url.searchParams.get("limit") ?? 5)));
+    const all = demoRebalances(pool);
+    return json({ items: all.slice((page - 1) * limit, page * limit), total: all.length });
+  }
   // /lending/{token}/apr-ticks/{interval}/{count}
   if (b === "apr-ticks") return json(demoTicks(pool.token, +c!, +d!, pool.avgApr30D, 1.2));
   // /lending/{token}/highest-market-apr-ticks/{interval}/{count}

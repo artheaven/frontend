@@ -6,7 +6,7 @@ export const Wordmark = (props: TextProps) => (
     as="span"
     fontFamily="mono"
     fontSize="sm"
-    letterSpacing="0.32em"
+    letterSpacing={{ base: "0.22em", md: "0.32em" }}
     color="ink"
     whiteSpace="nowrap"
     {...props}

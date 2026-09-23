@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import { useStore } from "@/hooks/useStoreContext";
 import { observer } from "mobx-react-lite";
 
-const DOCS_URL = "https://rebalance.gitbook.io/rebalance/intro/what-is-rebalance";
 
 type Protocol =
   | "AAVE"
@@ -154,7 +153,6 @@ export const PoolsLending = observer(
                 address={address}
                 loading={loading}
                 strategyTooltip={getYieldStrategy(elem.token)}
-                methodologyHref={DOCS_URL}
                 onOpen={event => handleCardClick(event, elem)}
               />
             ))}

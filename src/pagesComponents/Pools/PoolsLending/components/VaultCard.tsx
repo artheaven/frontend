@@ -1,25 +1,18 @@
 "use client";
-import { Box, Divider, Flex, Link, SimpleGrid, Skeleton, Text } from "@chakra-ui/react";
+import { Flex, SimpleGrid, Skeleton, Text } from "@chakra-ui/react";
 import { ReactNode } from "react";
 
 import { IPoolData } from "@/api/pools/types";
 import { AllocationBar } from "@/components/allocation-bar";
 import { Risk } from "@/components/risk";
-import { StatusPill } from "@/components/status-pill";
 import { TokenIcon } from "@/components/token-icon";
 import { Tooltip } from "@/components/tooltip";
-import { DEMO_MODE } from "@/demo/config";
 import { DepositLendingButton } from "@/features/actions/deposit-or-withdraw-button/DepositLendingButton";
 import { WithdrawLendingButton } from "@/features/actions/deposit-or-withdraw-button/WithdrawLendingButton";
 import { getIdByToken } from "@/utils/analytics";
 import { formatNumber } from "@/utils/formatNumber";
 import DepositInfo from "./DepositInfo";
 import UserProfitPool from "./UserProfitPool";
-
-const formatUtc = (iso: string) => {
-  const d = new Date(iso);
-  return Number.isNaN(d.getTime()) ? "—" : `${d.toISOString().slice(0, 16).replace("T", " ")} UTC`;
-};
 
 const Metric = ({
   label,
@@ -71,22 +64,19 @@ interface VaultCardProps {
   address?: `0x${string}`;
   loading?: boolean;
   strategyTooltip?: ReactNode;
-  methodologyHref: string;
   onOpen: (event: React.MouseEvent) => void;
 }
 
-/** Vault card in the Invictus site layout: name, two metrics, allocation, provenance, actions. */
+/** Vault card in the Invictus site layout: name, two metrics, allocation, position, actions. */
 export const VaultCard = ({
   pool,
   chainName,
   address,
   loading,
   strategyTooltip,
-  methodologyHref,
   onOpen
 }: VaultCardProps) => {
   const delta = pool.apr;
-  const source = DEMO_MODE ? "demo" : "api";
 
   return (
     <Flex
@@ -171,36 +161,8 @@ export const VaultCard = ({
         </SimpleGrid>
       ) : null}
 
-      <Box flex="1" />
-
-      {/* Provenance */}
-      <Divider borderColor="line" />
-      <Flex wrap="wrap" align="center" gap="6px 8px" fontFamily="mono" fontSize="12px" color="ink3">
-        {pool.asOf ? (
-          <>
-            <Text as="span">As of {formatUtc(pool.asOf)}</Text>
-            <Text as="span">·</Text>
-          </>
-        ) : null}
-        <Text as="span">source: {source}</Text>
-        <Text as="span">·</Text>
-        <Link
-          href={methodologyHref}
-          isExternal
-          color="ink3"
-          textDecoration="underline"
-          textDecorationColor="lineStrong"
-          textUnderlineOffset="3px"
-          _hover={{ color: "ink" }}
-          onClick={e => e.stopPropagation()}
-        >
-          methodology
-        </Link>
-        {DEMO_MODE ? <StatusPill kind="DEMO DATA" /> : null}
-      </Flex>
-
-      {/* Actions */}
-      <Flex gap="8px">
+      {/* Actions — pinned to the bottom so buttons line up across cards in a row */}
+      <Flex gap="8px" mt="auto">
         <DepositLendingButton
           pool={pool}
           minHeight="40px"

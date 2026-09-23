@@ -69,7 +69,7 @@ export const RepayTab = () => {
           <Text textStyle="textMono16">100,552 USDT</Text>
         </HStack>
         <HStack justify="space-between">
-          <Text color="black.0">REBALANCE® borrowing rate</Text>
+          <Text color="black.0">Invictus borrowing rate</Text>
           <Text textStyle="textMono16">4.5%</Text>
         </HStack>
         <HStack justify="space-between">

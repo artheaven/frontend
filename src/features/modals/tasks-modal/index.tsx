@@ -274,10 +274,10 @@ const TasksModal: FC<ITasksModalProps> = ({
           />
           <Flex flexDir="column" gap="12px">
             <Text fontSize="22px" fontWeight={500}>
-              Rebalance Incentives Campaign
+              Invictus Incentives Campaign
             </Text>
             <Text textStyle="text14" color="ink3">
-              Don't miss the chance to earn Rebalance points as the community incentivization
+              Don't miss the chance to earn Invictus points as the community incentivization
               program approaches!
             </Text>
           </Flex>

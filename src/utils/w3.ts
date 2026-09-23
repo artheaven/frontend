@@ -25,7 +25,7 @@ const createConnectors = (chain: Chain) => {
       }
     ],
     {
-      appName: "Rebalance",
+      appName: "Invictus",
       projectId: process?.env?.NEXT_PUBLIC_WALLETCONNECT_KEY || ""
     }
   );

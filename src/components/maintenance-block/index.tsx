@@ -13,7 +13,7 @@ const MaintenanceBlock = () => {
       bg="orangeAlpha.60"
     >
       <WarningTwoIcon boxSize="24px" />
-      <Text textStyle="textMono16">Rebalance is under maintenance</Text>
+      <Text textStyle="textMono16">Invictus is under maintenance</Text>
     </Flex>
   );
 };

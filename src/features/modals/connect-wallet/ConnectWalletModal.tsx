@@ -89,7 +89,7 @@ const ConnectWalletModal = ({ isOpen, onClose }: IDefaultModalProps) => {
               Connect Wallet
             </Text>
             <Text fontSize="sm" fontWeight="400">
-              To start using REBALANCE
+              To start using Invictus
             </Text>
           </DrawerHeader>
 
@@ -116,7 +116,7 @@ const ConnectWalletModal = ({ isOpen, onClose }: IDefaultModalProps) => {
             ))}
 
             <Text fontSize="xs" color="black.0">
-              By connecting, I accept REBALANCE’s{" "}
+              By connecting, I accept Invictus’s{" "}
               <Link color="greenAlpha.100">Terms of Service</Link>
             </Text>
           </DrawerBody>
@@ -137,7 +137,7 @@ const ConnectWalletModal = ({ isOpen, onClose }: IDefaultModalProps) => {
             Connect Wallet
           </Text>
           <Text fontSize="sm" fontWeight="400">
-            To start using REBALANCE
+            To start using Invictus
           </Text>
         </ModalHeader>
 
@@ -167,7 +167,7 @@ const ConnectWalletModal = ({ isOpen, onClose }: IDefaultModalProps) => {
 
         <ModalFooter justifyContent="start">
           <Text fontSize="xs" color="black.0">
-            By connecting, I accept REBALANCE’s <Link color="greenAlpha.100">Terms of Service</Link>
+            By connecting, I accept Invictus’s <Link color="greenAlpha.100">Terms of Service</Link>
           </Text>
         </ModalFooter>
       </ModalContent>

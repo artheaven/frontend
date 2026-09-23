@@ -37,7 +37,7 @@ export const AppBanner = () => {
             textAlign={{ base: "center", md: "start" }}
           >
             <Text textStyle="h1">Early-depositor’s programme</Text>
-            <Text textStyle="h2">Join now and get Rebalance Club NFT, with unique utilities</Text>
+            <Text textStyle="h2">Join now and get Invictus Club NFT, with unique utilities</Text>
             <Text fontWeight="500" color="lightGray">
               NFTs minted: 126 / 256
             </Text>

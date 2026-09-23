@@ -11,8 +11,8 @@ import Script from "next/script";
 import CommonEvent from "@/components/common-event";
 
 export const metadata: Metadata = {
-  title: "Rebalance",
-  description: "Rebalance"
+  title: "Invictus",
+  description: "Invictus — allocation infrastructure for stablecoin balances"
 };
 
 export default function RootLayout({

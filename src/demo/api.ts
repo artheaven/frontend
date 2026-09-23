@@ -3,26 +3,32 @@
  * Outside demo mode `apiFetch` is plain `fetch`.
  */
 import { DEMO_MODE } from "./config";
+import { demoLedger } from "./ledger";
 import { DEMO_POOLS, DemoPool, demoEarnedTicks, demoRebalances, demoTicks, findDemoPool } from "./data";
 
 const json = (data: unknown) =>
   new Response(JSON.stringify(data), { status: 200, headers: { "content-type": "application/json" } });
 
 /** Earned over `days` for a pool position, USD. */
+/** Pools with the demo wallet's current position (the ledger) instead of the seed value. */
+const livePools = (): DemoPool[] =>
+  DEMO_POOLS.map(p => ({ ...p, demoDeposit: demoLedger.position(p.vaultAddress), funds: p.funds + demoLedger.positionDelta(p.vaultAddress) }));
+
 const earnedOver = (p: DemoPool, days: number) =>
   (p.demoDeposit * p.tokenPrice * p.avgApr30D * days) / 36_500;
 
 export function demoRoute(url: URL): Response {
   const p = url.pathname.split("/").filter(Boolean);
   const [type, a, b, c, d, e] = p;
-  const pool = findDemoPool(a) ?? DEMO_POOLS[0]!;
+  const pools = livePools();
+  const pool = pools.find(x => x.token === findDemoPool(a)?.token) ?? pools[0]!;
 
   // /{lending|borrowing}?network=
   if (p.length === 1 && (type === "lending" || type === "borrowing")) {
-    return json(DEMO_POOLS.map(({ demoDeposit, ...rest }) => rest));
+    return json(pools.map(({ demoDeposit, ...rest }) => rest));
   }
   // /{type}/user-earned-overall/{address}
-  if (a === "user-earned-overall") return json(DEMO_POOLS.reduce((s, x) => s + earnedOver(x, 120), 0));
+  if (a === "user-earned-overall") return json(pools.reduce((s, x) => s + earnedOver(x, 120), 0));
   // /{type}/{token}/user-earned/{address}
   if (b === "user-earned") return json(earnedOver(pool, 120));
   // /lending/highest-apr-token/{days}
@@ -49,7 +55,7 @@ export function demoRoute(url: URL): Response {
     );
   }
   // /lending/user-earned-overall-ticks/{address}/{interval}/{count}
-  if (a === "user-earned-overall-ticks") return json(demoEarnedTicks(DEMO_POOLS, +c!, +d!));
+  if (a === "user-earned-overall-ticks") return json(demoEarnedTicks(pools, +c!, +d!));
   // /lending/{token}/user-earned-ticks/{address}/{interval}/{count}
   if (b === "user-earned-ticks") return json(demoEarnedTicks([pool], +d!, +e!));
   // points & rewards: empty but well-formed

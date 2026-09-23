@@ -6,6 +6,9 @@ import { useStore } from "./useStoreContext";
 import { ModalContextEnum } from "@/store/modal/types";
 import { arbitrum } from "viem/chains";
 import { getChainNameById, getConfirmationsCount } from "@/utils";
+import { DEMO_MODE } from "@/demo/config";
+import { DEMO_POOLS } from "@/demo/data";
+import { demoLedger } from "@/demo/ledger";
 
 export const useWithdraw = (
   poolAddress: `0x${string}`,
@@ -58,6 +61,20 @@ export const useWithdraw = (
     address: `0x${string}`;
     assets: bigint;
   }) => {
+    const pool = DEMO_MODE ? DEMO_POOLS.find(p => p.vaultAddress.toLowerCase() === poolAddress.toLowerCase()) : undefined;
+    if (pool) {
+      try {
+        setLoading(true);
+        const hash = await demoLedger.withdraw(poolAddress, pool.token, Number(assets) / 10 ** pool.tokenDecimals);
+        setLoading(false);
+        onClose();
+        openModal({ type: ModalContextEnum.Success, props: { txHash: hash, chainName: activeChain } });
+      } catch (e) {
+        setLoading(false);
+        openModal({ type: ModalContextEnum.Reject, props: { title: "Transaction error", content: (e as Error).message, onRetry } });
+      }
+      return;
+    }
     try {
       setLoading(true);
       const tx = await writeContractAsync({

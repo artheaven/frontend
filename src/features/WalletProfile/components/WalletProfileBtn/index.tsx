@@ -7,6 +7,7 @@ import Icon from "@/components/icon";
 import { ICON_NAMES } from "@/consts";
 import { useAccount, useDisconnect } from "wagmi";
 import { StatusPill } from "@/components/status-pill";
+import { demoLedger } from "@/demo/ledger";
 
 interface IWalletProfileBtnProps {
   address: string;
@@ -31,7 +32,10 @@ export const WalletProfileBtn: FC<IWalletProfileBtnProps> = ({ onOpen, address, 
       <IconButton
         ml={0}
         aria-label="logout"
-        onClick={() => disconnect()}
+        onClick={() => {
+          if (connector?.id === "demo") demoLedger.reset();
+          disconnect();
+        }}
         icon={<Icon size="m" name={ICON_NAMES.logoutSquare} />}
       />
     </Flex>

@@ -7,6 +7,10 @@ import { ARB_CONFIRMATIONS_COUNT, BSC_CONFIRMATIONS_COUNT } from "@/consts";
 import { arbitrum } from "viem/chains";
 import { useStore } from "@/hooks/useStoreContext";
 import { getConfirmationsCount } from "@/utils";
+import { useState } from "react";
+import { DEMO_MODE } from "@/demo/config";
+import { demoLedger } from "@/demo/ledger";
+import { DEMO_POOLS } from "@/demo/data";
 
 const ApproveBtn = ({
   value,
@@ -33,9 +37,23 @@ const ApproveBtn = ({
     confirmations: getConfirmationsCount(activeChain)
   });
 
+  const [demoPending, setDemoPending] = useState(false);
+
   const approve = () => {
     if (onClick) {
       onClick();
+    }
+
+    if (DEMO_MODE) {
+      // Demo: approve the exact amount (value is in the pool asset's base units).
+      setDemoPending(true);
+      const decimals =
+        DEMO_POOLS.find(p => p.vaultAddress.toLowerCase() === poolAddress.toLowerCase())?.tokenDecimals ?? 18;
+      demoLedger
+        .approve(poolAddress, Number(value) / 10 ** decimals)
+        .then(() => setConfirmedApprove(true))
+        .finally(() => setDemoPending(false));
+      return;
     }
 
     writeContract({
@@ -53,8 +71,8 @@ const ApproveBtn = ({
   }, [isSuccess]);
 
   return (
-    <Button id={id} variant="primaryFilled" isDisabled={isDisabled} onClick={() => approve()}>
-      {isLoading ? "Processing..." : "Approve"}
+    <Button id={id} variant="primaryFilled" isDisabled={isDisabled || demoPending} onClick={() => approve()}>
+      {isLoading || demoPending ? "Processing..." : "Approve"}
     </Button>
   );
 };

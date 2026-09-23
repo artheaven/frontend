@@ -16,6 +16,9 @@ import { ICON_NAMES } from "../../../consts";
 import { ISuccessModalContextProps } from "../types";
 import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
 import { getExplorerTxLink } from "@/utils";
+import { DEMO_MODE } from "@/demo/config";
+import { StatusPill } from "@/components/status-pill";
+import { StatusMark } from "@/components/status-mark";
 
 export const SuccessModal: FC<ISuccessModalContextProps> = ({
   chainName,
@@ -70,6 +73,8 @@ export const SuccessModal: FC<ISuccessModalContextProps> = ({
         return "BscScan";
       case "Base":
         return "BaseScan";
+      case "Ethereum":
+        return "Etherscan";
       default:
         return "Arbiscan";
     }
@@ -77,28 +82,32 @@ export const SuccessModal: FC<ISuccessModalContextProps> = ({
 
   return (
     <Modal id={id} isOpen={isOpen} onClose={onClose} isCloseBtn={false}>
-      <ModalContent bg="black.60" width="100%" maxWidth="648px">
+      <ModalContent bg="bg2" width="100%" maxWidth="648px">
         <ModalBody maxW="648px" width="100%" p="24px">
           <VStack gap="24px">
-            <Icon name={ICON_NAMES.trxSuccess} size="112px" />
+            <StatusMark kind="success" />
 
-            <Text fontSize="22px" fontWeight="600">
-              Transaction Successful
-            </Text>
+            <Text textStyle="h2">Transaction confirmed</Text>
+            {DEMO_MODE ? <StatusPill kind="DEMO" title="Simulated transaction — nothing was sent on-chain" /> : null}
             <Flex flexDir="column" gap="8px" alignItems="center" w="100%">
-              <Text>Your transaction is completed successfully:</Text>
+              <Text color="ink2">{DEMO_MODE ? "Simulated transaction hash:" : "Your transaction is completed successfully:"}</Text>
 
               <Flex
                 align="center"
                 justify="center"
                 w="100%"
-                bg="black.70"
+                bg="bg"
                 p="12px"
                 gap="8px"
-                borderRadius="4px"
+                borderWidth="1px"
+                borderStyle="solid"
+                borderColor="line"
+                borderRadius="2px"
               >
                 <Text
-                  color="greenAlpha.80"
+                  fontFamily="mono"
+                  fontSize="sm"
+                  color="ink2"
                   whiteSpace="nowrap"
                   overflow="hidden"
                   textOverflow="ellipsis"
@@ -113,25 +122,21 @@ export const SuccessModal: FC<ISuccessModalContextProps> = ({
               </Flex>
             </Flex>
             <Flex flexDir="column" gap="12px" w="100%">
+              {DEMO_MODE ? null : (
+                <Button variant="primaryWhite" w="100%" minH="44px" onClick={handleOpenExplorer}>
+                  View on {getExplorerTitle()}
+                </Button>
+              )}
               <Button
                 variant="primaryFilled"
                 w="100%"
                 minH="44px"
-                backgroundColor="greenAlpha.40"
-                _hover={{ opacity: 0.8 }}
-                onClick={handleOpenExplorer}
-              >
-                View on {getExplorerTitle()}
-              </Button>
-              <Button
-                variant="primaryFilled"
-                w="100%"
-                minH="44px"
-                _hover={{ opacity: 0.8 }}
                 onClick={onClose}
               >
                 Close
-                <span style={{ color: "darkgray", marginLeft: "4px" }}>({countdown}sec)</span>
+                <Text as="span" color="ink3" ml="4px">
+                  ({countdown}s)
+                </Text>
               </Button>
             </Flex>
           </VStack>

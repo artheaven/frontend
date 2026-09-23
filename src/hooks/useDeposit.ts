@@ -8,6 +8,12 @@ import localStore from "@/utils/localStore";
 import { useAnalyticsEventTracker } from "./useAnalyticsEventTracker";
 import { arbitrum } from "viem/chains";
 import { getChainNameById, getConfirmationsCount } from "@/utils";
+import { DEMO_MODE } from "@/demo/config";
+import { demoLedger } from "@/demo/ledger";
+import { DEMO_POOLS } from "@/demo/data";
+import { parseUnits } from "viem";
+
+const demoPool = (vault: string) => DEMO_POOLS.find(p => p.vaultAddress.toLowerCase() === vault.toLowerCase());
 
 export const useDeposit = (
   poolAddress: `0x${string}`,
@@ -29,8 +35,12 @@ export const useDeposit = (
     address: tokenAddress,
     abi: ABI_REBALANCE,
     functionName: "allowance",
-    args: [address ?? "0x", poolAddress]
+    args: [address ?? "0x", poolAddress],
+    query: { enabled: !DEMO_MODE }
   });
+  const pool = DEMO_MODE ? demoPool(poolAddress) : undefined;
+  // Read inside the (observer) caller's render, so it updates after a demo approve.
+  const demoAllowance = pool ? parseUnits(demoLedger.allowance(poolAddress).toFixed(pool.tokenDecimals), pool.tokenDecimals) : undefined;
 
   const {
     isLoading: waitingReceipt,
@@ -79,6 +89,26 @@ export const useDeposit = (
   }, [isReceiptSuccess, isReceiptError, txHash, receiptError]);
 
   const deposit = async ({ value, address }: { value: bigint; address: `0x${string}` }) => {
+    if (DEMO_MODE && pool) {
+      try {
+        setLoading(true);
+        const hash = await demoLedger.deposit(poolAddress, pool.token, Number(value) / 10 ** pool.tokenDecimals);
+        setLoading(false);
+        setIsSuccess(true);
+        if (needClose) {
+          onClose();
+          onSendSuccessDepositEvent();
+          openModal({ type: ModalContextEnum.Success, props: { txHash: hash, id: "deposit_success", chainName: activeChain } });
+        }
+      } catch (e) {
+        setLoading(false);
+        openModal({
+          type: ModalContextEnum.Reject,
+          props: { title: "Transaction error", content: (e as Error).message, onRetry: onRetry ?? (() => {}) }
+        });
+      }
+      return;
+    }
     try {
       setLoading(true);
       const tx = await writeContractAsync({
@@ -118,11 +148,11 @@ export const useDeposit = (
   };
 
   return {
-    allowance,
+    allowance: DEMO_MODE ? demoAllowance : allowance,
     deposit,
     approve,
     isLoading: isLoading || waitingReceipt,
     isSuccess,
-    refetchDepositAllowance
+    refetchDepositAllowance: DEMO_MODE ? () => {} : refetchDepositAllowance
   };
 };

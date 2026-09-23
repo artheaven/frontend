@@ -47,6 +47,9 @@ import { useAnalyticsEventTracker } from "@/hooks/useAnalyticsEventTracker";
 import { arbitrum } from "viem/chains";
 import { observer } from "mobx-react-lite";
 import { useStore } from "@/hooks/useStoreContext";
+import { DEMO_MODE } from "@/demo/config";
+import { demoLedger } from "@/demo/ledger";
+import { parseUnits } from "viem";
 
 interface IDepositTabProps {
   pool: any;
@@ -63,10 +66,18 @@ export const DepositTab: FC<IDepositTabProps> = observer(({ pool, onClose }) => 
   const [sharesPreview, setSharesPreview] = useState("");
   const [error, setError] = useState("");
   const { address, chainId, chain } = useAccount();
-  const { data: balanceToken } = useBalance({
+  const { data: chainBalance } = useBalance({
     address,
-    token: pool.tokenAddress
+    token: pool.tokenAddress,
+    query: { enabled: !DEMO_MODE }
   });
+  // Demo: wallet balance comes from the demo ledger (observed by this component).
+  const balanceToken = DEMO_MODE
+    ? {
+        value: parseUnits(demoLedger.walletBalance(pool.token).toFixed(pool.decimals), pool.decimals),
+        decimals: pool.decimals as number
+      }
+    : chainBalance;
   const tooltipRef = useRef();
   const event = useAnalyticsEventTracker();
   const { activeChain } = useStore("poolsStore");
@@ -169,7 +180,7 @@ export const DepositTab: FC<IDepositTabProps> = observer(({ pool, onClose }) => 
     functionName: "previewDeposit",
     args: [parseBigNumber(formik.values.deposit, pool.decimals)],
     query: {
-      enabled: !isSuccessDeposit
+      enabled: !isSuccessDeposit && !DEMO_MODE
     }
   });
 
@@ -369,9 +380,9 @@ export const DepositTab: FC<IDepositTabProps> = observer(({ pool, onClose }) => 
           <Text color="black.0">Wallet Balance</Text>
           <Flex align="inherit">
             <Text textStyle="textMono16">
-              ${formatNumber(formatBigNumber(balanceToken?.value, balanceToken?.decimals))}
+              {formatNumber(formatBigNumber(balanceToken?.value, balanceToken?.decimals))} {pool.token}
             </Text>
-            <Button color="green.100" onClick={setMax} isDisabled={isLoadingDeposit}>
+            <Button color="accent" fontFamily="mono" fontSize="xs" textTransform="uppercase" letterSpacing="0.12em" ml="8px" onClick={setMax} isDisabled={isLoadingDeposit}>
               Max
             </Button>
           </Flex>

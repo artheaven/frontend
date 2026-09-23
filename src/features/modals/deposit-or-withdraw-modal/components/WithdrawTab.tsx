@@ -142,7 +142,7 @@ export const WithdrawTab: FC<IWithdrawTabProps> = observer(
             <Text color="black.0">Available to withdraw</Text>
             <Flex align="inherit">
               <Text textStyle="textMono16">${formatNumber(+balance, true)}</Text>
-              <Button color="greenAlpha.100" onClick={() => setMax()}>
+              <Button color="accent" fontFamily="mono" fontSize="xs" textTransform="uppercase" letterSpacing="0.12em" ml="8px" onClick={() => setMax()}>
                 Max
               </Button>
             </Flex>

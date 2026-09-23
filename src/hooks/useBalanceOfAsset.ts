@@ -4,11 +4,12 @@ import { useReadContract } from "wagmi";
 
 import { ABI_REBALANCE } from "../abi/rebalance";
 import { DEMO_ADDRESS, DEMO_MODE } from "@/demo/config";
-import { DEMO_POOLS } from "@/demo/data";
+import { demoLedger } from "@/demo/ledger";
+import { autorun } from "mobx";
 
 const demoBalance = (contractAddress: string, ownerAddress: string) =>
-  ownerAddress.toLowerCase() === DEMO_ADDRESS.toLowerCase()
-    ? DEMO_POOLS.find(p => p.vaultAddress.toLowerCase() === contractAddress?.toLowerCase())?.demoDeposit ?? 0
+  ownerAddress.toLowerCase() === DEMO_ADDRESS.toLowerCase() && contractAddress
+    ? demoLedger.position(contractAddress)
     : 0;
 
 export const useBalanceOfAsset = (
@@ -33,9 +34,10 @@ export const useBalanceOfAsset = (
 
   useEffect(() => {
     if (DEMO_MODE) {
-      setBalance(demoBalance(contractAddress, ownerAddress));
+      // Re-run whenever the demo ledger changes (deposit/withdraw).
+      const dispose = autorun(() => setBalance(demoBalance(contractAddress, ownerAddress)));
       setIsLoading(false);
-      return;
+      return dispose;
     }
     if (data) {
       const formattedBalance = formatUnits(data, decimals);

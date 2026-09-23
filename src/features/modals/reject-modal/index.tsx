@@ -5,6 +5,7 @@ import Icon from "../../../components/icon";
 import { Modal } from "../../../components/modal";
 import { ICON_NAMES } from "../../../consts";
 import { IErrorModalContextProps } from "../types";
+import { StatusMark } from "@/components/status-mark";
 
 export const RejectModal: FC<IErrorModalContextProps> = ({
   isOpen,
@@ -38,7 +39,7 @@ export const RejectModal: FC<IErrorModalContextProps> = ({
       <ModalContent bg="black.60" width="100%" maxWidth="648px">
         <ModalBody w="100%" p="24px">
           <VStack gap="24px">
-            <Icon name={ICON_NAMES.trxRejected} size="112px" />
+            <StatusMark kind="error" />
 
             <Text fontSize="22px" fontWeight="600">
               {title}

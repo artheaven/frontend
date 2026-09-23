@@ -1,4 +1,4 @@
-/* Colours mirror src/themes/styles/colors.ts (Invictus tokens). */
+/* Colours come from the theme CSS variables (src/themes/styles/colors.ts). */
 * {
   box-sizing: border-box;
   padding: 0;
@@ -16,7 +16,7 @@ a {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #33373F #0A0B0D !important;
+  scrollbar-color: var(--inv-lineStrong) var(--inv-bg) !important;
 }
 
 *::-webkit-scrollbar {
@@ -25,18 +25,18 @@ a {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #33373F !important;
+  background-color: var(--inv-lineStrong) !important;
   border-radius: 2px;
   border: 2px solid transparent;
   background-clip: content-box; /* Ensures the border doesn't affect the rounded corners */
 }
 
 *::-webkit-scrollbar-track {
-  background-color: #0A0B0D;
+  background-color: var(--inv-bg);
   border-radius: 0;
 }
 
 .chakra-step__separator[data-status="complete"] {
-  background: #33373F !important;
-  color: #9A9993;
+  background: var(--inv-lineStrong) !important;
+  color: var(--inv-ink3);
 }

@@ -18,7 +18,10 @@ import BeaconComponent from "@/components/tutorial/Beacon";
 import { useStore } from "@/hooks/useStoreContext";
 import { observer } from "mobx-react-lite";
 import { useMediaQuery } from "@chakra-ui/react";
-import { tokens } from "@/themes/styles/colors";
+import { palette } from "@/themes/styles/colors";
+
+// These libraries parse colours as hex, so they get concrete values (dark palette).
+const tokens = palette.dark;
 
 const steps: TutorialStep[] = [
   {

@@ -3,7 +3,10 @@ import type { Wallet } from "@rainbow-me/rainbowkit";
 import type { Chain } from "viem";
 import { arbitrum, bsc, base } from "viem/chains";
 import { createConnector } from "wagmi";
-import { tokens } from "@/themes/styles/colors";
+import { palette } from "@/themes/styles/colors";
+
+// These libraries parse colours as hex, so they get concrete values (dark palette).
+const tokens = palette.dark;
 
 export const createMagicConnector = ({ chain }: { chain: Chain }): Wallet => ({
   id: "magic",

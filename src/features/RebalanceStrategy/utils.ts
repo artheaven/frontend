@@ -1,10 +1,11 @@
+import { tokens } from "@/themes/styles/colors";
 import dayjs from "dayjs";
 
 import { ROUTES_TYPE } from "../../consts/routes-type";
 import { themes } from "../../themes";
 export const colorsArea = {
-  lending: themes.colors.greenAlpha["100"],
-  borrowing: themes.colors.violetAlpha["100"]
+  lending: tokens.accent,
+  borrowing: tokens.ink3
 };
 
 export const tickFormatter = (e: string) => {

@@ -16,7 +16,7 @@ const colors = {
     top: tokens.neg,
     bottom: tokens.neg
   },
-  healthFactor: themes.colors.greenAlpha["80"]
+  healthFactor: tokens.accent
 };
 
 const dataBarReverse = [

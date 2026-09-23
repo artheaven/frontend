@@ -7,7 +7,7 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 
 export const modalTheme = defineMultiStyleConfig({
   baseStyle: definePartsStyle({
-    overlay: { bg: "rgba(10, 11, 13, 0.72)" },
+    overlay: { bg: "rgba(10, 11, 13, 0.6)" },
     dialog: {
       bg: "bg2",
       color: "ink",

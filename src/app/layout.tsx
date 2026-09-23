@@ -23,7 +23,7 @@ export default function RootLayout({
   const showAnalytics = process.env.NEXT_PUBLIC_NEED_ANALYTICS === "true";
 
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
         {showAnalytics && (
           <>
@@ -64,6 +64,13 @@ export default function RootLayout({
         /> */}
       </head>
       <body id="App_visited">
+        {/* Apply the saved colour mode before paint (same storage key Chakra uses). */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var m=localStorage.getItem('chakra-ui-color-mode');if(m!=='light'&&m!=='dark')m='dark';var d=document.documentElement;d.dataset.theme=m;d.style.colorScheme=m;}catch(e){}"
+          }}
+        />
         {/* <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-PTPS7F67"

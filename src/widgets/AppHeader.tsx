@@ -12,6 +12,7 @@ import { WalletProfile } from "../features/WalletProfile";
 import { AppNav } from "./AppNav";
 import MaintenanceBlock from "@/components/maintenance-block";
 import { Wordmark } from "@/components/wordmark";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export const AppHeader = () => {
   const [media] = useMediaQuery(MEDIA_QUERY_MAX);
@@ -28,7 +29,7 @@ export const AppHeader = () => {
       position="sticky"
       top={0}
       zIndex={100}
-      bg="rgba(10, 11, 13, 0.9)"
+      bg="bgAlpha.90"
       backdropFilter="blur(8px)"
       borderBottom="1px solid"
       borderColor="line"
@@ -49,6 +50,7 @@ export const AppHeader = () => {
         {!media && <AppNav />}
 
         <Flex gap="12px" alignItems="center">
+          <ThemeToggle />
           {!!address && isDesktop && isLoading && <Skeleton height="24px" width="60px" />}
           {/* {isConnected && <AppNotification />} */}
           {!!address ? <WalletProfile className="step-1" /> : <ConnectWallet className="step-1" />}

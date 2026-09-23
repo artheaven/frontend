@@ -19,7 +19,9 @@ const ApproveBtn = ({
   setConfirmedApprove,
   isDisabled,
   id,
-  onClick
+  onClick,
+  variant = "primaryFilled",
+  h
 }: {
   value: bigint;
   tokenAddress: `0x${string}`;
@@ -28,6 +30,8 @@ const ApproveBtn = ({
   isDisabled?: boolean;
   id?: string;
   onClick?: VoidFunction;
+  variant?: string;
+  h?: string;
 }) => {
   const { chainId } = useAccount();
   const { data: hash, writeContract, error } = useWriteContract();
@@ -71,7 +75,7 @@ const ApproveBtn = ({
   }, [isSuccess]);
 
   return (
-    <Button id={id} variant="primaryFilled" isDisabled={isDisabled || demoPending} onClick={() => approve()}>
+    <Button id={id} variant={variant} h={h} w={h ? "100%" : undefined} isDisabled={isDisabled || demoPending} onClick={() => approve()}>
       {isLoading || demoPending ? "Processing..." : "Approve"}
     </Button>
   );

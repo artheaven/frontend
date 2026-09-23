@@ -49,7 +49,7 @@ export const AppHeader = () => {
 
         {!media && <AppNav />}
 
-        <Flex gap="12px" alignItems="center">
+        <Flex gap={{ base: "8px", md: "12px" }} alignItems="center">
           <ThemeToggle />
           {!!address && isDesktop && isLoading && <Skeleton height="24px" width="60px" />}
           {/* {isConnected && <AppNotification />} */}

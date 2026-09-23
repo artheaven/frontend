@@ -1,52 +1,42 @@
-import { Box, Flex, SimpleGrid, Text, useMediaQuery } from "@chakra-ui/react";
+import { Box, Flex, Grid } from "@chakra-ui/react";
 import React from "react";
 import { useAccount } from "wagmi";
 
-import { MEDIA_QUERY_MAX } from "../../../consts";
-import { useBalanceOfAsset } from "../../../hooks/useBalanceOfAsset";
-import { DepositLendingButton } from "../../actions/deposit-or-withdraw-button/DepositLendingButton";
-import { WithdrawLendingButton } from "../../actions/deposit-or-withdraw-button/WithdrawLendingButton";
+import { ActionPanel } from "./ActionPanel";
+import { Allocations } from "./Allocations";
 import { BaseChart } from "./BaseChart";
 import EarningsChart from "./EarningsChart";
-import { Allocations } from "./Allocations";
-import { formatNumber } from "@/utils/formatNumber";
 
+/**
+ * Pool page body: analytics on the left, the deposit/withdraw panel on the right.
+ * The panel sticks below the header while the analytics column scrolls; on narrow screens
+ * it comes first.
+ */
 const BaseStrategy: React.FC<any> = ({ pool, chartData }) => {
   const { address } = useAccount();
-  const { balance } = useBalanceOfAsset(pool.rebalancerAddress, address ?? "0x", pool.decimals);
-  const [media] = useMediaQuery(MEDIA_QUERY_MAX);
   return (
-    <SimpleGrid columns={media ? 1 : 2} gap="24px" alignItems="start">
-      <Flex direction="column">
-        <Flex direction="column" bg="bg2" borderWidth="1px" borderStyle="solid" borderColor="line" borderRadius="2px" padding="24px">
-          <Text textStyle="h2">My deposit</Text>
-          <Box mt="16px" mb="24px" display="flex" flexDirection="row" alignItems="baseline">
-            <Text textStyle="textMono20" fontSize="24px" lineHeight="24px">
-              {formatNumber(balance.toFixed(2))} {pool?.token}
-            </Text>
-            <Text textStyle="text14" color="ink3" ml="16px">
-              {formatNumber(balance.toFixed(2))} $
-            </Text>
-          </Box>
-          <SimpleGrid columns={!media || balance > 0 ? 2 : 1} gap="8px">
-            <DepositLendingButton
-              variant="primaryWhite"
-              pool={pool}
-              minHeight="40px"
-              className="step-4"
-            />
-            {balance > 0 && <WithdrawLendingButton pool={pool} minHeight="40px" />}
-          </SimpleGrid>
+    <Grid templateColumns={{ base: "1fr", lg: "minmax(0, 1fr) 400px" }} gap="24px" alignItems="start">
+      <Flex direction="column" minW={0} order={{ base: 2, lg: 1 }}>
+        <Flex
+          w="100%"
+          h={{ base: "400px", md: "440px" }}
+          bg="bg2"
+          borderWidth="1px"
+          borderStyle="solid"
+          borderColor="line"
+          borderRadius="2px"
+          padding="24px"
+        >
+          <BaseChart chartData={chartData} />
         </Flex>
-
         <EarningsChart token={pool?.token} address={address} pool={pool} />
         <Allocations pool={pool} />
       </Flex>
 
-      <Flex w="100%" h={{ base: "400px", md: "480px" }} bg="bg2" borderWidth="1px" borderStyle="solid" borderColor="line" borderRadius="2px" padding="24px">
-        <BaseChart chartData={chartData} />
-      </Flex>
-    </SimpleGrid>
+      <Box order={{ base: 1, lg: 2 }} position={{ base: "static", lg: "sticky" }} top="88px">
+        <ActionPanel pool={pool} />
+      </Box>
+    </Grid>
   );
 };
 export default BaseStrategy;

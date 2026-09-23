@@ -1,54 +1,37 @@
-import { motion } from "framer-motion";
 import { Button } from "@chakra-ui/react";
 
+// Primary action in the Invictus style: solid aurum, no attention animation.
 const DepositButton = ({
   isDisabled,
-  variant,
   onDeposit,
   title,
   id,
   onClick
 }: {
   isDisabled: boolean;
-  variant: string;
+  variant?: string;
   onDeposit: VoidFunction;
   title?: string;
   id?: string;
   onClick?: VoidFunction;
 }) => {
   return (
-    <motion.div
+    <Button
       id={id}
-      initial={{ backgroundColor: !isDisabled ? "rgba(76, 255, 148, .3)" : "rgb(21, 22, 25)" }}
-      animate={{
-        backgroundColor: !isDisabled
-          ? ["rgba(76, 255, 148, .7)", "rgba(76, 255, 148, .3)"]
-          : "rgb(21, 22, 25)"
+      width="100%"
+      h="44px"
+      variant="primaryWhite"
+      type="submit"
+      isDisabled={isDisabled}
+      onClick={() => {
+        if (onClick) {
+          onClick();
+        }
+        onDeposit();
       }}
-      transition={{
-        duration: 1.2,
-        repeat: !isDisabled ? Infinity : 0,
-        repeatType: "reverse",
-        // repeatType: "loop",  // Циклическое повторение
-        ease: "linear" // Равномерное изменение анимации
-      }}
-      style={{ borderRadius: "4px" }}
     >
-      <Button
-        width={"100%"}
-        variant={"#4CFF94"}
-        type="submit"
-        isDisabled={isDisabled}
-        onClick={() => {
-          if (onClick) {
-            onClick();
-          }
-          onDeposit();
-        }}
-      >
-        {title || "Deposit"}
-      </Button>
-    </motion.div>
+      {title || "Deposit"}
+    </Button>
   );
 };
 

@@ -14,6 +14,7 @@ import { DateSwitcher } from "@/components/data-switcher";
 import { useAccount } from "wagmi";
 import { observer } from "mobx-react-lite";
 import { useStore } from "@/hooks/useStoreContext";
+import { tokens } from "@/themes/styles/colors";
 
 const data = [
   {
@@ -183,22 +184,22 @@ const EarningsChart = observer(
         {!error ? (
           <Flex flexDirection="column" width="100%">
             <Flex mt="48px" mb="12px" justifyContent="space-between" alignItems="center">
-              <Text fontSize="lg">My Earnings</Text>
+              <Text textStyle="h2">My earnings</Text>
               <DateSwitcher
                 date={DATESEarned}
                 selectDate={setSelectDate}
                 selectedDate={selectedDate}
               />
             </Flex>
-            <Flex w="100%" bg="#17191C" borderRadius="8px" minH="319px" padding="24px">
+            <Flex w="100%" bg="bg2" borderWidth="1px" borderStyle="solid" borderColor="line" borderRadius="2px" minH="319px" padding="24px">
               <Flex flexDirection="column" width="27%" justifyContent="center">
                 <Flex flexDirection="column">
-                  <Text color="#B4B4B4">Earned in 30D</Text>
+                  <Text textStyle="eyebrow">Earned in 30D</Text>
                   <Text textStyle="textMono16">{`$ ${userTotalEarning.toFixed(2)}`}</Text>
                 </Flex>
-                <Divider mt="22px" mb="22px" borderColor="#0F1113" height="2px" width="82px" />
+                <Divider mt="22px" mb="22px" borderColor="line" height="2px" width="82px" />
                 <Flex flexDirection="column">
-                  <Text color="#B4B4B4">Av. 30D APY</Text>
+                  <Text textStyle="eyebrow">Av. 30D APY</Text>
                   <Text textStyle="textMono16">{`${avgApr.toFixed(2)} %`}</Text>
                 </Flex>
               </Flex>
@@ -206,9 +207,9 @@ const EarningsChart = observer(
                 <ResponsiveContainer width="100%" height="100%">
                   {address ? (
                     <BarChart width={150} height={10} data={userEarningsData}>
-                      <Bar barSize={6} dataKey="uv" fill="#4CFF94" minPointSize={5}>
+                      <Bar barSize={6} dataKey="uv" fill={tokens.accent} minPointSize={5}>
                         {userEarningsData?.map((entry, index) => {
-                          const color = entry.uv > 0 ? "#4CFF94" : "#1A3C28";
+                          const color = entry.uv > 0 ? tokens.accent : tokens.accentTint;
                           return <Cell key={entry.name.toString()} fill={color} />;
                         })}
                       </Bar>
@@ -229,7 +230,7 @@ const EarningsChart = observer(
                     </BarChart>
                   ) : (
                     <BarChart width={150} height={10} data={data}>
-                      <Bar barSize={6} dataKey="uv" fill="#4CFF94" minPointSize={5}></Bar>
+                      <Bar barSize={6} dataKey="uv" fill={tokens.accent} minPointSize={5}></Bar>
                     </BarChart>
                   )}
                 </ResponsiveContainer>
@@ -258,7 +259,7 @@ const EarningsChart = observer(
         ) : (
           <Flex flexDirection="column" width="100%">
             <Flex mt="48px" mb="12px" justifyContent="space-between" alignItems="center">
-              <Text fontSize="lg">My monthly earnings</Text>
+              <Text textStyle="h2">My monthly earnings</Text>
             </Flex>
             <Flex align={"center"} justify={"center"} width="100%" mt="48px">
               <Text color="white">Error on loading data. Please try again later</Text>

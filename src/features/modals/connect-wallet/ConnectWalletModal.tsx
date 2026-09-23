@@ -128,7 +128,7 @@ const ConnectWalletModal = ({ isOpen, onClose }: IDefaultModalProps) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay backdropFilter="auto" backdropBlur="3px" />
-      <ModalContent borderRadius="4px" p="24px" gap="36px" bg="#09090B">
+      <ModalContent borderRadius="2px" p="24px" gap="36px" bg="bg">
         <ModalHeader as={Flex} align="center" direction="column" p="0">
           <Center w="56px" h="56px" borderRadius="full" bg="black.80">
             <Icon name={ICON_NAMES.logo} />

@@ -49,7 +49,7 @@ export const AppNav = () => {
             position="absolute"
             height="calc(100% - 56px) !important"
             marginTop="auto"
-            bg="#09090B"
+            bg="bg"
           >
             {/* <DrawerCloseButton /> */}
             <DrawerBody as={Flex} direction="column" gap="16px" mt="25px">
@@ -81,7 +81,7 @@ export const AppNav = () => {
           key={route.name}
           as={NextLink}
           href={route.path}
-          style={ pathname.includes(route.path) ? {color: "#fff"} : {}}
+          color={pathname.includes(route.path) ? "ink" : undefined}
           target={route.target ? "_blank" : "_self"}>
           {route.name}
         </Link>

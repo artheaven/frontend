@@ -26,9 +26,9 @@ const GuideTooltip = ({
     <Flex
       flexDir="column"
       gap={2}
-      borderRadius="8px"
+      borderRadius="2px"
       p="16px 12px"
-      bgColor="#202327"
+      bgColor="bg3"
       maxW="350px"
       {...tooltipProps}
     >
@@ -43,7 +43,7 @@ const GuideTooltip = ({
         <Flex gap={2}>
           {showBackButton && (
             <Button
-              backgroundColor="rgb(63, 63, 63)"
+              backgroundColor="lineStrong"
               width="fit-content"
               p="8px"
               fontSize="14px"
@@ -57,7 +57,7 @@ const GuideTooltip = ({
           {showNextButton && (
             <Button
               isLoading={isDisabledNextButton}
-              backgroundColor="rgb(63, 63, 63)"
+              backgroundColor="lineStrong"
               width="fit-content"
               p="8px"
               fontSize="14px"

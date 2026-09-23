@@ -15,23 +15,21 @@ const baseStyle = definePartsStyle({
 const variants = {
   drawerBlack: definePartsStyle({
     dialog: {
-      bg: "black.80"
+      bg: "bg",
+      borderLeft: "1px solid",
+      borderColor: "line",
+      boxShadow: "none"
     },
-    header: {
-      fontWeight: "500"
-    }
+    header: { fontWeight: "400" }
   })
 };
 
 const sizes = {
   customSm: definePartsStyle({
-    dialog: {
-      maxW: { base: "100%", md: "348px" }
-    }
+    dialog: { maxW: { base: "100%", md: "348px" } }
   })
 };
 
-// export the component theme
 export const drawerTheme = defineMultiStyleConfig({
   baseStyle,
   variants,

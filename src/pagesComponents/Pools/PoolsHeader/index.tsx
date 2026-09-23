@@ -72,8 +72,8 @@ export const PoolsHeader = observer(({ isTable, onChangeView }: IPoolsHeaderProp
       </Flex>
       <HStack
         fontSize="sm"
-        color="rgba(92, 100, 112, 1)"
-        divider={<StackDivider borderColor="rgba(92, 100, 112, 1)" />}
+        color="ink3"
+        divider={<StackDivider borderColor="lineStrong" />}
       />
       <Flex gap="20px" align="center">
         {isDesktop && (

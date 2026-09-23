@@ -6,18 +6,11 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 );
 
 const baseStyle = definePartsStyle({
-  // define the part you're going to style
-  container: {
-    // ...
-  },
-  thumb: {
-    bg: "black.100"
-  },
+  thumb: { bg: "ink" },
   track: {
-    bg: "gray.100",
-    _checked: {
-      bg: "green.100"
-    }
+    bg: "lineStrong",
+    borderRadius: "2px",
+    _checked: { bg: "accent" }
   }
 });
 

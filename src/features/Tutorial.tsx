@@ -18,6 +18,7 @@ import BeaconComponent from "@/components/tutorial/Beacon";
 import { useStore } from "@/hooks/useStoreContext";
 import { observer } from "mobx-react-lite";
 import { useMediaQuery } from "@chakra-ui/react";
+import { tokens } from "@/themes/styles/colors";
 
 const steps: TutorialStep[] = [
   {
@@ -275,18 +276,18 @@ const Tutorial = observer(() => {
       beaconComponent={props => <BeaconComponent isConnected={!!address} {...props} />}
       styles={{
         options: {
-          backgroundColor: "#202327",
-          textColor: "#fff",
-          arrowColor: "#202327",
-          primaryColor: "rgb(63, 63, 63)",
+          backgroundColor: tokens.bg3,
+          textColor: tokens.ink,
+          arrowColor: tokens.bg3,
+          primaryColor: tokens.accent,
           spotlightShadow:
             "0 0 20px 10px rgba(0, 0, 0, 0.5), 0 0 40px 20px rgba(0, 0, 0, 0.3), 0 0 60px 30px rgba(0, 0, 0, 0.1)"
         },
         beaconInner: {
-          backgroundColor: "rgb(76, 255, 148)"
+          backgroundColor: tokens.accent
         },
         beaconOuter: {
-          border: "2px solid rgb(76, 255, 148)"
+          border: `2px solid ${tokens.accent}`
         },
         tooltip: {
           borderRadius: "12px",

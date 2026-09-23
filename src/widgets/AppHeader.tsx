@@ -1,6 +1,6 @@
 "use client";
 
-import { Flex, useMediaQuery, Skeleton, Box } from "@chakra-ui/react";
+import { Flex, Link, useMediaQuery, Skeleton } from "@chakra-ui/react";
 import React, { useState } from "react";
 import NextLink from "next/link";
 import { useAccount } from "wagmi";
@@ -11,6 +11,7 @@ import { ConnectWallet } from "../features/ConnectWallet";
 import { WalletProfile } from "../features/WalletProfile";
 import { AppNav } from "./AppNav";
 import MaintenanceBlock from "@/components/maintenance-block";
+import { Wordmark } from "@/components/wordmark";
 
 export const AppHeader = () => {
   const [media] = useMediaQuery(MEDIA_QUERY_MAX);
@@ -23,21 +24,27 @@ export const AppHeader = () => {
     <Flex
       flexDir="column"
       w="100%"
-      maxW={"1300px"}
+      alignItems="center"
       position="sticky"
       top={0}
       zIndex={100}
-      bg="black.100"
-      minH={isUnderMaintenance ? { base: "120px", md: "160px" } : { base: "56px", md: "56px" }}
+      bg="rgba(10, 11, 13, 0.9)"
+      backdropFilter="blur(8px)"
+      borderBottom="1px solid"
+      borderColor="line"
+      minH={isUnderMaintenance ? { base: "120px", md: "160px" } : { base: "56px", md: "64px" }}
     >
       {isUnderMaintenance && <MaintenanceBlock />}
       <Flex
         alignItems="center"
-        p={{ base: "6px 16px", xl: "24px 0px" }}
+        p={{ base: "10px 16px", xl: "14px 0px" }}
         justifyContent="space-between"
         w="100%"
+        maxW="1300px"
       >
-        <Box h={{ base: "28px", lg: "36px" }} w={{ base: "30px", lg: media ? "30px" : "150px" }} />
+        <Link as={NextLink} href={ROUTE_PATHS.lending} aria-label="Invictus home" minW={{ lg: "150px" }}>
+          <Wordmark />
+        </Link>
 
         {!media && <AppNav />}
 

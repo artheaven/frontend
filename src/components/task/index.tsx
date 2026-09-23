@@ -24,12 +24,12 @@ export const Task = ({ name, complete, pointsQty, limited, ButtonProps }: TaskPr
         <Flex flexDir="column" gap={1}>
           {limited && (
             <Flex gap={2} alignItems="center">
-              <Box padding="4px 8px" borderRadius="4px" bg="#DE6E49CC">
+              <Box padding="4px 8px" borderRadius="2px" bg="#DE6E49CC">
                 <Text textStyle="text12" lineHeight="14px" fontWeight={700}>
                   Limited offer!
                 </Text>
               </Box>
-              <Text textStyle={is600Up ? "text14" : "text10"} color="#4CFF94">
+              <Text textStyle={is600Up ? "text14" : "text10"} color="accent">
                 +{pointsQty} points
               </Text>
             </Flex>
@@ -41,12 +41,12 @@ export const Task = ({ name, complete, pointsQty, limited, ButtonProps }: TaskPr
           >
             <Text
               textStyle={is600Up ? "text16" : "text12"}
-              color={complete ? "#9FA2A8" : "#DEDEDE"}
+              color={complete ? "ink3" : "ink"}
             >
               {name}
             </Text>
             {!complete && !limited && (
-              <Text textStyle={is600Up ? "text14" : "text10"} color="#4CFF94">
+              <Text textStyle={is600Up ? "text14" : "text10"} color="accent">
                 +{pointsQty} points
               </Text>
             )}
@@ -54,7 +54,7 @@ export const Task = ({ name, complete, pointsQty, limited, ButtonProps }: TaskPr
         </Flex>
       </Flex>
       {complete && (
-        <Text textStyle={is600Up ? "text14" : "text10"} color="#9FA2A8" textAlign="right">
+        <Text textStyle={is600Up ? "text14" : "text10"} color="ink3" textAlign="right">
           {pointsQty} points received
         </Text>
       )}
@@ -62,9 +62,9 @@ export const Task = ({ name, complete, pointsQty, limited, ButtonProps }: TaskPr
         <Button
           isLoading={ButtonProps.loading}
           padding="8px 16px"
-          bg="#DEDEDE"
-          color="#09090B"
-          borderRadius="4px"
+          bg="ink"
+          color="bg"
+          borderRadius="2px"
           fontSize="14px"
           height="max-content"
           onClick={ButtonProps.onClick}

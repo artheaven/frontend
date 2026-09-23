@@ -71,7 +71,7 @@ export const RebalancePerformance = observer(
               // p="8px 12px"
               w="100%"
               color={elem.type === pathName ? "" : "black.0"}
-              borderColor={elem.type === pathName ? "greenAlpha.100" : "#1F1F1F"}
+              borderColor={elem.type === pathName ? "greenAlpha.100" : "line"}
             >
               <RebalancePerformanceCard
                 key={elem.title}

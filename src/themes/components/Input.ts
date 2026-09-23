@@ -25,6 +25,8 @@ const variantCustom = definePartsStyle({
   field: {
     border: "0px solid",
     bg: "transparent",
+    fontVariantNumeric: "tabular-nums",
+    _placeholder: { color: "ink3" },
     borderTopRightRadius: "full",
     borderBottomRightRadius: "full",
     _readOnly: {
@@ -38,13 +40,19 @@ const variantCustom = definePartsStyle({
     borderTopLeftRadius: "full",
     borderBottomLeftRadius: "full",
     bg: "transparent",
-    color: "white"
+    color: "ink"
   },
   group: {
-    border: "1px solid",
-    borderColor: "#1E1E1E",
-    borderRadius: "4px",
+    borderWidth: "1px",
+      borderStyle: "solid",
+    borderColor: "lineStrong",
+    borderRadius: "2px",
+    bg: "bg",
     alignItems: "center",
+    transition: "border-color 120ms",
+    _focusWithin: {
+      borderColor: "accent"
+    },
     _valid: {
       borderColor: "red"
     }

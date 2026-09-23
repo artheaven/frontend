@@ -388,7 +388,7 @@ export const DepositTab: FC<IDepositTabProps> = observer(({ pool, onClose }) => 
                   pool.token === "FRAX" ? FRAX_TOKEN_ADDRESS : pool.tokenAddress
                 )}
                 target="_blank"
-                color="#4cfd95"
+                color="accent"
                 textDecor="underline"
               >
                 our zero-fee swap
@@ -404,7 +404,7 @@ export const DepositTab: FC<IDepositTabProps> = observer(({ pool, onClose }) => 
             <Flex gap="8px" alignItems="center">
               <FormLabel
                 mb="0"
-                borderBottom="1px dashed #fff"
+                borderBottom="1px dashed" borderColor="ink3"
                 onClick={() => setIsOpenTooltip(prev => !prev)}
               >
                 Freeze ✨
@@ -420,7 +420,7 @@ export const DepositTab: FC<IDepositTabProps> = observer(({ pool, onClose }) => 
                   pointerEvents="none"
                   userSelect="none"
                 >
-                  <Box bg="black.100" p="4px" borderRadius="8px">
+                  <Box bg="black.100" p="4px" borderRadius="2px">
                     <Image src="/assets/logo/logo-short.svg" h="12px" w="12px" alt="logo" />
                   </Box>
                   <Text textStyle="text14" color="black.100" fontWeight={700}>

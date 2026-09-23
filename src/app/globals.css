@@ -1,3 +1,4 @@
+/* Colours mirror src/themes/styles/colors.ts (Invictus tokens). */
 * {
   box-sizing: border-box;
   padding: 0;
@@ -15,7 +16,7 @@ a {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: darkgray #141414 !important; /* You can specify a background color for the scrollbar track */
+  scrollbar-color: #33373F #0A0B0D !important;
 }
 
 *::-webkit-scrollbar {
@@ -24,18 +25,18 @@ a {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #141414 !important;
-  border-radius: 8px;
+  background-color: #33373F !important;
+  border-radius: 2px;
   border: 2px solid transparent;
   background-clip: content-box; /* Ensures the border doesn't affect the rounded corners */
 }
 
 *::-webkit-scrollbar-track {
-  background-color: darkgray; /* Customize the scrollbar track color */
-  border-radius: 8px;
+  background-color: #0A0B0D;
+  border-radius: 0;
 }
 
 .chakra-step__separator[data-status="complete"] {
-  background: #2e3238 !important;
-  color: #9fa2a8;
+  background: #33373F !important;
+  color: #9A9993;
 }

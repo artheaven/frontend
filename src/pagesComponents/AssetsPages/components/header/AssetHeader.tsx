@@ -97,7 +97,7 @@ export const AssetHeader: FC<{
               </Flex>
               <Text display="flex" flexDirection="row" mt="4px">
                 <Flex gap="8px" alignItems="center">
-                  <Text fontWeight="500">Pool</Text>
+                  <Text textStyle="eyebrow">Pool</Text>
                   <Flex gap="5px">
                     <Icon name={chainIcon} size="18px" />
                     <Text textStyle="text14" color="black.5">
@@ -123,14 +123,14 @@ export const AssetHeader: FC<{
 
           <Flex flexDirection="column" fontWeight="500">
             <Flex justifyContent="space-between" alignItems="center">
-              <Text>Average 30D APY</Text>
+              <Text textStyle="eyebrow">Average 30D APY</Text>
               <Flex gap={1} alignItems="center">
-                <Text variant="t22">{pool.avgApr.toFixed(2)} %</Text>
+                <Text textStyle="textMono20" fontSize="22px">{pool.avgApr.toFixed(2)} %</Text>
               </Flex>
             </Flex>
             <Flex justifyContent="space-between" alignItems="center">
-              <Text>Total supply</Text>
-              <Text variant="t22">$ {formatNumber(pool.funds.toFixed(2))}</Text>
+              <Text textStyle="eyebrow">Total supply</Text>
+              <Text textStyle="textMono20" fontSize="22px">$ {formatNumber(pool.funds.toFixed(2))}</Text>
             </Flex>
           </Flex>
         </Flex>
@@ -138,7 +138,7 @@ export const AssetHeader: FC<{
         {ROUTES_TYPE.lending === pathName && (
           <Flex gap="24px" mt="28px" justifyContent="space-between">
             <Flex direction="column" gap="8px">
-              <Text>Risk Factor</Text>
+              <Text textStyle="eyebrow">Risk factor</Text>
               <Text
                 p="0 10px"
                 bg={riskBgColor[pool.risk]}
@@ -146,14 +146,14 @@ export const AssetHeader: FC<{
                 fontSize="xl"
                 fontWeight="500"
                 color={riskColor[pool.risk]}
-                borderRadius="4px"
+                borderRadius="2px"
               >
                 {pool.risk}/5
               </Text>
             </Flex>
             <Risk risk={pool.risk} w="12px" h="50px" gap="12px" />
 
-            <Flex direction="column" gap="8px" color="#D2D2D2" justify="center" lineHeight="14px">
+            <Flex direction="column" gap="8px" color="ink2" justify="center" lineHeight="14px">
               <Text textStyle="text12">Asset risk - {pool?.risk}</Text>
               <Text textStyle="text12">Protocols risk - {pool?.risk}</Text>
             </Flex>
@@ -169,12 +169,12 @@ export const AssetHeader: FC<{
         <Flex gap="8px" align="inherit">
           <TokenIcon name={pool?.token} />
           <Flex direction="column" gap="8px">
-            <Text>
-              {getTitle()} ({chainName})
+            <Text textStyle="eyebrow">
+              {getTitle()} · {chainName}
             </Text>
             <Flex gap="12px" align="center">
-              <Flex align="center" gap="10px" fontSize="xl" fontWeight="500">
-                <Text>{pool?.token}</Text>
+              <Flex align="center" gap="10px">
+                <Text textStyle="h1">{pool?.token}</Text>
               </Flex>
               <Link
                 href={getFinalExplorerUrl({
@@ -191,22 +191,22 @@ export const AssetHeader: FC<{
         </Flex>
 
         <Flex direction="column" gap="8px">
-          <Text>Average 30D APY</Text>
+          <Text textStyle="eyebrow">Average 30D APY</Text>
           <Flex gap={1} alignItems="center">
-            <Text variant="t22">{pool?.avgApr?.toFixed(2)} %</Text>
+            <Text textStyle="textMono20" fontSize="22px">{pool?.avgApr?.toFixed(2)} %</Text>
           </Flex>
         </Flex>
 
         <Flex direction="column" gap="8px">
-          <Text>Total supply</Text>
-          <Text variant="t22">$ {formatNumber(pool?.funds?.toFixed(2))}</Text>
+          <Text textStyle="eyebrow">Total supply</Text>
+          <Text textStyle="textMono20" fontSize="22px">$ {formatNumber(pool?.funds?.toFixed(2))}</Text>
         </Flex>
       </Flex>
 
       {ROUTES_TYPE.lending === pathName && (
-        <Flex p="16px 24px" gap="24px" border="2px solid #0F0F0F" borderRadius="4px">
+        <Flex p="16px 24px" gap="24px" border="1px solid" borderColor="line" borderRadius="2px">
           <Flex direction="column" gap="8px">
-            <Text>Risk Factor</Text>
+            <Text textStyle="eyebrow">Risk factor</Text>
             <Text
               p="0 10px"
               bg={riskBgColor[pool?.risk]}
@@ -214,14 +214,14 @@ export const AssetHeader: FC<{
               fontSize="xl"
               fontWeight="500"
               color={riskColor[pool?.risk]}
-              borderRadius="4px"
+              borderRadius="2px"
             >
               {pool?.risk}/5
             </Text>
           </Flex>
           <Risk risk={pool?.risk} w="12px" h="50px" gap="12px" />
 
-          <Flex direction="column" gap="8px" color="#D2D2D2" justify="center">
+          <Flex direction="column" gap="8px" color="ink2" justify="center">
             <Text textStyle="text12">Asset risk - {pool?.risk}</Text>
             <Text textStyle="text12">Protocols risk - {pool?.risk}</Text>
           </Flex>

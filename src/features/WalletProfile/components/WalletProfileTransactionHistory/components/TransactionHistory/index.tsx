@@ -26,7 +26,7 @@ export const TransactionHistory: FC<ITransactionHistory> = ({
             size="sm"
             transform={type === "withdrawal" ? "rotate(180deg)" : undefined}
           />
-          <Text fontSize="sm" textTransform="capitalize" color="#B8B8B8">
+          <Text fontSize="sm" textTransform="capitalize" color="ink2">
             {type}
           </Text>
           <Text
@@ -41,7 +41,7 @@ export const TransactionHistory: FC<ITransactionHistory> = ({
           </Text>
         </Flex>
 
-        <Text fontSize="xs" color="#B8B8B8">
+        <Text fontSize="xs" color="ink2">
           {dayjs(time).format("DD/MM/YYYY HH:mm")}
         </Text>
       </Flex>
@@ -50,7 +50,7 @@ export const TransactionHistory: FC<ITransactionHistory> = ({
         <Text fontSize="sm" fontWeight="500">
           {value}
         </Text>
-        <Text fontSize="xs" color="greenAlpha.100">
+        <Text fontSize="xs" color="pos">
           {ellipsis(hash)}
         </Text>
       </Flex>

@@ -16,7 +16,7 @@ import { ROUTES_TYPE } from "@/consts/routes-type";
 const areaGradient = (
   <defs>
     <linearGradient id="color-lending" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="5%" stopColor={colorsArea.lending} stopOpacity={0.8} />
+      <stop offset="5%" stopColor={colorsArea.lending} stopOpacity={0.28} />
       <stop offset="95%" stopColor={colorsArea.lending} stopOpacity={0} />
     </linearGradient>
     <linearGradient id="color-borrowing" x1="0" y1="0" x2="0" y2="1">
@@ -122,7 +122,7 @@ export const BaseChart = ({ chartData }: { chartData: IChartData }) => {
           position={{ base: "absolute", md: "relative" }}
           right={{ base: "0" }}
         >
-          <Text fontSize={smDown ? "md" : "lg"}>Strategy Profitability</Text>
+          <Text textStyle="h2">Strategy profitability</Text>
           <DateSwitcher date={DATES} selectDate={setSelectDate} selectedDate={selectedDate} />
         </Flex>
       </Flex>

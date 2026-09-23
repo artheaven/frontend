@@ -75,7 +75,7 @@ const RewardsButton = () => {
 
   return (
     <Button
-      bg="#4CFF94"
+      bg="accent"
       padding="8px 16px"
       textStyle="text16"
       color="black.100"

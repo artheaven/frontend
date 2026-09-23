@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import Icon from "../icon";
 import { ICON_NAMES } from "@/consts";
+import { tokens } from "@/themes/styles/colors";
 
 type StepperProps = {
   steps: Array<string>;
@@ -55,7 +56,7 @@ const Stepper = ({ steps, activeIndex }: StepperProps) => {
 
           <StepSeparator
             style={{
-              color: "#2E3238",
+              color: tokens.lineStrong,
               marginTop: "7px",
               marginRight: "8px"
             }}

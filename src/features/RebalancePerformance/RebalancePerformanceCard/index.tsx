@@ -31,7 +31,7 @@ export const RebalancePerformanceCard: FC<RebalncePerformanceCardProps> = ({
     <Flex
       bg={isActive ? "black.80" : undefined}
       w="631px"
-      borderRadius="4px"
+      borderRadius="2px"
       position="relative"
       _before={
         isActive
@@ -76,7 +76,7 @@ export const RebalancePerformanceCard: FC<RebalncePerformanceCardProps> = ({
           {/* <Flex gap={2} alignItems="center">
             <Text
               fontWeight="300"
-              color="#DEDEDE"
+              color="ink"
               fontSize="16px"
               textStyle="textMono16"
               display="flex"
@@ -93,7 +93,7 @@ export const RebalancePerformanceCard: FC<RebalncePerformanceCardProps> = ({
           display="flex"
           flexDir="column"
           fontSize="13px"
-          color="#DEDEDE"
+          color="ink"
         >
           {type === "lending" ? (
             <>
@@ -129,7 +129,7 @@ export const RebalancePerformanceCard: FC<RebalncePerformanceCardProps> = ({
         </Box>
         <Flex alignItems="center" mt="auto">
           <Box display="flex" alignItems="center">
-            <Text color="#DEDEDE" fontSize="12px">
+            <Text color="ink" fontSize="12px">
               {type === "lending" ? "Extra-incentives" : "Extra-points"}
             </Text>
             <Image

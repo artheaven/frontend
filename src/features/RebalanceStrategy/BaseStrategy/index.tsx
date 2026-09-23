@@ -17,13 +17,13 @@ const BaseStrategy: React.FC<any> = ({ pool, chartData }) => {
   return (
     <SimpleGrid columns={media ? 1 : 2} gap="24px">
       <Flex direction="column">
-        <Flex direction="column" bg="#17191C" borderRadius="8px" padding="24px">
-          <Text fontSize="lg">My deposit</Text>
+        <Flex direction="column" bg="bg2" borderWidth="1px" borderStyle="solid" borderColor="line" borderRadius="2px" padding="24px">
+          <Text textStyle="h2">My deposit</Text>
           <Box mt="16px" mb="24px" display="flex" flexDirection="row" alignItems="baseline">
-            <Text fontWeight="400" fontSize="24px" lineHeight="24px">
+            <Text textStyle="textMono20" fontSize="24px" lineHeight="24px">
               {formatNumber(balance.toFixed(2))} {pool?.token}
             </Text>
-            <Text textStyle="text14" color="#9FA2A8" ml="16px">
+            <Text textStyle="text14" color="ink3" ml="16px">
               {formatNumber(balance.toFixed(2))} $
             </Text>
           </Box>
@@ -41,7 +41,7 @@ const BaseStrategy: React.FC<any> = ({ pool, chartData }) => {
         <EarningsChart token={pool?.token} address={address} pool={pool} />
       </Flex>
 
-      <Flex w="100%" bg="#17191C" borderRadius="8px" minH="319px" padding="24px">
+      <Flex w="100%" bg="bg2" borderWidth="1px" borderStyle="solid" borderColor="line" borderRadius="2px" minH="319px" padding="24px">
         <BaseChart chartData={chartData} />
       </Flex>
     </SimpleGrid>

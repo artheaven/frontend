@@ -3,31 +3,24 @@ import { defineStyleConfig } from "@chakra-ui/react";
 export const Link = defineStyleConfig({
   baseStyle: {
     textDecoration: "none",
-    _hover: {
-      textDecoration: "none"
-    }
+    transition: "color 120ms",
+    _hover: { textDecoration: "none" }
   },
   sizes: {},
   variants: {
     link: {
-      color: "white",
-      fontWeight: "500",
-      _hover: {
-        textDecoration: "none"
-      }
+      color: "ink2",
+      fontSize: "sm",
+      _hover: { color: "ink", textDecoration: "none" }
     },
     nav: {
       display: "flex",
       alignItems: "center",
-      color: "black.5",
-      fontWeight: "500",
-
-      _hover: {
-        textDecoration: "none"
-      },
-      _activeLink: {
-        color: "white"
-      }
+      color: "ink3",
+      fontSize: "sm",
+      fontWeight: "400",
+      _hover: { color: "ink", textDecoration: "none" },
+      _activeLink: { color: "ink" }
     }
   },
   defaultProps: {}

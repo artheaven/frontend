@@ -3,14 +3,15 @@ import type { Wallet } from "@rainbow-me/rainbowkit";
 import type { Chain } from "viem";
 import { arbitrum, bsc, base } from "viem/chains";
 import { createConnector } from "wagmi";
+import { tokens } from "@/themes/styles/colors";
 
 export const createMagicConnector = ({ chain }: { chain: Chain }): Wallet => ({
   id: "magic",
   name: "Magic",
   iconUrl: "/assets/image/Magic.svg",
-  iconBackground: "#fff",
+  iconBackground: tokens.ink,
   installed: true,
-  iconAccent: "#b4acfc",
+  iconAccent: tokens.accent,
 
   createConnector: walletDetails => {
     const magicConnector = dedicatedWalletConnector({
@@ -18,7 +19,7 @@ export const createMagicConnector = ({ chain }: { chain: Chain }): Wallet => ({
       options: {
         customLogo: "https://app.rebalance.finance/assets/logo/logo-short.svg",
         apiKey: process.env.NEXT_PUBLIC_MAGIC_PUBLISHABLE_KEY as string,
-        accentColor: "rgba(76, 255, 148, 0.4)",
+        accentColor: tokens.accent,
         isDarkMode: true,
         magicSdkConfiguration: {
           network: {

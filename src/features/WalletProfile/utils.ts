@@ -2,8 +2,8 @@ import { themes } from "../../themes";
 
 export const colorTransactionStatus = {
   completed: {
-    bg: themes.colors.greenAlpha["10"],
-    color: themes.colors.greenAlpha["80"]
+    bg: themes.colors.posAlpha["10"],
+    color: themes.colors.posAlpha["80"]
   },
   proccess: {
     bg: themes.colors.blueAlpha["10"],

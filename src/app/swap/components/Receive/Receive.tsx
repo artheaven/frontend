@@ -77,17 +77,17 @@ const Receive = ({
   return (
     <InputGroup borderColor="transparent" data-group zIndex={1} isolation="unset">
       <Box
-        background="#09090B"
+        background="bg"
         p="20px 24px"
         width="100%"
-        borderRadius="8px"
+        borderRadius="2px"
         mt={2}
         border="1px solid"
         borderColor="transparent"
         transition="all .3s ease-in-out"
         _groupFocusWithin={{
           border: "1px solid",
-          borderColor: "rgba(76, 255, 148, 0.6)"
+          borderColor: "accentAlpha.60"
         }}
       >
         <Text fontSize="12px" color="gray">
@@ -95,7 +95,7 @@ const Receive = ({
         </Text>
         <Box mt="12px" display="flex" alignItems="center" justifyContent="space-between" gap={2}>
           {isLoading ? (
-            <Skeleton height={10} width="80px" borderRadius="8px" />
+            <Skeleton height={10} width="80px" borderRadius="2px" />
           ) : (
             <AmountInput
               amount={amount}
@@ -120,7 +120,7 @@ const Receive = ({
 
         <Box mt="12px" display="flex" alignItems="center" justifyContent="space-between">
           {isLoading ? (
-            <Skeleton height="15px" width="40px" borderRadius="8px" />
+            <Skeleton height="15px" width="40px" borderRadius="2px" />
           ) : (
             <Text textStyle="textMono10" color="darkgrey">
               ~${price}

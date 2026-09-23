@@ -37,7 +37,7 @@ export const CircularProgress = ({ resetCountDown }: CircularProgressProps) => {
 
   return (
     <CircularProgressChakra
-      color="#fff"
+      color="ink"
       trackColor="bg.whiteAlpha100"
       size="44px"
       thickness="3px"

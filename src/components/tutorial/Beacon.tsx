@@ -8,14 +8,14 @@ const pulse = keyframes`
   }
 
   55% {
-    background-color: rgba(76, 255, 148, 0.9);
+    background-color: rgba(201, 164, 92, 0.9);
     transform: scale(1.4);
   }
 `;
 
 const CustomBeacon = styled.span<{ isConnected: boolean }>`
   animation: ${pulse} 1s ease-in-out infinite;
-  background-color: rgba(76, 255, 148, 0.6);
+  background-color: rgba(201, 164, 92, 0.6);
   border-radius: 50%;
   display: inline-block;
   height: 24px;

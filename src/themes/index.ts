@@ -5,22 +5,16 @@ import { cardTheme } from "./components/Card";
 import { drawerTheme } from "./components/Drawer";
 import { inputTheme } from "./components/Input";
 import { Link } from "./components/Link";
+import { modalTheme } from "./components/Modal";
+import { skeletonTheme } from "./components/Skeleton";
 import { switchTheme } from "./components/Switch";
 import { Text } from "./components/Text";
+import { tooltipTheme } from "./components/Tooltip";
+import { fonts } from "./fonts";
 import { colors } from "./styles/colors";
 import { fontSizes } from "./styles/fontSize";
 import { global } from "./styles/global";
 import { textStyles } from "./styles/textStyles";
-import { Roboto, Roboto_Mono } from 'next/font/google'
-
-const roboto = Roboto({
-  subsets: ['cyrillic'],
-  weight: ['100','300','400', "500", '700', '900']
-})
-
-const roboto_mono = Roboto_Mono({
-  subsets: ['cyrillic'],
-})
 
 const config = {
   initialColorMode: "dark",
@@ -30,12 +24,23 @@ const config = {
 export const themes = extendTheme({
   config,
   fonts: {
-    heading: roboto.style.fontFamily,
-    body: roboto.style.fontFamily,
-    mono: roboto_mono.style.fontFamily,
+    heading: fonts.display,
+    body: fonts.sans,
+    mono: fonts.mono
   },
   styles: { global: { ...global } },
   colors: { ...colors },
+  radii: {
+    sm: "1px",
+    base: "2px",
+    md: "2px",
+    lg: "2px",
+    xl: "2px",
+    "2xl": "2px"
+  },
+  shadows: {
+    outline: "0 0 0 2px var(--chakra-colors-accent)"
+  },
   textStyles: {
     ...textStyles
   },
@@ -47,7 +52,10 @@ export const themes = extendTheme({
     Card: cardTheme,
     Switch: switchTheme,
     Drawer: drawerTheme,
-    Input: inputTheme
+    Input: inputTheme,
+    Modal: modalTheme,
+    Tooltip: tooltipTheme,
+    Skeleton: skeletonTheme
   },
   breakpoints: {
     sm: "400px",

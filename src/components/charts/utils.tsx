@@ -1,6 +1,7 @@
 import { Bar as DefaultBar, Cell } from "recharts";
 
 import { IBar, isColorString } from "./types";
+import { tokens } from "@/themes/styles/colors";
 
 export const barGradient = ({ data, color }: IBar) => {
   return (
@@ -26,7 +27,7 @@ export const barGradient = ({ data, color }: IBar) => {
         minPointSize={5}
         dataKey="lending"
         fill={!isColorString(color) ? color?.bottom : ""}
-        background={{ fill: "#272A30" }}
+        background={{ fill: tokens.bg3 }}
       >
         {data.map((elem, index) => (
           <Cell cursor="pointer" fill={"url(#defaultColor)"} key={`cell-${index}`} radius={10} />
@@ -44,7 +45,7 @@ export const bar = ({ data, color }: IBar) => {
       minPointSize={5}
       dataKey="lending"
       fill={isColorString(color) ? color : ""}
-      background={{ fill: "#272A30" }}
+      background={{ fill: tokens.bg3 }}
     >
       {data.map((_, index) => (
         <Cell cursor="pointer" key={`cell-${index}`} radius={10} />

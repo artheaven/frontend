@@ -25,7 +25,7 @@ export const AssetLayout = ({children} : {
         <Button
           leftIcon={<Icon name={ICON_NAMES.arrowLeft} />}
           onClick={() => router.back()}
-          color="#626262"
+          color="ink3"
         >
           Back
         </Button>

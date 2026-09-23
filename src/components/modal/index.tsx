@@ -23,8 +23,8 @@ export const Modal: FC<IModalProps> = ({
   return (
     <DefaultModal isOpen={isOpen} onClose={onClose} {...rest} isCentered>
       <ModalOverlay backdropFilter="auto" backdropBlur="5px" />
-      <ModalContent bg="black.100" p="24px" borderRadius="4px" gap="24px" maxW={maxWidth}>
-        {isCloseBtn && <ModalCloseButton color="#626262" zIndex={10} />}
+      <ModalContent bg="black.100" p="24px" borderRadius="2px" gap="24px" maxW={maxWidth}>
+        {isCloseBtn && <ModalCloseButton color="ink3" zIndex={10} />}
         {children}
       </ModalContent>
     </DefaultModal>

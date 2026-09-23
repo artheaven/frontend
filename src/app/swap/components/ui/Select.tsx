@@ -61,10 +61,10 @@ const Select: React.FC<SelectProps> = ({ options = [], value, setSelected, Butto
   return (
     <Box ref={containerRef} position="relative" zIndex={999}>
       <Button
-        border="1px solid #202327"
-        backgroundColor="#202327"
+        border="1px solid" borderColor="bg3"
+        backgroundColor="bg3"
         padding="6px 12px"
-        borderRadius="4px"
+        borderRadius="2px"
         onClick={onOpen}
         rightIcon={<ChevronDownIcon />}
         width="100%"
@@ -92,7 +92,7 @@ const Select: React.FC<SelectProps> = ({ options = [], value, setSelected, Butto
       </Button>
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
-        <ModalContent h="545px" bg="#151619" maxW="400px" pb={6}>
+        <ModalContent h="545px" bg="bg2" maxW="400px" pb={6}>
           <Flex justify="space-between" alignItems="center" p="24px 24px 12px 24px">
             <ModalHeader flexGrow={1} p={0}>
               <Text>Select a token</Text>
@@ -108,8 +108,8 @@ const Select: React.FC<SelectProps> = ({ options = [], value, setSelected, Butto
             <InputGroup
               p="8px 24px"
               border="none"
-              background="#09090B"
-              borderRadius="8px"
+              background="bg"
+              borderRadius="2px"
               display="flex"
             >
               <InputLeftElement pointerEvents="none" pos="absolute" top="4px" left="8px">
@@ -124,7 +124,7 @@ const Select: React.FC<SelectProps> = ({ options = [], value, setSelected, Butto
                 lineHeight="100%"
                 ref={inputRef}
                 border="none"
-                borderRadius="8px"
+                borderRadius="2px"
               />
             </InputGroup>
             <Flex justifyContent="space-between" gap="8px" flexWrap="wrap" mt={6}>
@@ -135,7 +135,7 @@ const Select: React.FC<SelectProps> = ({ options = [], value, setSelected, Butto
                   key={token.address}
                   p={2}
                   borderRadius="20px"
-                  bg="#09090B"
+                  bg="bg"
                   cursor="pointer"
                   onClick={() => handleMenuItemClick(token)}
                 >
@@ -162,7 +162,7 @@ const Select: React.FC<SelectProps> = ({ options = [], value, setSelected, Butto
                       cursor="pointer"
                       justify="space-between"
                       p="16px"
-                      borderRadius="8px"
+                      borderRadius="2px"
                       _hover={{ background: "gray.800" }}
                       onClick={() => handleMenuItemClick(option)}
                     >

@@ -19,7 +19,7 @@ export const LTV: FC<{ ltv: number }> = ({ ltv }) => {
           return <Bar key={item} bg="orangeAlpha.80" />;
         if (ltv === item) return <Bar key={item} bg="redAlpha.80" />;
 
-        return <Bar key={item} bg="greenAlpha.80" />;
+        return <Bar key={item} bg="posAlpha.80" />;
       })}
     </Flex>
   );

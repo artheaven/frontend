@@ -9,11 +9,12 @@ import { DATES } from "../../../components/data-switcher/utils";
 import { LTV } from "../../../components/ltv";
 import { themes } from "../../../themes";
 import { tickFormatter } from "./utils";
+import { tokens } from "@/themes/styles/colors";
 
 const colors = {
   borrowingFee: {
-    top: "#EC5A65",
-    bottom: "#E63946"
+    top: tokens.neg,
+    bottom: tokens.neg
   },
   healthFactor: themes.colors.greenAlpha["80"]
 };

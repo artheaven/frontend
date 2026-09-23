@@ -1,4 +1,5 @@
-import { Box, Flex, Image, Link, useMediaQuery } from "@chakra-ui/react";
+import { Flex, Link, useMediaQuery } from "@chakra-ui/react";
+import { Wordmark } from "@/components/wordmark";
 import React from "react";
 
 import LogoDesc from "/public/assets/logo/logo-long.svg";
@@ -11,17 +12,17 @@ import NextLink from "next/link";
 export const AppFooter = () => {
   const [media] = useMediaQuery(MEDIA_QUERY_MAX);
   return (
-    <Flex
-      direction={{ base: "column", md: "row" }}
-      justify="space-between"
-      maxW={"1300px"}
-      w="100%"
-      alignItems="center"
-      p={{ base: "6px 16px", md: "24px 16px", xxl: "24px 0" }}
-      mt={!media ? "40px" : "24px"}
-      gap={{ base: "24px", md: "0" }}
-    >
-      <Box h="30px" w={{ base: "126px", lg: "30px" }} />
+    <Flex w="100%" justify="center" borderTop="1px solid" borderColor="line" mt={!media ? "64px" : "32px"}>
+      <Flex
+        direction={{ base: "column", md: "row" }}
+        justify="space-between"
+        maxW={"1300px"}
+        w="100%"
+        alignItems="center"
+        p={{ base: "24px 16px", md: "32px 16px", xxl: "32px 0" }}
+        gap={{ base: "24px", md: "0" }}
+      >
+        <Wordmark fontSize="xs" />
 
       <Flex gap={{ base: "24px", md: "40px" }} order={{ base: 0, md: 1 }}>
         {FooterLink.map(link => (
@@ -37,6 +38,7 @@ export const AppFooter = () => {
             <Icon name={media.name} />
           </Link>
         ))}
+      </Flex>
       </Flex>
     </Flex>
   );

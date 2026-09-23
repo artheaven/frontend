@@ -187,7 +187,7 @@ export const PoolsLending = observer(
                 }
                 color="white"
               >
-                <Text textStyle="textMono12" letterSpacing="3px" color="gray.100">
+                <Text textStyle="eyebrow" mb="4px">
                   RISK
                 </Text>
               </Tooltip>
@@ -204,9 +204,9 @@ export const PoolsLending = observer(
               return (
                 <>
                   <HStack justify="space-between">
-                    <Text color="white">Funds in pool</Text>
+                    <Text textStyle="eyebrow">Funds in pool</Text>
                     <Tooltip label="Funds in pool" color="white">
-                      <Text textStyle="textMono16" color="white">
+                      <Text textStyle="textMono16" color="ink">
                         {loading || error ? (
                           <Skeleton height="20px" width="50px" />
                         ) : (
@@ -215,7 +215,7 @@ export const PoolsLending = observer(
                       </Text>
                     </Tooltip>
                   </HStack>
-                  <Divider borderColor="black.60" />
+                  <Divider borderColor="line" />
                   <HStack>
                     <Tooltip label={getYieldStrategy(item.token)}>
                       <Box
@@ -224,7 +224,7 @@ export const PoolsLending = observer(
                         w="100%"
                         alignItems="center"
                       >
-                        <Text color="white" borderBottom={"dashed 1px gray"}>
+                        <Text textStyle="eyebrow" borderBottom="1px dashed" borderColor="lineStrong">
                           APY
                         </Text>
                         {getProtocolIcons(item.token)}
@@ -241,11 +241,11 @@ export const PoolsLending = observer(
 
                   <HStack justify="space-between">
                     <Tooltip label="Rebalance APY advantage over the lending market highest APY in last 30 days">
-                      <Text borderBottom={"dashed 1px gray"} color="white">
+                      <Text textStyle="eyebrow" borderBottom="1px dashed" borderColor="lineStrong">
                         {">"} market max.
                       </Text>
                     </Tooltip>
-                    <Text color={item.apr > 0 ? "green.100" : "white"} textStyle="textMono16">
+                    <Text color={item.apr > 0 ? "pos" : "ink"} textStyle="textMono16">
                       {loading || error ? (
                         <Skeleton height="20px" width="50px" />
                       ) : (
@@ -260,9 +260,9 @@ export const PoolsLending = observer(
                 <>
                   {!!address ? (
                     <>
-                      <Divider borderColor="black.60" />
+                      <Divider borderColor="line" />
                       <HStack justify="space-between">
-                        <Text color="white">My Profit</Text>
+                        <Text textStyle="eyebrow">My profit</Text>
                         <Text textStyle="textMono16">
                           {loading || error ? (
                             <Skeleton height="20px" width="50px" />
@@ -318,7 +318,7 @@ export const PoolsLending = observer(
       >
         {loading || error
           ? Array.from({ length: 4 }).map((_, index) => (
-              <Box key={index} padding="6" bg="#151619">
+              <Box key={index} padding="6" bg="bg2" border="1px solid" borderColor="line" borderRadius="2px">
                 <Box display="flex" justifyContent="space-between" alignItems="center">
                   <Skeleton height="60px" mb="4" w="60px" borderRadius="100px" />
                   <Skeleton height="20px" mb="4" w="60px" />

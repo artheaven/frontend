@@ -70,7 +70,7 @@ export const WalletProfile = ({ className }: IWalletProfileProps) => {
                 <Flex direction="column" gap="10px">
                   <Text fontWeight="500">{ellipsis(String(address))}</Text>
                   <Flex align="center" gap="6px">
-                    <Circle bg={isConnected ? "greenAlpha.100" : "redAlpha.100"} size="6px" />
+                    <Circle bg={isConnected ? "pos" : "neg"} size="6px" />
                     <Text fontSize="xs">Connected to {name}</Text>
                   </Flex>
                 </Flex>

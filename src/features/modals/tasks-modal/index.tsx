@@ -253,7 +253,7 @@ const TasksModal: FC<ITasksModalProps> = ({
           flexDir="column"
           gap="24px"
           padding="12px"
-          bg="#17191C"
+          bg="bg2"
           borderTopLeftRadius="8px"
           borderTopRightRadius="8px"
           position="relative"
@@ -266,28 +266,28 @@ const TasksModal: FC<ITasksModalProps> = ({
             pos="absolute"
             top={5}
             right={5}
-            bg="#17191C"
+            bg="bg2"
             boxSize="32px"
             padding="4px"
-            borderRadius="8px"
+            borderRadius="2px"
             minW={0}
           />
           <Flex flexDir="column" gap="12px">
             <Text fontSize="22px" fontWeight={500}>
               Rebalance Incentives Campaign
             </Text>
-            <Text textStyle="text14" color="#9FA2AB">
+            <Text textStyle="text14" color="ink3">
               Don't miss the chance to earn Rebalance points as the community incentivization
               program approaches!
             </Text>
           </Flex>
-          <Flex flexDir="column" gap="16px" padding="12px" bg="#272A30" borderRadius="8px">
+          <Flex flexDir="column" gap="16px" padding="12px" bg="bg3" borderRadius="2px">
             <Flex justify="space-between" alignItems="center">
-              <Text textStyle="text16" color="#DEDEDE" fontWeight={500}>
+              <Text textStyle="text16" color="ink" fontWeight={500}>
                 Tasks
               </Text>
               {!isTasksLoading && (
-                <Text fontSize="12px" color="#9FA2AB">
+                <Text fontSize="12px" color="ink3">
                   Completed {tasks.filter(task => task.complete).length} of {tasks.length}
                 </Text>
               )}

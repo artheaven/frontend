@@ -1,6 +1,6 @@
 "use client";
 
-import { Flex, useMediaQuery, Skeleton, useOutsideClick, Box } from "@chakra-ui/react";
+import { Flex, useMediaQuery, Text } from "@chakra-ui/react";
 import { MEDIA_QUERY_MAX, MOCKED_ADDRESS } from "../consts";
 import { RebalancePerformance } from "../features/RebalancePerformance";
 import { PoolsHeader } from "../pagesComponents/Pools/PoolsHeader";
@@ -43,8 +43,14 @@ export const PoolLayout = ({
         w="100%"
         p={{ base: "0 16px 16px", xl: 0 }}
         order={{ base: 3 }}
-        mt={isLoadingPoints ? 4 : 0}
+        mt={{ base: "32px", md: "56px" }}
       >
+        <Flex direction="column" gap="12px">
+          <Text textStyle="eyebrow">Earn</Text>
+          <Text as="h1" textStyle="h1">
+            Vaults.
+          </Text>
+        </Flex>
         <Flex direction="column" gap="24px">
           <PoolsHeader isTable={isTable} onChangeView={onChangeView} />
           {children}

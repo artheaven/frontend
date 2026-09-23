@@ -8,16 +8,12 @@ export const Text = defineStyleConfig({
       cursor: "help",
       textDecoration: "underline",
       textDecorationStyle: "dashed",
-      color: "darkGray"
+      textDecorationColor: "lineStrong",
+      textUnderlineOffset: "3px",
+      color: "ink3"
     },
-    t22: {
-      fontSize: "xl",
-      fontWeight: 500
-    },
-    t20: {
-      fontSize: "lg",
-      fontWeight: 500
-    }
+    t22: { fontSize: "xl", fontWeight: 400 },
+    t20: { fontSize: "lg", fontWeight: 400 }
   },
   defaultProps: {}
 });

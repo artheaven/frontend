@@ -60,7 +60,7 @@ export const Notification: FC<INotificationProps> = ({ isOpen, onClose }) => {
             p="4px 12px"
             align="inherit"
             border="1px solid"
-            borderColor="#3E3E3E"
+            borderColor="lineStrong"
             borderRadius="50px"
             fontSize="xs"
           >

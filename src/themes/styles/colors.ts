@@ -1,79 +1,86 @@
+/**
+ * Invictus palette (mirrors the Invictus site tokens). Dark-first, one accent (aurum),
+ * `pos` / `neg` only for deltas and states.
+ *
+ * Legacy scale names (black.*, greenAlpha.*, …) are kept so existing components pick up the
+ * new palette without edits; new code should use the semantic names (bg, ink, line, accent, …).
+ */
+const rgba = (rgb: string) => ({
+  100: `rgba(${rgb}, 1)`,
+  80: `rgba(${rgb}, 0.8)`,
+  60: `rgba(${rgb}, 0.6)`,
+  40: `rgba(${rgb}, 0.4)`,
+  20: `rgba(${rgb}, 0.2)`,
+  10: `rgba(${rgb}, 0.1)`,
+  5: `rgba(${rgb}, 0.05)`
+});
+
+const INK_RGB = "242, 241, 236";
+const ACCENT_RGB = "201, 164, 92";
+const POS_RGB = "95, 179, 138";
+const NEG_RGB = "212, 106, 90";
+const INK3_RGB = "154, 153, 147";
+
+export const tokens = {
+  bg: "#0A0B0D",
+  bg2: "#111317",
+  bg3: "#171A1F",
+  ink: "#F2F1EC",
+  ink2: "#C9C8C2",
+  ink3: "#9A9993",
+  // Below 4.5:1 on bg — decorative / large text only.
+  muted: "#6E6D68",
+  line: "#22252B",
+  lineStrong: "#33373F",
+  accent: "#C9A45C",
+  accentTint: "#2A2418",
+  pos: "#5FB38A",
+  neg: "#D46A5A"
+};
+
 export const colors = {
+  ...tokens,
+  accentAlpha: rgba(ACCENT_RGB),
+  posAlpha: rgba(POS_RGB),
+  negAlpha: rgba(NEG_RGB),
+
+  // ---- legacy names, remapped ----
   whiteAlpha: {
-    100: "#fff",
-    90: "rgba(255, 255, 255, 0.9)",
-    80: "rgba(255, 255, 255, 0.8)",
-    70: "rgba(255, 255, 255, 0.7)",
-    60: "rgba(255, 255, 255, 0.6)",
-    50: "rgba(255, 255, 255, 0.5)",
-    40: "rgba(255, 255, 255, 0.4)",
-    30: "rgba(255, 255, 255, 0.3)",
-    20: "rgba(255, 255, 255, 0.2)",
-    10: "rgba(255, 255, 255, 0.1)"
+    100: tokens.ink,
+    90: `rgba(${INK_RGB}, 0.9)`,
+    80: `rgba(${INK_RGB}, 0.8)`,
+    70: `rgba(${INK_RGB}, 0.7)`,
+    60: `rgba(${INK_RGB}, 0.6)`,
+    50: `rgba(${INK_RGB}, 0.5)`,
+    40: `rgba(${INK_RGB}, 0.4)`,
+    30: `rgba(${INK_RGB}, 0.3)`,
+    20: `rgba(${INK_RGB}, 0.2)`,
+    10: `rgba(${INK_RGB}, 0.1)`
   },
-  green: {
-    100: "rgba(76, 255, 148, 1)"
-  },
-  lightGray: "rgba(222, 222, 222, 1)",
-  darkGray: "#A5A5A5",
+  white: tokens.ink,
+  green: { 100: tokens.pos },
+  lightGray: tokens.ink,
+  darkGray: tokens.ink3,
   gray: {
-    100: "#5C6470",
-    80: "rgba(234, 234, 234, 0.8)"
+    100: tokens.muted,
+    80: `rgba(${INK_RGB}, 0.8)`
   },
   black: {
-    100: "#09090B",
-    90: "#1E1E1E",
-    80: "#151619",
-    70: "#17191C",
-    60: "#202327",
-    40: "#272A30",
-    20: "#2E3238",
-    5: "#9FA2A8",
-    0: "#DEDEDE"
+    100: tokens.bg,
+    90: tokens.line,
+    80: tokens.bg2,
+    70: tokens.bg2,
+    60: tokens.bg3,
+    40: tokens.lineStrong,
+    20: tokens.lineStrong,
+    5: tokens.ink3,
+    0: tokens.ink
   },
-  greenAlpha: {
-    100: "rgba(76, 255, 148, 1)",
-    80: "rgba(76, 255, 148, 0.8)",
-    60: "rgba(76, 255, 148, 0.6)",
-    40: "rgba(76, 255, 148, 0.4)",
-    20: "rgba(76, 255, 148, 0.2)",
-    10: "rgba(76, 255, 148, 0.1)",
-    5: "rgba(76, 255, 148, 0.05)"
-  },
-  violetAlpha: {
-    100: "rgba(128, 106, 255, 1)",
-    80: "rgba(128, 106, 255, 0.8)",
-    60: "rgba(128, 106, 255, 0.6)",
-    40: "rgba(128, 106, 255, 0.4)",
-    20: "rgba(128, 106, 255, 0.2)",
-    10: "rgba(128, 106, 255, 0.1)",
-    5: "rgba(128, 106, 255, 0.05)"
-  },
-  orangeAlpha: {
-    100: "rgba(222, 110, 73, 1)",
-    80: "rgba(222, 110, 73, 0.8)",
-    60: "rgba(222, 110, 73, 0.6)",
-    40: "rgba(222, 110, 73, 0.4)",
-    20: "rgba(222, 110, 73, 0.2)",
-    10: "rgba(222, 110, 73, 0.1)",
-    5: "rgba(222, 110, 73, 0.05)"
-  },
-  redAlpha: {
-    100: "rgba(230, 57, 70, 1)",
-    80: "rgba(230, 57, 70, 0.8)",
-    60: "rgba(230, 57, 70, 0.6)",
-    40: "rgba(230, 57, 70, 0.4)",
-    20: "rgba(230, 57, 70, 0.2)",
-    10: "rgba(230, 57, 70, 0.1)",
-    5: "rgba(230, 57, 70, 0.05)"
-  },
-  blueAlpha: {
-    100: "rgba(0, 168, 232, 1)",
-    80: "rgba(0, 168, 232, 0.8)",
-    60: "rgba(0, 168, 232, 0.6)",
-    40: "rgba(0, 168, 232, 0.4)",
-    20: "rgba(0, 168, 232, 0.2)",
-    10: "rgba(0, 168, 232, 0.1)",
-    5: "rgba(0, 168, 232, 0.05)"
-  }
+  // Former brand green → aurum accent. Positive deltas/states use posAlpha instead.
+  greenAlpha: rgba(ACCENT_RGB),
+  // Secondary chart series and neutral badges.
+  violetAlpha: rgba(INK3_RGB),
+  blueAlpha: rgba(INK3_RGB),
+  orangeAlpha: rgba("214, 160, 90"),
+  redAlpha: rgba(NEG_RGB)
 };

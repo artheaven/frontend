@@ -310,18 +310,18 @@ const Swap = () => {
   return (
     <Flex flexDir="column" gap="20px" m="60px auto auto">
       <Box
-        borderRadius="12px"
+        borderRadius="2px"
         minW={isMobile ? "350px" : "460px"}
         mx={isMobile ? 2 : 0}
-        background="#151619"
+        background="bg2"
         p="24px 20px"
       >
         <Header onRefetch={refetch} />
         <Box position="relative" mt={3}>
           <Box
             cursor="pointer"
-            backgroundColor="#151619"
-            borderRadius="12px"
+            backgroundColor="bg2"
+            borderRadius="2px"
             padding="16px"
             position="absolute"
             top="52%"

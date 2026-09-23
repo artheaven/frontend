@@ -9,10 +9,13 @@ import {
 import { createConfig, http } from "@wagmi/core";
 import { arbitrum, Chain, base, mainnet } from "wagmi/chains";
 import { magicWallet } from "./magicConnector";
+import { DEMO_MODE } from "@/demo/config";
+import { demoWallet } from "@/demo/wallet";
 
 const createConnectors = (chain: Chain) => {
   return connectorsForWallets(
     [
+      ...(DEMO_MODE ? [{ groupName: "Demo", wallets: [demoWallet] }] : []),
       {
         groupName: "Popular",
         wallets: [

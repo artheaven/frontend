@@ -5,7 +5,8 @@ import { JazzIcon } from "../../../../components/address-icon/JazzIcon";
 import { ellipsis } from "../../../../utils";
 import Icon from "@/components/icon";
 import { ICON_NAMES } from "@/consts";
-import { useDisconnect } from "wagmi";
+import { useAccount, useDisconnect } from "wagmi";
+import { StatusPill } from "@/components/status-pill";
 
 interface IWalletProfileBtnProps {
   address: string;
@@ -15,11 +16,15 @@ interface IWalletProfileBtnProps {
 
 export const WalletProfileBtn: FC<IWalletProfileBtnProps> = ({ onOpen, address, className }) => {
   const { disconnect } = useDisconnect();
+  const { connector } = useAccount();
   return (
     <Flex as={Button} gap="6px" align="center" onClick={onOpen}>
       {/* <Flex gap="6px" align="center" className={className}> */}
       <JazzIcon address={address} />
-      <Text mr={4}>{ellipsis(String(address))}</Text>
+      <Text fontFamily="mono" fontSize="sm" mr={connector?.id === "demo" ? 2 : 4}>
+        {ellipsis(String(address))}
+      </Text>
+      {connector?.id === "demo" ? <StatusPill kind="DEMO" mr={2} /> : null}
       <Center height="20px">
         <Divider orientation="vertical" />
       </Center>

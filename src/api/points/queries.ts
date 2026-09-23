@@ -1,3 +1,4 @@
+import { apiFetch } from "@/demo/api";
 import { ICHAIN, LockApi, Reward, Task } from "@/types";
 import { endpoint } from "../pools/queries";
 import { formatBigNumber } from "@/utils/formatBigNumber";
@@ -9,7 +10,7 @@ export const getPredictedPoints = async (
   network: ICHAIN
 ) => {
   try {
-    const response = await fetch(
+    const response = await apiFetch(
       `${endpoint}/lending/calculate-points/${token}/${tokenAmount}/${daysOfLock}?network=${network}`
     );
 
@@ -27,7 +28,7 @@ export const getPredictedPoints = async (
 
 export const getEarnedPoints = async (address: string) => {
   try {
-    const response = await fetch(`${endpoint}/lending/user-points/${address}`);
+    const response = await apiFetch(`${endpoint}/lending/user-points/${address}`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -43,7 +44,7 @@ export const getEarnedPoints = async (address: string) => {
 
 export const getTasks = async (address: string) => {
   try {
-    const response = await fetch(`${endpoint}/lending/user-tasks/${address}`);
+    const response = await apiFetch(`${endpoint}/lending/user-tasks/${address}`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -63,7 +64,7 @@ export const getTasks = async (address: string) => {
 
 export const completeTask = async (address: string, taskName: string) => {
   try {
-    const response = await fetch(`${endpoint}/lending/complete-task/${address}/${taskName}`, {
+    const response = await apiFetch(`${endpoint}/lending/complete-task/${address}/${taskName}`, {
       method: "POST"
     });
 
@@ -81,7 +82,7 @@ export const completeTask = async (address: string, taskName: string) => {
 
 export const getRewards = async (address: string) => {
   try {
-    const response = await fetch(`${endpoint}/lending/rewards-claim-details/${address}`);
+    const response = await apiFetch(`${endpoint}/lending/rewards-claim-details/${address}`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -100,7 +101,7 @@ export const getRewards = async (address: string) => {
 
 export const getLocks = async (address: string, tokenName?: string) => {
   try {
-    const response = await fetch(`${endpoint}/lending/user-locks/${address}`);
+    const response = await apiFetch(`${endpoint}/lending/user-locks/${address}`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

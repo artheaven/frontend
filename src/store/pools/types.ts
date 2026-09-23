@@ -1,17 +1,2 @@
-export interface IPoolData {
-  token: string;
-  tokenAddress: string;
-  rebalancerAddress: string;
-  tokenPriceInUsd: number;
-  tokenPrice24HrChangeInPercentages: number;
-  tokenPrice24HrChangeInUsd: number;
-  apr: number;
-  funds: number;
-  avgApr: number;
-  earned: number;
-  decimals: number;
-  deposit: number;
-  risk: number;
-  borrowRate: number;
-  borrowed: number;
-}
+// Single source of truth for pool data shape.
+export type { IPoolData } from "@/api/pools/types";

@@ -48,7 +48,7 @@ export const MainLayout = observer(({ children }: { children: React.ReactNode })
 
   // Check if chain is supported
   const isSupportedChain = (id: number | undefined): boolean => {
-    return id === arbitrum.id || id === bsc.id || id === base.id;
+    return id === mainnet.id || id === arbitrum.id || id === bsc.id || id === base.id;
   };
 
   // Switch to correct chain if unsupported chain is detected

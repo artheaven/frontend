@@ -550,42 +550,31 @@ const AxisData = ({ markets }: { markets: IRiskMarket[] }) => (
 
 // ---------------------------------------------------------------------------
 
-function summary(markets: IRiskMarket[], now: number): string {
-  const states = markets.map(m => ({ m, s: marketState(m, now).state }));
-  const inUse = markets.filter(m => !m.candidate);
-  const exiting = states.filter(x => !x.m.candidate && x.s === "excluded").length;
-  const reducing = states.filter(x => x.s === "reducing").length;
-  const candidates = markets.length - inUse.length;
-  const excluded = states.filter(x => x.m.candidate && x.s === "excluded").length;
-
-  let s = exiting
-    ? `${exiting} of ${inUse.length} markets in use failed a check and ${exiting === 1 ? "is" : "are"} being exited`
-    : `All ${inUse.length} markets in use pass every hard gate`;
-  s += reducing ? `; ${reducing} ${reducing === 1 ? "is" : "are"} above the cap and being reduced.` : "; every share is within its cap.";
-  if (candidates) {
-    s += ` ${candidates} candidate${candidates === 1 ? "" : "s"} monitored${excluded ? `, ${excluded} excluded` : ""}.`;
-  }
-  return s;
-}
-
 export const RiskMonitor = observer(({ pool }: { pool: IPoolData }) => {
   const { activeChain } = useStore("poolsStore");
   const [data, setData] = useState<IRiskMonitor | null>(null);
   const [state, setState] = useState<"loading" | "ready" | "unavailable">("loading");
   const [now, setNow] = useState(() => Date.now());
 
+  // Poll like a live feed: a snapshot loaded once would age past its TTL and read as stale.
   useEffect(() => {
     let cancelled = false;
+    setData(null);
     setState("loading");
-    getRiskMonitor(pool.token, activeChain as never)
-      .then(res => {
-        if (cancelled) return;
-        setData(res);
-        setState("ready");
-      })
-      .catch(() => !cancelled && setState("unavailable"));
+    const load = () =>
+      getRiskMonitor(pool.token, activeChain as never)
+        .then(res => {
+          if (cancelled) return;
+          setData(res);
+          setNow(Date.now());
+          setState("ready");
+        })
+        .catch(() => !cancelled && setState(s => (s === "ready" ? s : "unavailable")));
+    load();
+    const t = setInterval(load, 60_000);
     return () => {
       cancelled = true;
+      clearInterval(t);
     };
   }, [pool.token, activeChain]);
 
@@ -620,10 +609,6 @@ export const RiskMonitor = observer(({ pool }: { pool: IPoolData }) => {
           </Flex>
         ) : (
           <>
-            <Text fontSize="md" color="ink" maxW="720px" mb="16px">
-              {summary(data.markets, now)}
-            </Text>
-
             <Grid templateColumns={{ base: "1fr", xl: "minmax(0,1fr) 240px" }} gap="12px" alignItems="start">
               <DecisionLog items={data.conclusions} />
               <ContourStatus contours={data.contours} />

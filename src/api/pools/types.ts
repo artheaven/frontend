@@ -128,6 +128,8 @@ export interface IRiskContour {
 export interface IRiskMarket {
   market: string;
   protocol: string;
+  /** Who curates the market's risk parameters; null for a direct (uncurated) market. */
+  curator: string | null;
   /** Current share of vault funds, fraction. 0 for candidate markets. */
   share: number;
   candidate: boolean;
@@ -148,7 +150,8 @@ export interface IRiskMarket {
 export interface IRiskConclusion {
   ts: string;
   market: string;
-  severity: "info" | "warn" | "block";
+  /** "ok" is a routine cycle with no change. */
+  severity: "ok" | "info" | "warn" | "block";
   observed: string;
   action: string;
 }

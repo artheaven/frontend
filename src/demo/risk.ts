@@ -20,7 +20,19 @@ const prov = (overrides: Partial<Record<RiskAxis, RiskProvenance>> = {}) =>
 
 const band = (score: number): IRiskMarket["band"] => (score >= 80 ? "A" : score >= 60 ? "B" : score >= 40 ? "C" : "D");
 
-type Seed = Omit<IRiskMarket, "share" | "computedAt" | "ttlSeconds" | "band" | "candidate" | "provenance"> & {
+// Placeholder curators for demo purposes; direct Morpho Blue markets have none.
+const CURATORS: Record<string, string | null> = {
+  "MetaMorpho USDC vault A": "Steakhouse Financial",
+  "Aave v3 USDC": "Aave DAO",
+  "Pool X · rsETH collateral": "Unverified",
+  "Aave v3 USDT": "Aave DAO",
+  "MetaMorpho USDT vault A": "Gauntlet",
+  "Euler USDT": "Re7 Labs",
+  "Aave v3 DAI": "Aave DAO",
+  "MetaMorpho DAI vault A": "Block Analitica"
+};
+
+type Seed = Omit<IRiskMarket, "share" | "computedAt" | "ttlSeconds" | "band" | "candidate" | "provenance" | "curator"> & {
   minutesAgo: number;
   provenance?: Partial<Record<RiskAxis, RiskProvenance>>;
 };
@@ -290,6 +302,7 @@ export function demoRiskMonitor(pool: DemoPool, now = Date.now()): IRiskMonitor 
     const share = shareOf(m.market);
     return {
       ...m,
+      curator: CURATORS[m.market] ?? null,
       share,
       candidate: share === 0,
       computedAt: iso(minutesAgo),
@@ -299,10 +312,23 @@ export function demoRiskMonitor(pool: DemoPool, now = Date.now()): IRiskMonitor 
     };
   });
 
+  // Routine cycles every 15 min fill the log between conclusions, as a real feed would.
+  const taken = scenario.conclusions.map(c => c.minutesAgo);
+  const routine = Array.from({ length: 10 }, (_, i) => 2 + i * 15)
+    .filter(m => taken.every(t => Math.abs(t - m) > 6))
+    .map(m => ({
+      minutesAgo: m,
+      market: "All markets",
+      severity: "ok" as const,
+      observed: `Assessment cycle: ${scenario.markets.length} markets scored, gates re-checked.`,
+      action: "No changes."
+    }));
+  const log = [...scenario.conclusions, ...routine].sort((a, b) => a.minutesAgo - b.minutesAgo);
+
   return {
     computedAt: iso(Math.min(...scenario.markets.map(m => m.minutesAgo))),
     contours: (Object.entries(scenario.contours) as [IRiskContour["id"], Omit<IRiskContour, "id">][]).map(([id, c]) => ({ id, ...c })),
     markets,
-    conclusions: scenario.conclusions.map(({ minutesAgo, ...c }) => ({ ...c, ts: iso(minutesAgo) }))
+    conclusions: log.map(({ minutesAgo, ...c }) => ({ ...c, ts: iso(minutesAgo) }))
   };
 }

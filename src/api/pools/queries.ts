@@ -7,7 +7,8 @@ import {
   IPoolsData,
   IRebalancePage,
   IRiskMonitor,
-  ITotalProfit
+  ITotalProfit,
+  IVaultGovernance
 } from "./types";
 
 export const endpoint = process.env.NEXT_PUBLIC_API_URL || "http://localhost:2002";
@@ -395,6 +396,15 @@ export const getRebalances = async (
 /** Latest CRA assessment for the markets a vault uses or considers. */
 export const getRiskMonitor = async (token: string, network: ICHAIN): Promise<IRiskMonitor> => {
   const response = await apiFetch(`${endpoint}/lending/${token}/risk?network=${network}`, { cache: "no-store" });
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  return response.json();
+};
+
+/** Role holders, timelock settings and queued changes for a vault. */
+export const getVaultGovernance = async (token: string, network: ICHAIN): Promise<IVaultGovernance> => {
+  const response = await apiFetch(`${endpoint}/lending/${token}/governance?network=${network}`, { cache: "no-store" });
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }

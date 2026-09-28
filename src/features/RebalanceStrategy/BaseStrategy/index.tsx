@@ -6,6 +6,7 @@ import { ActionPanel } from "./ActionPanel";
 import { Allocations } from "./Allocations";
 import { BaseChart } from "./BaseChart";
 import EarningsChart from "./EarningsChart";
+import { Governance } from "./Governance";
 import { RiskMonitor } from "./RiskMonitor";
 
 /**
@@ -33,6 +34,7 @@ const BaseStrategy: React.FC<any> = ({ pool, chartData }) => {
         <EarningsChart token={pool?.token} address={address} pool={pool} />
         <Allocations pool={pool} />
         {pool ? <RiskMonitor pool={pool} /> : null}
+        {pool ? <Governance pool={pool} /> : null}
       </Flex>
 
       <Box order={{ base: 1, lg: 2 }} position={{ base: "static", lg: "sticky" }} top="88px">

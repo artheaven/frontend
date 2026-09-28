@@ -5,6 +5,7 @@
 import { DEMO_MODE } from "./config";
 import { demoLedger } from "./ledger";
 import { DEMO_POOLS, DemoPool, demoEarnedTicks, demoRebalances, demoTicks, findDemoPool } from "./data";
+import { demoGovernance } from "./governance";
 import { demoRiskMonitor } from "./risk";
 
 const json = (data: unknown) =>
@@ -41,6 +42,8 @@ export function demoRoute(url: URL): Response {
     const all = demoRebalances(pool);
     return json({ items: all.slice((page - 1) * limit, page * limit), total: all.length });
   }
+  // /lending/{token}/governance
+  if (b === "governance") return json(demoGovernance(pool));
   // /lending/{token}/risk
   if (b === "risk") return json(demoRiskMonitor(pool));
   // /lending/{token}/apr-ticks/{interval}/{count}

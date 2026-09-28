@@ -163,3 +163,32 @@ export interface IRiskMonitor {
   /** Newest first. */
   conclusions: IRiskConclusion[];
 }
+
+// ---- Vault governance (roles and timelock, per Rebalancer / Timelock contracts) ----
+
+export type VaultRole = "admin" | "operator" | "timelock_owner" | "treasury";
+
+export interface IRoleHolder {
+  role: VaultRole;
+  address: `0x${string}`;
+  /** "safe" = multisig; threshold like "3/5". */
+  kind: "safe" | "eoa" | "contract";
+  threshold?: string;
+}
+
+export interface IQueuedChange {
+  /** What the queued transaction does, human-readable. */
+  action: string;
+  /** Earliest execution time (ISO). Expires after the grace period. */
+  eta: string;
+}
+
+export interface IVaultGovernance {
+  roles: IRoleHolder[];
+  timelock: {
+    address: `0x${string}`;
+    delaySeconds: number;
+    gracePeriodSeconds: number;
+  };
+  queued: IQueuedChange[];
+}

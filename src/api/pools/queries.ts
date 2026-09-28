@@ -1,6 +1,14 @@
 import { apiFetch } from "@/demo/api";
 import { ICHAIN } from "@/types";
-import { IIntervalResponse, ILendChartData, IPoolData, IPoolsData, IRebalancePage, ITotalProfit } from "./types";
+import {
+  IIntervalResponse,
+  ILendChartData,
+  IPoolData,
+  IPoolsData,
+  IRebalancePage,
+  IRiskMonitor,
+  ITotalProfit
+} from "./types";
 
 export const endpoint = process.env.NEXT_PUBLIC_API_URL || "http://localhost:2002";
 
@@ -378,6 +386,15 @@ export const getRebalances = async (
     `${endpoint}/lending/${token}/rebalances?network=${network}&page=${page}&limit=${limit}`,
     { cache: "no-store" }
   );
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  return response.json();
+};
+
+/** Latest CRA assessment for the markets a vault uses or considers. */
+export const getRiskMonitor = async (token: string, network: ICHAIN): Promise<IRiskMonitor> => {
+  const response = await apiFetch(`${endpoint}/lending/${token}/risk?network=${network}`, { cache: "no-store" });
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }

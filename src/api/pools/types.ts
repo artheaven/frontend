@@ -102,3 +102,61 @@ export interface IRebalancePage {
   items: IRebalanceEvent[];
   total: number;
 }
+
+// ---- Risk monitoring (Collateral Risk Analyzer) ----
+// Mirrors the public RiskScore on the Invictus site: only fields inside the disclosure boundary.
+
+export type RiskContourId = "structural" | "positional" | "liquidation" | "behavioural";
+export type RiskContourStatus = "normal" | "signal" | "gate";
+export type RiskAxis =
+  | "concentration"
+  | "collateral_quality"
+  | "oracle"
+  | "position_health"
+  | "liquidation"
+  | "liquidity_exit"
+  | "governance";
+export type RiskProvenance = "measured" | "default" | "not_applicable";
+
+export interface IRiskContour {
+  id: RiskContourId;
+  status: RiskContourStatus;
+  /** Short human-readable status, e.g. "1 signal · MetaMorpho USDT vault A". */
+  note: string;
+}
+
+export interface IRiskMarket {
+  market: string;
+  protocol: string;
+  /** Current share of vault funds, fraction. 0 for candidate markets. */
+  share: number;
+  candidate: boolean;
+  computedAt: string;
+  ttlSeconds: number;
+  gatesPassed: boolean;
+  gateFailures: string[];
+  score: number | null;
+  band: "A" | "B" | "C" | "D";
+  /** Allocation ladder step, percent. */
+  maxAllocationPct: 0 | 10 | 20 | 40;
+  topCollateral: { symbol: string; cluster: string; weight: number };
+  effectiveN: number;
+  anomalySignals: string[];
+  provenance: Record<RiskAxis, RiskProvenance>;
+}
+
+export interface IRiskConclusion {
+  ts: string;
+  market: string;
+  severity: "info" | "warn" | "block";
+  observed: string;
+  action: string;
+}
+
+export interface IRiskMonitor {
+  computedAt: string;
+  contours: IRiskContour[];
+  markets: IRiskMarket[];
+  /** Newest first. */
+  conclusions: IRiskConclusion[];
+}

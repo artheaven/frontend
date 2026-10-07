@@ -11,38 +11,47 @@ import { useStore } from "@/hooks/useStoreContext";
 
 /**
  * Pool page: who controls the vault and which changes wait behind the timelock.
- * Permissions and limits follow the contracts (AccessManager, Vault, Timelock).
+ * Permissions and limits follow the deployed Rebalancer (RoleManager roles + Timelock).
  */
 
 const ROLES: Record<VaultRole, { name: string; can: string }> = {
   admin: {
     name: "Admin",
-    can: "Grants and revokes roles. Pauses or resumes deposits and withdrawals, separately. Sets the entry market, treasury, withdrawal fee (capped at 5% in code) and minimum deposit. No delay."
+    can: "Grants and revokes roles. Removes a market only when it holds no vault funds. Sets the entry market. No delay."
   },
-  operator: {
-    name: "Operator",
-    can: "Runs rebalances: moves funds between markets already on the vault's list. Cannot add markets or change settings."
+  executor: {
+    name: "Executor",
+    can: "Runs rebalances: moves funds only between markets already on the vault's list."
   },
-  timelock_owner: {
-    name: "Timelock owner",
-    can: "Queues, executes or cancels timelocked changes. A change executes only after the delay has passed."
+  curator: {
+    name: "Curator",
+    can: "Sets the management fee (max 5%) and performance fee (max 20%), the minimum deposit and the maximum vault size. No delay."
+  },
+  watchdog: {
+    name: "Watchdog",
+    can: "Pauses deposits or withdrawals, separately. Runs emergency withdraw with a single key: funds move from chosen markets into the vault contract itself."
+  },
+  recovery: {
+    name: "Recovery",
+    can: "Resumes deposits or withdrawals and re-allocates idle funds to listed markets after an emergency withdraw."
   },
   treasury: {
     name: "Treasury",
-    can: "Receives vault fees. Holds no permissions."
+    can: "Receives fees as newly minted vault shares. Holds no permissions."
   }
 };
 
 const DELAYED = [
-  { name: "Change market list", body: "Add or remove lending markets the vault can use" },
-  { name: "Replace timelock", body: "Point the vault to a different timelock contract" },
-  { name: "Change delay", body: "Update the timelock delay itself" }
+  { name: "Add a market", body: "Put a new lending market on the vault's list" },
+  { name: "Force-remove a market", body: "Remove a market that still holds vault funds" },
+  { name: "Change treasury or timelock", body: "Point fees or the timelock to a new address" }
 ];
 
 const INSTANT = [
-  { name: "Pause or resume deposits", body: "Separately from withdrawals" },
-  { name: "Pause or resume withdrawals", body: "Separately from deposits" },
-  { name: "Entry market, treasury, fees, minimum deposit", body: "Withdrawal fee capped at 5% in code" }
+  { name: "Pause deposits or withdrawals", role: "Watchdog", body: "Only Recovery can resume" },
+  { name: "Emergency withdraw", role: "Watchdog", body: "Single key; funds return to the vault only" },
+  { name: "Fees, minimum deposit, maximum vault size", role: "Curator", body: "Fees capped at 5% / 20% in code" },
+  { name: "Remove an empty market, entry market", role: "Admin", body: "Only markets holding no vault funds" }
 ];
 
 const EXPLORERS: Record<string, string> = {
@@ -305,7 +314,7 @@ export const Governance = observer(({ pool }: { pool: IPoolData }) => {
                         {d.name}
                       </Text>
                       <Text fontSize="xs" color="ink3">
-                        Admin · {d.body}
+                        {d.role} · {d.body}
                       </Text>
                     </Box>
                     <Text fontFamily="mono" fontSize="12px" color="warn" whiteSpace="nowrap">
@@ -318,8 +327,7 @@ export const Governance = observer(({ pool }: { pool: IPoolData }) => {
 
             <Flex mt="16px" pt="12px" borderTop="1px solid" borderColor="line" align="center" gap="8px" wrap="wrap">
               <Text fontFamily="mono" fontSize="11px" color="ink3">
-                Delay is set per vault between 30 min and 30 days. A queued change expires{" "}
-                {duration(data.timelock.gracePeriodSeconds)} after it unlocks.
+                Timelock delay is set per vault, minimum 30 minutes. Emergency withdraw and pauses take effect immediately.
               </Text>
               {DEMO_MODE ? <StatusPill kind="DEMO DATA" /> : null}
             </Flex>

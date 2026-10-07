@@ -1,6 +1,6 @@
 /**
  * DEMO DATA — synthetic role holders and timelock state for the pool page.
- * Roles and limits mirror the contracts (AccessManager, Vault, Timelock); addresses and
+ * Roles and limits mirror the deployed Rebalancer (RoleManager + Timelock); addresses and
  * multisig thresholds are placeholders until real deployments exist.
  */
 import type { IVaultGovernance } from "@/api/pools/types";
@@ -18,11 +18,13 @@ export function demoGovernance(pool: DemoPool, now = Date.now()): IVaultGovernan
   return {
     roles: [
       { role: "admin", address: addr(base + 1), kind: "safe", threshold: "3/5" },
-      { role: "operator", address: addr(base + 2), kind: "contract" },
-      { role: "timelock_owner", address: addr(base + 3), kind: "safe", threshold: "4/7" },
+      { role: "executor", address: addr(base + 2), kind: "eoa" },
+      { role: "curator", address: addr(base + 3), kind: "safe", threshold: "2/3" },
+      { role: "watchdog", address: addr(base + 6), kind: "eoa" },
+      { role: "recovery", address: addr(base + 7), kind: "safe", threshold: "3/5" },
       { role: "treasury", address: addr(base + 4), kind: "safe", threshold: "2/3" }
     ],
-    timelock: { address: addr(base + 5), delaySeconds: 2 * 86_400, gracePeriodSeconds: 14 * 86_400 },
+    timelock: { address: addr(base + 5), delaySeconds: 24 * 3_600, gracePeriodSeconds: 14 * 86_400 },
     queued: (QUEUED[pool.token] ?? []).map(q => ({
       action: q.action,
       eta: new Date(now + q.hoursFromNow * 3_600_000).toISOString()

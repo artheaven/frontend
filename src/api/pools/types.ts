@@ -166,7 +166,7 @@ export interface IRiskMonitor {
 
 // ---- Vault governance (roles and timelock, per Rebalancer / Timelock contracts) ----
 
-export type VaultRole = "admin" | "operator" | "timelock_owner" | "treasury";
+export type VaultRole = "admin" | "executor" | "curator" | "watchdog" | "recovery" | "treasury";
 
 export interface IRoleHolder {
   role: VaultRole;

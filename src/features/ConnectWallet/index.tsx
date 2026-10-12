@@ -60,7 +60,8 @@ export const ConnectWallet = ({
       id={id}
       onClick={onOpenConnectWalletModal}
       variant={variant ? variant : title === "Deposit" ? "primaryFilled" : "primaryWhite"}
-      flex="1 1 0"
+      // Full-width (variant) buttons sit in column layouts: a zero flex-basis would squash them.
+      flex={variant ? "0 0 auto" : "1 1 0"}
       width={variant ? "100%" : "auto"}
       mt={variant ? 4 : 0}
       h={variant ? "52px" : title ? "auto" : "36px"}

@@ -5,7 +5,7 @@ const SEGMENT_TONES = ["accent", "ink2", "ink3", "lineStrong", "muted"];
 
 const pct = (share: number) => `${Math.round(share * 100)}%`;
 
-/** Stacked allocation bar with a legend (Invictus site pattern). `share` values are fractions. */
+/** Stacked allocation bar with a legend (First Yield site pattern). `share` values are fractions. */
 export const AllocationBar = ({ allocations }: { allocations: IPoolAllocation[] }) => {
   const sorted = [...allocations].sort((a, b) => b.share - a.share);
   return (

@@ -14,7 +14,7 @@ export const tickFormatter = (e: string) => {
 
 export const areaLines = [
   {
-    name: "Invictus APY\n",
+    name: "First Yield APY\n",
     subtext: '(14.26% monthly average)',
     type: ROUTES_TYPE.lending
   },

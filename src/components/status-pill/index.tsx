@@ -9,7 +9,7 @@ const tone: Record<Kind, TextProps> = {
   PAUSED: { color: "neg", borderColor: "negAlpha.60" }
 };
 
-/** Mono status pill, same as the Invictus site. */
+/** Mono status pill, same as the First Yield site. */
 export const StatusPill = ({ kind, ...rest }: { kind: Kind } & TextProps) => (
   <Text
     as="span"

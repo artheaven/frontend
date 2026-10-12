@@ -411,7 +411,7 @@ export const DepositTab: FC<IDepositTabProps> = observer(({ pool, onClose }) => 
         <Divider borderColor="black.90" />
 
         {/* <FormControl display="flex" alignItems="center" justifyContent="space-between">
-          <Tooltip isOpen={isOpenTooltip} label="Points earned on Invictus" ref={tooltipRef}>
+          <Tooltip isOpen={isOpenTooltip} label="Points earned on First Yield" ref={tooltipRef}>
             <Flex gap="8px" alignItems="center">
               <FormLabel
                 mb="0"

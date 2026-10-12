@@ -2,7 +2,7 @@
  * DEMO DATA — synthetic CRA (Collateral Risk Analyzer) output for the pool page.
  * Timestamps are relative to the request time so the monitor reads like a live feed
  * (a fixed date would make every score stale, and stale scores block allocation).
- * Markets and scores follow the Transparency › Risk mocks on the Invictus site.
+ * Markets and scores follow the Transparency › Risk mocks on the First Yield site.
  */
 import type { IRiskConclusion, IRiskContour, IRiskMarket, IRiskMonitor, RiskAxis, RiskProvenance } from "@/api/pools/types";
 

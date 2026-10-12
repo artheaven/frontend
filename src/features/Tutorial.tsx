@@ -38,12 +38,12 @@ const steps: TutorialStep[] = [
   },
   {
     target: ".step-3",
-    content: "Here you can see the actual state and average Invictus APYs",
+    content: "Here you can see the actual state and average First Yield APYs",
     disableBeacon: true
   },
   {
     target: ".step-4",
-    content: "Start earning with Invictus now.\nMake your first deposit",
+    content: "Start earning with First Yield now.\nMake your first deposit",
     disableBeacon: true,
     spotlightClicks: true,
     placement: "right" as Placement

@@ -1,5 +1,5 @@
 /**
- * Invictus palette (mirrors the Invictus site tokens). Dark is the default; light is a full
+ * First Yield palette (mirrors the First Yield site tokens). Dark is the default; light is a full
  * second theme. Theme colours resolve to CSS variables, so every consumer — Chakra props,
  * recharts SVG attributes, inline styles, RainbowKit — follows the active colour mode.
  * Values live in `palette`; variables are emitted by `themeCssVariables` (see global.ts).

@@ -1,7 +1,7 @@
 "use client";
 import { IconButton, useColorMode } from "@chakra-ui/react";
 
-/** Dark/light switch, same glyph as the Invictus site. Chakra persists the choice. */
+/** Dark/light switch, same glyph as the First Yield site. Chakra persists the choice. */
 export const ThemeToggle = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const next = colorMode === "dark" ? "light" : "dark";

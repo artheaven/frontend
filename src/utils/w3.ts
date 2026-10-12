@@ -28,7 +28,7 @@ const createConnectors = (chain: Chain) => {
       }
     ],
     {
-      appName: "Invictus",
+      appName: "First Yield",
       projectId: process?.env?.NEXT_PUBLIC_WALLETCONNECT_KEY || ""
     }
   );

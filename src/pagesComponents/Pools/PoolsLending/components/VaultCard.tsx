@@ -67,7 +67,7 @@ interface VaultCardProps {
   onOpen: (event: React.MouseEvent) => void;
 }
 
-/** Vault card in the Invictus site layout: name, two metrics, allocation, position, actions. */
+/** Vault card in the First Yield site layout: name, two metrics, allocation, position, actions. */
 export const VaultCard = ({
   pool,
   chainName,

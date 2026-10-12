@@ -26,7 +26,7 @@ export const connectedAreaLines = [
 
 export const areaLines = [
   {
-    name: "Invictus Performance APY, %",
+    name: "First Yield Performance APY, %",
     type: ROUTES_TYPE.lending
   }
 ];

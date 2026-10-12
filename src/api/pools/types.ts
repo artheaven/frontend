@@ -104,7 +104,7 @@ export interface IRebalancePage {
 }
 
 // ---- Risk monitoring (Collateral Risk Analyzer) ----
-// Mirrors the public RiskScore on the Invictus site: only fields inside the disclosure boundary.
+// Mirrors the public RiskScore on the First Yield site: only fields inside the disclosure boundary.
 
 export type RiskContourId = "structural" | "positional" | "liquidation" | "behavioural";
 export type RiskContourStatus = "normal" | "signal" | "gate";

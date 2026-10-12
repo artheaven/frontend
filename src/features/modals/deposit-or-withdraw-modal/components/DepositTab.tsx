@@ -411,7 +411,7 @@ export const DepositTab: FC<IDepositTabProps> = observer(({ pool, onClose }) => 
         <Divider borderColor="black.90" />
 
         {/* <FormControl display="flex" alignItems="center" justifyContent="space-between">
-          <Tooltip isOpen={isOpenTooltip} label="Points earned on First Yield" ref={tooltipRef}>
+          <Tooltip isOpen={isOpenTooltip} label="Points earned on Veenu" ref={tooltipRef}>
             <Flex gap="8px" alignItems="center">
               <FormLabel
                 mb="0"
@@ -431,7 +431,7 @@ export const DepositTab: FC<IDepositTabProps> = observer(({ pool, onClose }) => 
                   pointerEvents="none"
                   userSelect="none"
                 >
-                  <Box bg="black.100" p="4px" borderRadius="2px">
+                  <Box bg="black.100" p="4px" borderRadius="10px">
                     <Image src="/assets/logo/logo-short.svg" h="12px" w="12px" alt="logo" />
                   </Box>
                   <Text textStyle="text14" color="black.100" fontWeight={700}>

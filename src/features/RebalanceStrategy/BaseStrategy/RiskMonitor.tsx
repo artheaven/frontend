@@ -594,7 +594,7 @@ export const RiskMonitor = observer(({ pool }: { pool: IPoolData }) => {
           </Text>
         ) : null}
       </Flex>
-      <Box bg="bg2" borderWidth="1px" borderStyle="solid" borderColor="line" borderRadius="2px" p={{ base: "16px", md: "24px" }}>
+      <Box bg="bg2" borderWidth="1px" borderStyle="solid" borderColor="line" borderRadius="10px" p={{ base: "16px", md: "24px" }}>
         {state === "unavailable" ? (
           <Flex minH="160px" align="center" justify="center">
             <Text fontSize="sm" color="ink3">

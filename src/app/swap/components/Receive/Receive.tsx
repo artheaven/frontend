@@ -80,7 +80,7 @@ const Receive = ({
         background="bg"
         p="20px 24px"
         width="100%"
-        borderRadius="2px"
+        borderRadius="10px"
         mt={2}
         border="1px solid"
         borderColor="transparent"
@@ -95,7 +95,7 @@ const Receive = ({
         </Text>
         <Box mt="12px" display="flex" alignItems="center" justifyContent="space-between" gap={2}>
           {isLoading ? (
-            <Skeleton height={10} width="80px" borderRadius="2px" />
+            <Skeleton height={10} width="80px" borderRadius="10px" />
           ) : (
             <AmountInput
               amount={amount}
@@ -120,7 +120,7 @@ const Receive = ({
 
         <Box mt="12px" display="flex" alignItems="center" justifyContent="space-between">
           {isLoading ? (
-            <Skeleton height="15px" width="40px" borderRadius="2px" />
+            <Skeleton height="15px" width="40px" borderRadius="10px" />
           ) : (
             <Text textStyle="textMono10" color="darkgrey">
               ~${price}

@@ -80,7 +80,7 @@ const until = (iso: string, now: number) => {
 // ---------------------------------------------------------------------------
 
 const Info = ({ label }: { label: string }) => (
-  <Tooltip label={label} hasArrow placement="top" maxW="300px" bg="bg3" color="ink" fontSize="xs" p="10px" borderRadius="2px">
+  <Tooltip label={label} hasArrow placement="top" maxW="300px" bg="bg3" color="ink" fontSize="xs" p="10px" borderRadius="10px">
     <Box
       as="span"
       tabIndex={0}
@@ -212,7 +212,7 @@ export const Governance = observer(({ pool }: { pool: IPoolData }) => {
       <Text textStyle="h2" mt="48px" mb="12px">
         Governance
       </Text>
-      <Box bg="bg2" borderWidth="1px" borderStyle="solid" borderColor="line" borderRadius="2px" p={{ base: "16px", md: "24px" }}>
+      <Box bg="bg2" borderWidth="1px" borderStyle="solid" borderColor="line" borderRadius="10px" p={{ base: "16px", md: "24px" }}>
         {state === "unavailable" ? (
           <Flex minH="120px" align="center" justify="center">
             <Text fontSize="sm" color="ink3">

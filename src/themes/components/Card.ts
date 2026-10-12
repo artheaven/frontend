@@ -17,7 +17,7 @@ const sizes = {
     container: { borderRadius: "0" }
   }),
   xl: definePartsStyle({
-    container: { borderRadius: "2px", padding: "40px" }
+    container: { borderRadius: "14px", padding: "40px" }
   })
 };
 
@@ -32,7 +32,7 @@ const variants = {
       borderWidth: "1px",
       borderStyle: "solid",
       borderColor: "line",
-      borderRadius: "2px",
+      borderRadius: "14px",
       transition: "border-color 120ms",
       _hover: { borderColor: "lineStrong" }
     },

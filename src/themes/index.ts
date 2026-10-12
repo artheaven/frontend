@@ -31,12 +31,12 @@ export const themes = extendTheme({
   styles: { global: { ...global } },
   colors: { ...colors },
   radii: {
-    sm: "1px",
-    base: "2px",
-    md: "2px",
-    lg: "2px",
-    xl: "2px",
-    "2xl": "2px"
+    sm: "4px",
+    base: "8px",
+    md: "8px",
+    lg: "12px",
+    xl: "16px",
+    "2xl": "20px"
   },
   shadows: {
     outline: "0 0 0 2px var(--chakra-colors-accent)"

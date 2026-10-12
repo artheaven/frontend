@@ -24,7 +24,7 @@ export const Task = ({ name, complete, pointsQty, limited, ButtonProps }: TaskPr
         <Flex flexDir="column" gap={1}>
           {limited && (
             <Flex gap={2} alignItems="center">
-              <Box padding="4px 8px" borderRadius="2px" bg="#DE6E49CC">
+              <Box padding="4px 8px" borderRadius="10px" bg="#DE6E49CC">
                 <Text textStyle="text12" lineHeight="14px" fontWeight={700}>
                   Limited offer!
                 </Text>
@@ -64,7 +64,7 @@ export const Task = ({ name, complete, pointsQty, limited, ButtonProps }: TaskPr
           padding="8px 16px"
           bg="ink"
           color="bg"
-          borderRadius="2px"
+          borderRadius="10px"
           fontSize="14px"
           height="max-content"
           onClick={ButtonProps.onClick}

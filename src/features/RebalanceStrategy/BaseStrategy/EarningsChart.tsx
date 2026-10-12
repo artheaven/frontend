@@ -191,7 +191,7 @@ const EarningsChart = observer(
                 selectedDate={selectedDate}
               />
             </Flex>
-            <Flex w="100%" bg="bg2" borderWidth="1px" borderStyle="solid" borderColor="line" borderRadius="2px" minH="319px" padding="24px">
+            <Flex w="100%" bg="bg2" borderWidth="1px" borderStyle="solid" borderColor="line" borderRadius="10px" minH="319px" padding="24px">
               <Flex flexDirection="column" width="27%" justifyContent="center">
                 <Flex flexDirection="column">
                   <Text textStyle="eyebrow">Earned in 30D</Text>

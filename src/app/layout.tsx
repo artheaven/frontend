@@ -11,8 +11,8 @@ import Script from "next/script";
 import CommonEvent from "@/components/common-event";
 
 export const metadata: Metadata = {
-  title: "First Yield",
-  description: "First Yield — allocation infrastructure for stablecoin balances"
+  title: "Veenu",
+  description: "Veenu — allocation infrastructure for stablecoin balances"
 };
 
 export default function RootLayout({

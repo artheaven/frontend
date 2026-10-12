@@ -8,13 +8,13 @@ const action = {
   textTransform: "uppercase" as const,
   letterSpacing: "0.12em",
   fontSize: "xs",
-  borderRadius: "2px",
+  borderRadius: "8px",
   transition: "background-color 120ms, border-color 120ms, color 120ms, opacity 120ms"
 };
 
 export const Button = defineStyleConfig({
   baseStyle: {
-    borderRadius: "2px",
+    borderRadius: "8px",
     color: "ink"
   },
   sizes: {

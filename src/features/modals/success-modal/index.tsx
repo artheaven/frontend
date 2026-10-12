@@ -102,7 +102,7 @@ export const SuccessModal: FC<ISuccessModalContextProps> = ({
                 borderWidth="1px"
                 borderStyle="solid"
                 borderColor="line"
-                borderRadius="2px"
+                borderRadius="10px"
               >
                 <Text
                   fontFamily="mono"

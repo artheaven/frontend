@@ -269,19 +269,19 @@ const TasksModal: FC<ITasksModalProps> = ({
             bg="bg2"
             boxSize="32px"
             padding="4px"
-            borderRadius="2px"
+            borderRadius="10px"
             minW={0}
           />
           <Flex flexDir="column" gap="12px">
             <Text fontSize="22px" fontWeight={500}>
-              First Yield Incentives Campaign
+              Veenu Incentives Campaign
             </Text>
             <Text textStyle="text14" color="ink3">
-              Don't miss the chance to earn First Yield points as the community incentivization
+              Don't miss the chance to earn Veenu points as the community incentivization
               program approaches!
             </Text>
           </Flex>
-          <Flex flexDir="column" gap="16px" padding="12px" bg="bg3" borderRadius="2px">
+          <Flex flexDir="column" gap="16px" padding="12px" bg="bg3" borderRadius="10px">
             <Flex justify="space-between" alignItems="center">
               <Text textStyle="text16" color="ink" fontWeight={500}>
                 Tasks

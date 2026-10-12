@@ -67,7 +67,7 @@ export const RebalancePerformance = observer(
             <Flex
               key={elem.title}
               textAlign="center"
-              borderRadius="3px"
+              borderRadius="8px"
               // p="8px 12px"
               w="100%"
               color={elem.type === pathName ? "" : "black.0"}

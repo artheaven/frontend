@@ -46,7 +46,7 @@ const variantCustom = definePartsStyle({
     borderWidth: "1px",
       borderStyle: "solid",
     borderColor: "lineStrong",
-    borderRadius: "2px",
+    borderRadius: "8px",
     bg: "bg",
     alignItems: "center",
     transition: "border-color 120ms",

@@ -134,7 +134,7 @@ export const PoolsLending = observer(
       >
         {loading || error
           ? Array.from({ length: 4 }).map((_, index) => (
-              <Box key={index} padding="6" bg="bg2" border="1px solid" borderColor="line" borderRadius="2px">
+              <Box key={index} padding="6" bg="bg2" border="1px solid" borderColor="line" borderRadius="10px">
                 <Box display="flex" justifyContent="space-between" alignItems="center">
                   <Skeleton height="60px" mb="4" w="60px" borderRadius="100px" />
                   <Skeleton height="20px" mb="4" w="60px" />

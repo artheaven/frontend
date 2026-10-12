@@ -310,7 +310,7 @@ const Swap = () => {
   return (
     <Flex flexDir="column" gap="20px" m="60px auto auto">
       <Box
-        borderRadius="2px"
+        borderRadius="10px"
         minW={isMobile ? "350px" : "460px"}
         mx={isMobile ? 2 : 0}
         background="bg2"
@@ -321,7 +321,7 @@ const Swap = () => {
           <Box
             cursor="pointer"
             backgroundColor="bg2"
-            borderRadius="2px"
+            borderRadius="10px"
             padding="16px"
             position="absolute"
             top="52%"

@@ -14,9 +14,9 @@ export const modalTheme = defineMultiStyleConfig({
       borderWidth: "1px",
       borderStyle: "solid",
       borderColor: "line",
-      borderRadius: "2px",
+      borderRadius: "16px",
       boxShadow: "none"
     },
-    closeButton: { color: "ink3", borderRadius: "2px", _hover: { color: "ink", bg: "bg3" } }
+    closeButton: { color: "ink3", borderRadius: "8px", _hover: { color: "ink", bg: "bg3" } }
   })
 });

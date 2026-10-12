@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react";
 
-// Primary action in the First Yield style: solid aurum, no attention animation.
+// Primary action in the Veenu style: solid aurum, no attention animation.
 const DepositButton = ({
   isDisabled,
   onDeposit,

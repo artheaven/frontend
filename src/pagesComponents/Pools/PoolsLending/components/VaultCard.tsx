@@ -67,7 +67,7 @@ interface VaultCardProps {
   onOpen: (event: React.MouseEvent) => void;
 }
 
-/** Vault card in the First Yield site layout: name, two metrics, allocation, position, actions. */
+/** Vault card in the Veenu site layout: name, two metrics, allocation, position, actions. */
 export const VaultCard = ({
   pool,
   chainName,
@@ -89,7 +89,7 @@ export const VaultCard = ({
       borderWidth="1px"
       borderStyle="solid"
       borderColor="line"
-      borderRadius="2px"
+      borderRadius="10px"
       cursor="pointer"
       transition="border-color 120ms"
       _hover={{ borderColor: "lineStrong" }}

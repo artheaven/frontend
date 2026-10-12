@@ -133,7 +133,7 @@ export const ActionPanel = observer(({ pool }: { pool: IPoolData }) => {
   const positionAfter = mode === "deposit" ? position + value : Math.max(0, position - value);
 
   return (
-    <Flex direction="column" gap="16px" bg="bg2" borderWidth="1px" borderStyle="solid" borderColor="line" borderRadius="2px" p={{ base: "16px", md: "20px" }}>
+    <Flex direction="column" gap="16px" bg="bg2" borderWidth="1px" borderStyle="solid" borderColor="line" borderRadius="10px" p={{ base: "16px", md: "20px" }}>
       {/* Mode tabs */}
       <Flex role="tablist" aria-label="Action" borderBottom="1px solid" borderColor="line">
         {(["deposit", "withdraw"] as const).map(m => (
@@ -191,13 +191,13 @@ export const ActionPanel = observer(({ pool }: { pool: IPoolData }) => {
         borderWidth="1px"
         borderStyle="solid"
         borderColor={error ? "negAlpha.60" : "lineStrong"}
-        borderRadius="2px"
+        borderRadius="10px"
         p="14px"
         transition="border-color 120ms"
         _focusWithin={{ borderColor: error ? "neg" : "accent" }}
       >
         <Flex align="center" gap="12px">
-          <Flex align="center" gap="8px" bg="bg3" px="10px" py="8px" borderRadius="2px" flexShrink={0}>
+          <Flex align="center" gap="8px" bg="bg3" px="10px" py="8px" borderRadius="10px" flexShrink={0}>
             <TokenIcon name={pool.token} size="24px" sizeIcon="14px" />
             <Text fontSize="md" color="ink">
               {pool.token}
@@ -254,7 +254,7 @@ export const ActionPanel = observer(({ pool }: { pool: IPoolData }) => {
       ) : null}
 
       {/* Details */}
-      <Flex direction="column" gap="10px" borderWidth="1px" borderStyle="solid" borderColor="line" borderRadius="2px" p="14px">
+      <Flex direction="column" gap="10px" borderWidth="1px" borderStyle="solid" borderColor="line" borderRadius="10px" p="14px">
         <Text textStyle="eyebrow">{mode === "deposit" ? "Deposit details" : "Withdraw details"}</Text>
         {mode === "deposit" ? (
           <>

@@ -9,7 +9,7 @@ const baseStyle = definePartsStyle({
   thumb: { bg: "ink" },
   track: {
     bg: "lineStrong",
-    borderRadius: "2px",
+    borderRadius: "999px",
     _checked: { bg: "accent" }
   }
 });

@@ -1,6 +1,6 @@
 import { Text, TextProps } from "@chakra-ui/react";
 
-// Text wordmark, same treatment as the First Yield site (logo mark is still TBD there).
+// Text wordmark, same treatment as the Veenu site (logo mark is still TBD there).
 export const Wordmark = (props: TextProps) => (
   <Text
     as="span"
@@ -11,6 +11,6 @@ export const Wordmark = (props: TextProps) => (
     whiteSpace="nowrap"
     {...props}
   >
-    FIRST YIELD
+    VEENU
   </Text>
 );

@@ -146,7 +146,7 @@ export const AssetHeader: FC<{
                 fontSize="xl"
                 fontWeight="500"
                 color={riskColor[pool.risk]}
-                borderRadius="2px"
+                borderRadius="10px"
               >
                 {pool.risk}/5
               </Text>
@@ -204,7 +204,7 @@ export const AssetHeader: FC<{
       </Flex>
 
       {ROUTES_TYPE.lending === pathName && (
-        <Flex p="16px 24px" gap="24px" border="1px solid" borderColor="line" borderRadius="2px">
+        <Flex p="16px 24px" gap="24px" border="1px solid" borderColor="line" borderRadius="10px">
           <Flex direction="column" gap="8px">
             <Text textStyle="eyebrow">Risk factor</Text>
             <Text
@@ -214,7 +214,7 @@ export const AssetHeader: FC<{
               fontSize="xl"
               fontWeight="500"
               color={riskColor[pool?.risk]}
-              borderRadius="2px"
+              borderRadius="10px"
             >
               {pool?.risk}/5
             </Text>

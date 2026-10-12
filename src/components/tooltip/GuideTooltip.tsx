@@ -26,7 +26,7 @@ const GuideTooltip = ({
     <Flex
       flexDir="column"
       gap={2}
-      borderRadius="2px"
+      borderRadius="10px"
       p="16px 12px"
       bgColor="bg3"
       maxW="350px"

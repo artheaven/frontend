@@ -26,7 +26,7 @@ const BaseStrategy: React.FC<any> = ({ pool, chartData }) => {
           borderWidth="1px"
           borderStyle="solid"
           borderColor="line"
-          borderRadius="2px"
+          borderRadius="10px"
           padding="24px"
         >
           <BaseChart chartData={chartData} />

@@ -64,7 +64,7 @@ const Select: React.FC<SelectProps> = ({ options = [], value, setSelected, Butto
         border="1px solid" borderColor="bg3"
         backgroundColor="bg3"
         padding="6px 12px"
-        borderRadius="2px"
+        borderRadius="10px"
         onClick={onOpen}
         rightIcon={<ChevronDownIcon />}
         width="100%"
@@ -109,7 +109,7 @@ const Select: React.FC<SelectProps> = ({ options = [], value, setSelected, Butto
               p="8px 24px"
               border="none"
               background="bg"
-              borderRadius="2px"
+              borderRadius="10px"
               display="flex"
             >
               <InputLeftElement pointerEvents="none" pos="absolute" top="4px" left="8px">
@@ -124,7 +124,7 @@ const Select: React.FC<SelectProps> = ({ options = [], value, setSelected, Butto
                 lineHeight="100%"
                 ref={inputRef}
                 border="none"
-                borderRadius="2px"
+                borderRadius="10px"
               />
             </InputGroup>
             <Flex justifyContent="space-between" gap="8px" flexWrap="wrap" mt={6}>
@@ -162,7 +162,7 @@ const Select: React.FC<SelectProps> = ({ options = [], value, setSelected, Butto
                       cursor="pointer"
                       justify="space-between"
                       p="16px"
-                      borderRadius="2px"
+                      borderRadius="10px"
                       _hover={{ background: "gray.800" }}
                       onClick={() => handleMenuItemClick(option)}
                     >

@@ -60,7 +60,7 @@ const Segmented = ({ value, onChange }: { value: Tab; onChange: (t: Tab) => void
     borderWidth="1px"
     borderStyle="solid"
     borderColor="lineStrong"
-    borderRadius="2px"
+    borderRadius="10px"
     bg="bg"
     p="2px"
     gap="2px"
@@ -74,7 +74,7 @@ const Segmented = ({ value, onChange }: { value: Tab; onChange: (t: Tab) => void
         onClick={() => onChange(t.id)}
         px="12px"
         py="4px"
-        borderRadius="2px"
+        borderRadius="10px"
         fontSize="sm"
         color={value === t.id ? "ink" : "ink3"}
         bg={value === t.id ? "lineStrong" : "transparent"}
@@ -289,7 +289,7 @@ const RebalanceLog = ({ pool, chainName }: { pool: IPoolData; chainName: string 
                     borderColor={e.reason === "risk_gate" ? "negAlpha.60" : "lineStrong"}
                     px="5px"
                     py="1px"
-                    borderRadius="1px"
+                    borderRadius="4px"
                     whiteSpace="nowrap"
                   >
                     {REASON_LABEL[e.reason] ?? e.reason}
@@ -423,7 +423,7 @@ export const Allocations = observer(({ pool }: { pool: IPoolData }) => {
         borderWidth="1px"
         borderStyle="solid"
         borderColor="line"
-        borderRadius="2px"
+        borderRadius="10px"
         p={{ base: "16px", md: "24px" }}
         role="tabpanel"
       >

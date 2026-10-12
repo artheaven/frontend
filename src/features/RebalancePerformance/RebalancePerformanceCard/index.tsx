@@ -31,7 +31,7 @@ export const RebalancePerformanceCard: FC<RebalncePerformanceCardProps> = ({
     <Flex
       bg={isActive ? "black.80" : undefined}
       w="631px"
-      borderRadius="2px"
+      borderRadius="10px"
       position="relative"
       _before={
         isActive

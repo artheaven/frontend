@@ -28,7 +28,7 @@ const createConnectors = (chain: Chain) => {
       }
     ],
     {
-      appName: "First Yield",
+      appName: "Veenu",
       projectId: process?.env?.NEXT_PUBLIC_WALLETCONNECT_KEY || ""
     }
   );

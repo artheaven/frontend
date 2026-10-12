@@ -18,7 +18,7 @@ const Fee = ({ exchangeRate, gasFee, isLoading }: FeeProps) => {
       justifyContent="space-between"
       background="bg"
       p={4}
-      borderRadius="2px"
+      borderRadius="10px"
       mt="12px"
     >
       <Text fontSize="12px">{exchangeRate}</Text>

@@ -92,7 +92,7 @@ export const BaseChart = ({ chartData }: { chartData: IChartData }) => {
 
   const areaLines = [
     {
-      name: "First Yield APY\n",
+      name: "Veenu APY\n",
       subtext: `(${chartData.poolChart[selectedDate.name as any].rebalanceAvg.toFixed(
         2
       )}% average)`,

@@ -7,7 +7,7 @@ export const tooltipTheme = defineStyleConfig({
     borderWidth: "1px",
       borderStyle: "solid",
     borderColor: "lineStrong",
-    borderRadius: "2px",
+    borderRadius: "8px",
     boxShadow: "none",
     fontSize: "xs",
     px: "10px",

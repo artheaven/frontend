@@ -37,13 +37,14 @@ export const DEMO_POOLS: DemoPool[] = [
     tokenPrice: 1,
     funds: 48_200_000,
     earned: 1_240_000,
-    avgApr30D: 5.12,
+    avgApr30D: 7.38,
     highestMarket30DAvgAprDiffPercentage: 0.84,
     allocations: [
-      { protocol: "morpho", destination: "MetaMorpho USDC vault A", share: 0.38 },
-      { protocol: "aave", destination: "Aave v3 USDC", share: 0.36 },
-      { protocol: "morpho", destination: "Morpho Blue USDC market B", share: 0.18 },
-      { protocol: "idle", destination: "Idle buffer", share: 0.08 }
+      { protocol: "morpho", destination: "MetaMorpho USDC vault A", share: 0.34 },
+      { protocol: "aave", destination: "Aave v3 USDC", share: 0.3 },
+      { protocol: "fluid", destination: "Fluid fUSDC", share: 0.2 },
+      { protocol: "morpho", destination: "Morpho Blue USDC market B", share: 0.1 },
+      { protocol: "idle", destination: "Idle buffer", share: 0.06 }
     ],
     asOf: DEMO_AS_OF,
     demoDeposit: 25_000
@@ -56,13 +57,14 @@ export const DEMO_POOLS: DemoPool[] = [
     tokenPrice: 1,
     funds: 27_900_000,
     earned: 690_000,
-    avgApr30D: 4.68,
+    avgApr30D: 10.28,
     highestMarket30DAvgAprDiffPercentage: 0.61,
     allocations: [
-      { protocol: "aave", destination: "Aave v3 USDT", share: 0.4 },
-      { protocol: "morpho", destination: "MetaMorpho USDT vault A", share: 0.34 },
-      { protocol: "morpho", destination: "Morpho Blue USDT market B", share: 0.16 },
-      { protocol: "idle", destination: "Idle buffer", share: 0.1 }
+      { protocol: "aave", destination: "Aave v3 USDT", share: 0.34 },
+      { protocol: "morpho", destination: "MetaMorpho USDT vault A", share: 0.3 },
+      { protocol: "fluid", destination: "Fluid fUSDT", share: 0.22 },
+      { protocol: "morpho", destination: "Morpho Blue USDT market B", share: 0.08 },
+      { protocol: "idle", destination: "Idle buffer", share: 0.06 }
     ],
     asOf: DEMO_AS_OF,
     demoDeposit: 12_500

@@ -2,7 +2,7 @@
  * DEMO DATA — synthetic CRA (Collateral Risk Analyzer) output for the pool page.
  * Timestamps are relative to the request time so the monitor reads like a live feed
  * (a fixed date would make every score stale, and stale scores block allocation).
- * Markets and scores follow the Transparency › Risk mocks on the Veenu site.
+ * Markets and scores follow the Transparency › Risk mocks on the Aureum site.
  */
 import type { IRiskConclusion, IRiskContour, IRiskMarket, IRiskMonitor, RiskAxis, RiskProvenance } from "@/api/pools/types";
 

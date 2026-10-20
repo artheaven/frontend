@@ -28,7 +28,7 @@ const createConnectors = (chain: Chain) => {
       }
     ],
     {
-      appName: "Veenu",
+      appName: "Aureum",
       projectId: process?.env?.NEXT_PUBLIC_WALLETCONNECT_KEY || ""
     }
   );

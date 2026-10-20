@@ -67,7 +67,7 @@ interface VaultCardProps {
   onOpen: (event: React.MouseEvent) => void;
 }
 
-/** Vault card in the Veenu site layout: name, two metrics, allocation, position, actions. */
+/** Vault card in the Aureum site layout: name, two metrics, allocation, position, actions. */
 export const VaultCard = ({
   pool,
   chainName,

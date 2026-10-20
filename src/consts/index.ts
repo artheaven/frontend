@@ -133,7 +133,7 @@ export const LOCK_TOKENS_CONTRACT_ADDRESS = "0x4c2db56998fEEb681bf82524b0cF8Dc4D
 
 export const INSUFFICIENT_BALANCE_ERROR = "You balance is insufficient";
 
-// RainbowKit theme in Veenu tokens (see src/themes/styles/colors.ts).
+// RainbowKit theme in Aureum tokens (see src/themes/styles/colors.ts).
 export const RAINBOW_THEME = {
   colors: {
     accentColor: "var(--inv-accent)",

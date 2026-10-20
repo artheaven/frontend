@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 
-/** Geometric transaction status mark (Veenu style: hairline circle + glyph). */
+/** Geometric transaction status mark (Aureum style: hairline circle + glyph). */
 export const StatusMark = ({ kind }: { kind: "success" | "error" }) => {
   const color = kind === "success" ? "accent" : "neg";
   return (

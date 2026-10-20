@@ -38,12 +38,12 @@ const steps: TutorialStep[] = [
   },
   {
     target: ".step-3",
-    content: "Here you can see the actual state and average Veenu APYs",
+    content: "Here you can see the actual state and average Aureum APYs",
     disableBeacon: true
   },
   {
     target: ".step-4",
-    content: "Start earning with Veenu now.\nMake your first deposit",
+    content: "Start earning with Aureum now.\nMake your first deposit",
     disableBeacon: true,
     spotlightClicks: true,
     placement: "right" as Placement

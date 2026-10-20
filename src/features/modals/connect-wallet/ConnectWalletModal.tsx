@@ -89,7 +89,7 @@ const ConnectWalletModal = ({ isOpen, onClose }: IDefaultModalProps) => {
               Connect Wallet
             </Text>
             <Text fontSize="sm" fontWeight="400">
-              To start using Veenu
+              To start using Aureum
             </Text>
           </DrawerHeader>
 
@@ -116,7 +116,7 @@ const ConnectWalletModal = ({ isOpen, onClose }: IDefaultModalProps) => {
             ))}
 
             <Text fontSize="xs" color="black.0">
-              By connecting, I accept Veenu’s{" "}
+              By connecting, I accept Aureum’s{" "}
               <Link color="greenAlpha.100">Terms of Service</Link>
             </Text>
           </DrawerBody>
@@ -137,7 +137,7 @@ const ConnectWalletModal = ({ isOpen, onClose }: IDefaultModalProps) => {
             Connect Wallet
           </Text>
           <Text fontSize="sm" fontWeight="400">
-            To start using Veenu
+            To start using Aureum
           </Text>
         </ModalHeader>
 
@@ -167,7 +167,7 @@ const ConnectWalletModal = ({ isOpen, onClose }: IDefaultModalProps) => {
 
         <ModalFooter justifyContent="start">
           <Text fontSize="xs" color="black.0">
-            By connecting, I accept Veenu’s <Link color="greenAlpha.100">Terms of Service</Link>
+            By connecting, I accept Aureum’s <Link color="greenAlpha.100">Terms of Service</Link>
           </Text>
         </ModalFooter>
       </ModalContent>

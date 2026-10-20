@@ -1,7 +1,7 @@
 "use client";
 import { IconButton, useColorMode } from "@chakra-ui/react";
 
-/** Dark/light switch, same glyph as the Veenu site. Chakra persists the choice. */
+/** Dark/light switch, same glyph as the Aureum site. Chakra persists the choice. */
 export const ThemeToggle = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const next = colorMode === "dark" ? "light" : "dark";

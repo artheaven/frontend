@@ -43,7 +43,7 @@ export const AppHeader = () => {
         w="100%"
         maxW="1300px"
       >
-        <Link as={NextLink} href={ROUTE_PATHS.lending} aria-label="Veenu home" minW={{ lg: "150px" }}>
+        <Link as={NextLink} href={ROUTE_PATHS.lending} aria-label="Aureum home" minW={{ lg: "150px" }}>
           <Wordmark />
         </Link>
 

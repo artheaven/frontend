@@ -30,7 +30,7 @@ export const Providers = observer(({ children }: { children: React.ReactNode }) 
               theme={RAINBOW_THEME}
               locale="en-US"
               appInfo={{
-                appName: "Veenu",
+                appName: "Aureum",
                 disclaimer: () => <ConnectDisclaimer />
               }}
             >

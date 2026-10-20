@@ -2,7 +2,7 @@ import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import { Instrument_Serif } from "next/font/google";
 
-// Veenu type system: serif display, Geist Sans body, Geist Mono for data and eyebrows.
+// Aureum type system: serif display, Geist Sans body, Geist Mono for data and eyebrows.
 const instrumentSerif = Instrument_Serif({ subsets: ["latin"], weight: "400", display: "swap" });
 
 export const fonts = {

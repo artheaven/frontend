@@ -104,7 +104,7 @@ export interface IRebalancePage {
 }
 
 // ---- Risk monitoring (Collateral Risk Analyzer) ----
-// Mirrors the public RiskScore on the Veenu site: only fields inside the disclosure boundary.
+// Mirrors the public RiskScore on the Aureum site: only fields inside the disclosure boundary.
 
 export type RiskContourId = "structural" | "positional" | "liquidation" | "behavioural";
 export type RiskContourStatus = "normal" | "signal" | "gate";

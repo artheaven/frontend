@@ -92,9 +92,8 @@ export const LendingAsset = observer(
           <Flex align="center" justify="space-between">
             {!media && (
               <Flex gap="8px" alignItems="center">
-                <Text fontWeight="500">
-                  {loading || error ? renderSkeleton("20px", "60px") : "Pool"}
-                </Text>
+                {/* A skeleton is a <div>; it must not sit inside <Text> (<p>), or SSR and hydration disagree. */}
+                {loading || error ? renderSkeleton("20px", "60px") : <Text fontWeight="500">Pool</Text>}
                 <Flex align="center" gap="5px">
                   {loading || error ? (
                     <>

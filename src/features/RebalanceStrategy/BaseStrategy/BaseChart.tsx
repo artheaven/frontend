@@ -1,4 +1,4 @@
-import { Flex, Text, useMediaQuery } from "@chakra-ui/react";
+import { Box, Flex, HStack, Text, useMediaQuery } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { Area } from "recharts";
 
@@ -10,7 +10,8 @@ import { colorsArea, tickFormatter } from "../utils";
 import { LegendAreaChart } from "./components/LegendAreaChart";
 import { IAreaLineProps } from "./types";
 import { MEDIA_QUERY_MAX } from "../../../consts";
-import { ILendChartData } from "@/api/pools/types";
+import { ILendChartData, IPoolData } from "@/api/pools/types";
+import { SharePriceChart } from "./SharePriceChart";
 import { ROUTES_TYPE } from "@/consts/routes-type";
 
 const areaGradient = (
@@ -85,9 +86,41 @@ interface IChartData {
   poolChart: any[];
 }
 
-export const BaseChart = ({ chartData }: { chartData: IChartData }) => {
+type View = "apy" | "price";
+
+const ViewSwitch = ({ view, onChange }: { view: View; onChange: (v: View) => void }) => (
+  <HStack border="1px solid" borderColor="black.40" borderRadius="10px" bg="black.100" p="2px" spacing="2px" role="tablist">
+    {(
+      [
+        ["apy", "APY"],
+        ["price", "Share price"]
+      ] as const
+    ).map(([v, label]) => (
+      <Box
+        key={v}
+        as="button"
+        type="button"
+        role="tab"
+        aria-selected={view === v}
+        onClick={() => onChange(v)}
+        p="4px 12px"
+        borderRadius="10px"
+        bg={view === v ? "black.40" : undefined}
+        fontSize="sm"
+        color="lightGray"
+        whiteSpace="nowrap"
+      >
+        {label}
+      </Box>
+    ))}
+  </HStack>
+);
+
+export const BaseChart = ({ chartData, pool }: { chartData: IChartData; pool?: IPoolData | null }) => {
   const [media] = useMediaQuery(MEDIA_QUERY_MAX);
   const { selectedDate, setSelectDate } = useDateSwitcher(DATES[0]);
+  const [view, setView] = useState<View>("apy");
+  const canShowPrice = Boolean(pool?.terms);
   const [smDown] = useMediaQuery("(max-width: 420px)");
 
   const areaLines = [
@@ -123,19 +156,33 @@ export const BaseChart = ({ chartData }: { chartData: IChartData }) => {
           right={{ base: "0" }}
         >
           <Text textStyle="h2">Strategy profitability</Text>
-          <DateSwitcher date={DATES} selectDate={setSelectDate} selectedDate={selectedDate} />
+          <Flex gap="8px" align="center" wrap="wrap" justify="flex-end">
+            {canShowPrice ? <ViewSwitch view={view} onChange={setView} /> : null}
+            <DateSwitcher date={DATES} selectDate={setSelectDate} selectedDate={selectedDate} />
+          </Flex>
         </Flex>
       </Flex>
 
-      <AreaChart
-        data={chartData.poolChart[selectedDate.name as any].data}
-        lines={getAreaLines(areaLines)}
-        gradient={areaGradient}
-        tickFormatter={tickFormatter}
-        tooltipName
-      />
+      {view === "price" && pool?.terms ? (
+        <SharePriceChart
+          points={chartData.poolChart[selectedDate.name as any].data}
+          netApy={pool.avgApr}
+          launchedAt={pool.terms.launchedAt}
+          token={pool.token}
+          shareToken={pool.terms.shareToken}
+        />
+      ) : (
+        <AreaChart
+          data={chartData.poolChart[selectedDate.name as any].data}
+          lines={getAreaLines(areaLines)}
+          gradient={areaGradient}
+          tickFormatter={tickFormatter}
+          tooltipName
+        />
+      )}
 
       <Flex
+        display={view === "price" && canShowPrice ? "none" : "flex"}
         alignItems="center"
         gap="12px"
         mt="28px"

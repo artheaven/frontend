@@ -58,6 +58,9 @@ export const FIRELABS_AUDIT_LINK = "https://4irelabs.com/smart-contract-audit/";
 
 export const HACKEN_AUDIT_LINK = "https://hacken.io/audits/rebalance/";
 
+/** Marketing site, home of the legal documents linked from the deposit panel. */
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://invictus-web-seven.vercel.app";
+
 export const LOCAL_STORAGE_KEYS = {
   isShownTutorial: "isShownTutorial",
   isShownTasks: "isShownTasks",

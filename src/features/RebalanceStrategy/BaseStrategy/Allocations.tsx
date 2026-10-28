@@ -93,6 +93,8 @@ interface Row {
   sub?: string;
   share: number;
   color: string;
+  href?: string;
+  hrefLabel?: string;
 }
 
 const Breakdown = ({
@@ -180,9 +182,26 @@ const Breakdown = ({
               <Flex key={`${r.key}-l`} align="center" gap="10px" py="10px" borderTop="1px solid" borderColor="line" minW={0} {...hover}>
                 <Box w="8px" h="8px" bg={r.color} flexShrink={0} />
                 <Box minW={0}>
-                  <Text fontSize="sm" color="ink" noOfLines={1}>
-                    {r.label}
-                  </Text>
+                  <Flex align="center" gap="6px" minW={0}>
+                    <Text fontSize="sm" color="ink" noOfLines={1}>
+                      {r.label}
+                    </Text>
+                    {r.href ? (
+                      <Link
+                        href={r.href}
+                        isExternal
+                        aria-label={r.hrefLabel}
+                        title={r.hrefLabel}
+                        fontFamily="mono"
+                        fontSize="12px"
+                        color="ink3"
+                        flexShrink={0}
+                        _hover={{ color: "accent", textDecoration: "none" }}
+                      >
+                        ↗
+                      </Link>
+                    ) : null}
+                  </Flex>
                   {r.sub ? (
                     <Text fontSize="xs" color="ink3" noOfLines={1}>
                       {r.sub}
@@ -376,16 +395,21 @@ const EmptyState = ({ text }: { text: string }) => (
 
 // ---------------------------------------------------------------------------
 
-const toRows = (allocations: IPoolAllocation[]): Row[] =>
+const toRows = (allocations: IPoolAllocation[], explorer: string): Row[] =>
   [...allocations]
     .sort((a, b) => b.share - a.share)
-    .map((a, i) => ({
-      key: a.destination,
-      label: a.destination,
-      sub: protocolName(a.protocol),
-      share: a.share,
-      color: TONES[i % TONES.length]!
-    }));
+    .map((a, i) => {
+      const onChain = a.address && !DEMO_MODE;
+      return {
+        key: a.destination,
+        label: a.destination,
+        sub: protocolName(a.protocol),
+        share: a.share,
+        color: TONES[i % TONES.length]!,
+        href: onChain ? `${explorer}/address/${a.address}` : a.url,
+        hrefLabel: onChain ? "Open in explorer" : `Open on ${protocolName(a.protocol)}`
+      };
+    });
 
 const toProtocolRows = (allocations: IPoolAllocation[]): Row[] => {
   const byProtocol = new Map<string, { share: number; count: number }>();
@@ -409,7 +433,8 @@ export const Allocations = observer(({ pool }: { pool: IPoolData }) => {
   const [tab, setTab] = useState<Tab>("destinations");
   const { activeChain } = useStore("poolsStore");
   const allocations = pool.allocations ?? [];
-  const destinationRows = useMemo(() => toRows(allocations), [allocations]);
+  const explorer = EXPLORERS[activeChain] ?? EXPLORERS.Ethereum!;
+  const destinationRows = useMemo(() => toRows(allocations, explorer), [allocations, explorer]);
   const protocolRows = useMemo(() => toProtocolRows(allocations), [allocations]);
 
   return (

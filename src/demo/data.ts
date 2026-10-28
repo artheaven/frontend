@@ -3,6 +3,7 @@
  * Shapes mirror the backend responses consumed in src/api.
  */
 import type { IVaultTerms } from "@/api/pools/types";
+import { FIRELABS_AUDIT_LINK, HACKEN_AUDIT_LINK } from "@/consts";
 
 import { DEMO_AS_OF } from "./config";
 
@@ -10,6 +11,7 @@ export interface DemoAllocation {
   protocol: string;
   destination: string;
   share: number; // fraction, 0.38 = 38%
+  url?: string;
 }
 
 export interface DemoPool {
@@ -40,6 +42,11 @@ function vault(key: string): `0x${string}` {
   return `0x${out.slice(0, 40)}`;
 }
 
+// Public market pages in each protocol's app (demo markets have no contract addresses).
+const AAVE = (asset: string) => `https://app.aave.com/reserve-overview/?underlyingAsset=${asset}&marketName=proto_mainnet_v3`;
+const FLUID_LENDING = "https://fluid.io/lending/1";
+const MORPHO_EARN = "https://app.morpho.org/ethereum/earn";
+
 const DAY_MS = 86_400_000;
 const launched = (daysAgo: number) => new Date(Date.parse(DEMO_AS_OF) - daysAgo * DAY_MS).toISOString().slice(0, 10);
 
@@ -51,7 +58,10 @@ const terms = (token: string, daysAgo: number, capUsd: number): IVaultTerms => (
   managementFee: 0,
   minDeposit: 1,
   withdrawSlaHours: 24,
-  audits: []
+  audits: [
+    { firm: "Hacken", url: HACKEN_AUDIT_LINK },
+    { firm: "4irelabs", url: FIRELABS_AUDIT_LINK }
+  ]
 });
 
 export const DEMO_POOLS: DemoPool[] = [
@@ -67,10 +77,10 @@ export const DEMO_POOLS: DemoPool[] = [
     highestMarket30DAvgAprDiffPercentage: 2.91,
     terms: terms("USDC", 140, 60_000_000),
     allocations: [
-      { protocol: "morpho", destination: "MetaMorpho USDC vault A", share: 0.34 },
-      { protocol: "aave", destination: "Aave v3 USDC", share: 0.3 },
-      { protocol: "fluid", destination: "Fluid fUSDC", share: 0.2 },
-      { protocol: "morpho", destination: "Morpho Blue USDC market B", share: 0.1 },
+      { protocol: "morpho", destination: "MetaMorpho USDC vault A", share: 0.34, url: MORPHO_EARN },
+      { protocol: "aave", destination: "Aave v3 USDC", share: 0.3, url: AAVE("0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48") },
+      { protocol: "fluid", destination: "Fluid fUSDC", share: 0.2, url: FLUID_LENDING },
+      { protocol: "morpho", destination: "Morpho Blue USDC market B", share: 0.1, url: MORPHO_EARN },
       { protocol: "idle", destination: "Idle buffer", share: 0.06 }
     ],
     asOf: DEMO_AS_OF,
@@ -88,10 +98,10 @@ export const DEMO_POOLS: DemoPool[] = [
     highestMarket30DAvgAprDiffPercentage: 5.46,
     terms: terms("USDT", 95, 40_000_000),
     allocations: [
-      { protocol: "aave", destination: "Aave v3 USDT", share: 0.34 },
-      { protocol: "morpho", destination: "MetaMorpho USDT vault A", share: 0.3 },
-      { protocol: "fluid", destination: "Fluid fUSDT", share: 0.22 },
-      { protocol: "morpho", destination: "Morpho Blue USDT market B", share: 0.08 },
+      { protocol: "aave", destination: "Aave v3 USDT", share: 0.34, url: AAVE("0xdac17f958d2ee523a2206206994597c13d831ec7") },
+      { protocol: "morpho", destination: "MetaMorpho USDT vault A", share: 0.3, url: MORPHO_EARN },
+      { protocol: "fluid", destination: "Fluid fUSDT", share: 0.22, url: FLUID_LENDING },
+      { protocol: "morpho", destination: "Morpho Blue USDT market B", share: 0.08, url: MORPHO_EARN },
       { protocol: "idle", destination: "Idle buffer", share: 0.06 }
     ],
     asOf: DEMO_AS_OF,
@@ -109,8 +119,8 @@ export const DEMO_POOLS: DemoPool[] = [
     highestMarket30DAvgAprDiffPercentage: 0.47,
     terms: terms("DAI", 60, 20_000_000),
     allocations: [
-      { protocol: "aave", destination: "Aave v3 DAI", share: 0.4 },
-      { protocol: "morpho", destination: "MetaMorpho DAI vault A", share: 0.4 },
+      { protocol: "aave", destination: "Aave v3 DAI", share: 0.4, url: AAVE("0x6b175474e89094c44da98b954eedeac495271d0f") },
+      { protocol: "morpho", destination: "MetaMorpho DAI vault A", share: 0.4, url: MORPHO_EARN },
       { protocol: "idle", destination: "Idle buffer", share: 0.2 }
     ],
     asOf: DEMO_AS_OF,

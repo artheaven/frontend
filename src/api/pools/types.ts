@@ -39,6 +39,10 @@ export interface IPoolAllocation {
   protocol: string;
   destination: string;
   share: number;
+  /** Market contract, linked to the chain explorer. */
+  address?: string;
+  /** Public page of the market in its protocol's app, used when no address is known. */
+  url?: string;
 }
 export interface IPoolsData {
   token: string;

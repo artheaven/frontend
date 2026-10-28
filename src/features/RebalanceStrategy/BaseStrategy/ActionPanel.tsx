@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button, Collapse, Flex, Input, Text } from "@chakra-ui/react";
+import { Box, Button, Collapse, Flex, Input, Link, Text } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import { formatUnits, parseUnits } from "viem";
@@ -8,6 +8,7 @@ import { useAccount, useBalance } from "wagmi";
 import { IPoolData } from "@/api/pools/types";
 import { TokenIcon } from "@/components/token-icon";
 import { Tooltip } from "@/components/tooltip";
+import { SITE_URL } from "@/consts";
 import { DEMO_MODE } from "@/demo/config";
 import { demoLedger } from "@/demo/ledger";
 import { ConnectWallet } from "@/features/ConnectWallet";
@@ -317,6 +318,33 @@ export const ActionPanel = observer(({ pool }: { pool: IPoolData }) => {
         <Text fontFamily="mono" fontSize="10px" color="ink3" textAlign="center" letterSpacing="0.12em">
           DEMO · SIMULATED TRANSACTIONS
         </Text>
+      ) : null}
+
+      <Text fontSize="xs" color="ink3" textAlign="center" lineHeight="1.5">
+        By {mode === "deposit" ? "depositing" : "withdrawing"} you accept the{" "}
+        <Link href={`${SITE_URL}/legal/terms`} isExternal color="ink2" textDecoration="underline" _hover={{ color: "ink" }}>
+          Terms
+        </Link>{" "}
+        and the{" "}
+        <Link href={`${SITE_URL}/legal/risk-disclosure`} isExternal color="ink2" textDecoration="underline" _hover={{ color: "ink" }}>
+          Risk disclosure
+        </Link>
+        .
+      </Text>
+      {pool.terms?.audits.length ? (
+        <Flex justify="center" align="center" gap="6px" wrap="wrap" pt="12px" borderTop="1px solid" borderColor="line">
+          <Text fontFamily="mono" fontSize="10px" color="ink3" letterSpacing="0.12em">
+            AUDITED BY
+          </Text>
+          {pool.terms.audits.map((a, i) => (
+            <Text as="span" key={a.firm} fontSize="xs" color="ink2">
+              {i ? "· " : ""}
+              <Link href={a.url} isExternal _hover={{ color: "accent" }}>
+                {a.firm}
+              </Link>
+            </Text>
+          ))}
+        </Flex>
       ) : null}
     </Flex>
   );

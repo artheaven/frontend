@@ -30,7 +30,7 @@ const BaseStrategy: React.FC<any> = ({ pool, chartData }) => {
           borderRadius="10px"
           padding="24px"
         >
-          <BaseChart chartData={chartData} />
+          <BaseChart chartData={chartData} pool={pool} />
         </Flex>
         <EarningsChart token={pool?.token} address={address} pool={pool} />
         {pool ? <VaultDetails pool={pool} /> : null}

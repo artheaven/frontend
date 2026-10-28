@@ -18,8 +18,8 @@ import { useWithdraw } from "@/hooks/useWithdraw";
 
 type Mode = "deposit" | "withdraw";
 
-const PERFORMANCE_FEE = 0.15;
-const MIN_DEPOSIT = 1;
+const DEFAULT_PERFORMANCE_FEE = 0.15;
+const DEFAULT_MIN_DEPOSIT = 1;
 const NETWORK_FEE_ETH = 0.000005; // same estimate the deposit modal used
 export const ACTION_AMOUNT_INPUT_ID = "action-panel-amount";
 
@@ -56,6 +56,8 @@ export const ActionPanel = observer(({ pool }: { pool: IPoolData }) => {
   const [amount, setAmount] = useState("");
   const [feesOpen, setFeesOpen] = useState(false);
 
+  const PERFORMANCE_FEE = pool.terms?.performanceFee ?? DEFAULT_PERFORMANCE_FEE;
+  const MIN_DEPOSIT = pool.terms?.minDeposit ?? DEFAULT_MIN_DEPOSIT;
   const decimals = pool.decimals;
   const price = pool.tokenPriceInUsd || 1;
 
@@ -258,7 +260,7 @@ export const ActionPanel = observer(({ pool }: { pool: IPoolData }) => {
         <Text textStyle="eyebrow">{mode === "deposit" ? "Deposit details" : "Withdraw details"}</Text>
         {mode === "deposit" ? (
           <>
-            <Row label="30D avg APY" value={`${apy.toFixed(2)}%`} />
+            <Row label="Net APY · 30D" value={`${apy.toFixed(2)}%`} />
             <Row
               label="Est. yearly yield"
               value={value > 0 ? `${fmt(value * (apy / 100))} ${pool.token}` : "—"}

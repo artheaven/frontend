@@ -7,6 +7,7 @@ import { useAccount } from "wagmi";
 import Icon from "../../components/icon";
 import {
   ARB_DEFAULT_EXPLORER_URL,
+  ETH_DEFAULT_EXPLORER_URL,
   BSC_DEFAULT_EXPLORER_URL,
   BASE_DEFAULT_EXPLORER_URL,
   CHAIN_ICONS,
@@ -31,8 +32,9 @@ const getExplorerUrlByChain = (chainName: string): string => {
     case "Base":
       return BASE_DEFAULT_EXPLORER_URL;
     case "Arbitrum":
-    default:
       return ARB_DEFAULT_EXPLORER_URL;
+    default:
+      return ETH_DEFAULT_EXPLORER_URL;
   }
 };
 

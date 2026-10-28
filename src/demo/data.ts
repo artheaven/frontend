@@ -2,6 +2,8 @@
  * DEMO DATA — synthetic values for UI development and demos only.
  * Shapes mirror the backend responses consumed in src/api.
  */
+import type { IVaultTerms } from "@/api/pools/types";
+
 import { DEMO_AS_OF } from "./config";
 
 export interface DemoAllocation {
@@ -22,23 +24,48 @@ export interface DemoPool {
   highestMarket30DAvgAprDiffPercentage: number; // percent points
   allocations: DemoAllocation[];
   asOf: string;
+  terms: IVaultTerms;
   /** Simulated wallet position in the pool, in asset units. */
   demoDeposit: number;
 }
 
-const vault = (n: number) => `0x${n.toString(16).padStart(40, "0")}` as `0x${string}`;
+/** Deterministic, realistic-looking placeholder address (not a deployed contract). */
+function vault(key: string): `0x${string}` {
+  let h = 2166136261;
+  let out = "";
+  for (let i = 0; out.length < 40; i++) {
+    h = Math.imul(h ^ key.charCodeAt(i % key.length) ^ i, 16777619) >>> 0;
+    out += (h >>> 4).toString(16).padStart(7, "0").slice(-2);
+  }
+  return `0x${out.slice(0, 40)}`;
+}
+
+const DAY_MS = 86_400_000;
+const launched = (daysAgo: number) => new Date(Date.parse(DEMO_AS_OF) - daysAgo * DAY_MS).toISOString().slice(0, 10);
+
+const terms = (token: string, daysAgo: number, capUsd: number): IVaultTerms => ({
+  shareToken: `aur${token}`,
+  launchedAt: launched(daysAgo),
+  capUsd,
+  performanceFee: 0.15,
+  managementFee: 0,
+  minDeposit: 1,
+  withdrawSlaHours: 24,
+  audits: []
+});
 
 export const DEMO_POOLS: DemoPool[] = [
   {
     token: "USDC",
-    vaultAddress: vault(0xde01),
+    vaultAddress: vault("aureum:USDC"),
     tokenAddress: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
     tokenDecimals: 6,
     tokenPrice: 1,
     funds: 48_200_000,
     earned: 1_240_000,
     avgApr30D: 7.38,
-    highestMarket30DAvgAprDiffPercentage: 0.84,
+    highestMarket30DAvgAprDiffPercentage: 2.91,
+    terms: terms("USDC", 140, 60_000_000),
     allocations: [
       { protocol: "morpho", destination: "MetaMorpho USDC vault A", share: 0.34 },
       { protocol: "aave", destination: "Aave v3 USDC", share: 0.3 },
@@ -51,14 +78,15 @@ export const DEMO_POOLS: DemoPool[] = [
   },
   {
     token: "USDT",
-    vaultAddress: vault(0xde02),
+    vaultAddress: vault("aureum:USDT"),
     tokenAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
     tokenDecimals: 6,
     tokenPrice: 1,
     funds: 27_900_000,
     earned: 690_000,
     avgApr30D: 10.28,
-    highestMarket30DAvgAprDiffPercentage: 0.61,
+    highestMarket30DAvgAprDiffPercentage: 5.46,
+    terms: terms("USDT", 95, 40_000_000),
     allocations: [
       { protocol: "aave", destination: "Aave v3 USDT", share: 0.34 },
       { protocol: "morpho", destination: "MetaMorpho USDT vault A", share: 0.3 },
@@ -71,7 +99,7 @@ export const DEMO_POOLS: DemoPool[] = [
   },
   {
     token: "DAI",
-    vaultAddress: vault(0xde03),
+    vaultAddress: vault("aureum:DAI"),
     tokenAddress: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
     tokenDecimals: 18,
     tokenPrice: 1,
@@ -79,6 +107,7 @@ export const DEMO_POOLS: DemoPool[] = [
     earned: 210_000,
     avgApr30D: 4.21,
     highestMarket30DAvgAprDiffPercentage: 0.47,
+    terms: terms("DAI", 60, 20_000_000),
     allocations: [
       { protocol: "aave", destination: "Aave v3 DAI", share: 0.4 },
       { protocol: "morpho", destination: "MetaMorpho DAI vault A", share: 0.4 },

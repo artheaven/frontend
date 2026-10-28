@@ -44,7 +44,8 @@ export const getPools = async (
         borrowRate: 12.5,
         borrowed: 1234334,
         allocations: item?.allocations,
-        asOf: item?.asOf
+        asOf: item?.asOf,
+        terms: item?.terms
       };
     });
     return [...pools];

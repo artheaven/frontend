@@ -18,6 +18,7 @@ export const BIG_1E18 = 1000000000000000000;
 export const BIG_1E20 = 100000000000000000000;
 
 export const ARB_DEFAULT_EXPLORER_URL = "https://arbiscan.io";
+export const ETH_DEFAULT_EXPLORER_URL = "https://etherscan.io";
 export const ARB_CONFIRMATIONS_COUNT = 50;
 
 export const BSC_DEFAULT_EXPLORER_URL = "https://bscscan.com";

@@ -18,6 +18,21 @@ export interface IPoolData {
   allocations?: IPoolAllocation[];
   /** Observation time of the metrics (ISO, UTC), if provided. */
   asOf?: string;
+  /** Vault parameters for the details block, if the backend provides them. */
+  terms?: IVaultTerms;
+}
+
+/** Static vault parameters shown on the pool page. Fees are fractions (0.15 = 15%). */
+export interface IVaultTerms {
+  shareToken: string;
+  launchedAt: string;
+  capUsd: number | null;
+  performanceFee: number;
+  managementFee: number;
+  minDeposit: number;
+  /** Worst-case time to unwind a withdrawal larger than the idle buffer, hours. */
+  withdrawSlaHours: number;
+  audits: { firm: string; url?: string }[];
 }
 
 export interface IPoolAllocation {
@@ -37,6 +52,7 @@ export interface IPoolsData {
   highestMarket30DAvgAprDiffPercentage: number;
   allocations?: IPoolAllocation[];
   asOf?: string;
+  terms?: IVaultTerms;
 }
 
 export interface ILendChartData {

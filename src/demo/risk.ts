@@ -85,6 +85,18 @@ const SCENARIOS: Record<string, Scenario> = {
         anomalySignals: []
       },
       {
+        market: "Fluid fUSDC",
+        protocol: "fluid",
+        minutesAgo: 5,
+        gatesPassed: true,
+        gateFailures: [],
+        score: 76,
+        maxAllocationPct: 20,
+        topCollateral: { symbol: "wstETH", cluster: "ETH LST", weight: 0.38 },
+        effectiveN: 3.8,
+        anomalySignals: []
+      },
+      {
         market: "Morpho Blue USDC market C",
         protocol: "morpho",
         minutesAgo: 41,
@@ -172,6 +184,18 @@ const SCENARIOS: Record<string, Scenario> = {
         topCollateral: { symbol: "weETH", cluster: "ETH LRT", weight: 0.39 },
         effectiveN: 3.9,
         anomalySignals: ["collateral_inflow_velocity"]
+      },
+      {
+        market: "Fluid fUSDT",
+        protocol: "fluid",
+        minutesAgo: 4,
+        gatesPassed: true,
+        gateFailures: [],
+        score: 81,
+        maxAllocationPct: 40,
+        topCollateral: { symbol: "WETH", cluster: "ETH", weight: 0.36 },
+        effectiveN: 5.1,
+        anomalySignals: []
       },
       {
         market: "Morpho Blue USDT market B",

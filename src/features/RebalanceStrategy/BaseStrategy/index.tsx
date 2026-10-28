@@ -8,6 +8,7 @@ import { BaseChart } from "./BaseChart";
 import EarningsChart from "./EarningsChart";
 import { Governance } from "./Governance";
 import { RiskMonitor } from "./RiskMonitor";
+import { VaultDetails } from "./VaultDetails";
 
 /**
  * Pool page body: analytics on the left, the deposit/withdraw panel on the right.
@@ -32,6 +33,7 @@ const BaseStrategy: React.FC<any> = ({ pool, chartData }) => {
           <BaseChart chartData={chartData} />
         </Flex>
         <EarningsChart token={pool?.token} address={address} pool={pool} />
+        {pool ? <VaultDetails pool={pool} /> : null}
         <Allocations pool={pool} />
         {pool ? <RiskMonitor pool={pool} /> : null}
         {pool ? <Governance pool={pool} /> : null}
